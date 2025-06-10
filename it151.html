@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT151 Python Programming Course Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-info {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            background: #34495e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .tab:hover {
+            background: #2c3e50;
+            transform: translateY(-2px);
+        }
+        
+        .tab.active {
+            background: #3498db;
+            box-shadow: inset 0 3px 0 #2980b9;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .week-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .week-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .week-number {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .week-hours {
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .week-topic {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .week-details {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .prerequisites {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid #f39c12;
+        }
+        
+        .prerequisites strong {
+            color: #f39c12;
+        }
+        
+        .dependency-map {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .module {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .module.foundation {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        
+        .module.intermediate {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+        
+        .module.advanced {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        
+        .learning-objectives {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .learning-objectives h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .learning-objectives ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .learning-objectives li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .learning-objectives li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .assessment-info {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .textbook-ref {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-style: italic;
+            color: #34495e;
+        }
+
+        .programming-activity {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid #27ae60;
+        }
+
+        .programming-activity strong {
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IT151 Python Programming</h1>
+        
+        <div class="course-info">
+            <h2>Course Overview</h2>
+            <p><strong>Course Code:</strong> IT151 | <strong>Credits:</strong> 3-0-0 (3 Credits)</p>
+            <p><strong>Duration:</strong> 15 Weeks | <strong>Weekly Hours:</strong> 3 Hours | <strong>Total:</strong> 45 Hours</p>
+            <p><strong>Textbooks:</strong> Martin C. Brown (2018), Mark Summerfield (2018)</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('schedule')">Weekly Schedule</button>
+            <button class="tab" onclick="showTab('dependencies')">Dependency Map</button>
+            <button class="tab" onclick="showTab('assessments')">Assessment Plan</button>
+        </div>
+        
+        <div id="schedule" class="tab-content active">
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 1</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Introduction to Programming Languages & Python Basics</div>
+                <div class="week-details">
+                    Overview of programming languages, history of Python, Python installation, IDLE, interactive mode, basic syntax
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Understand the role of programming languages</li>
+                        <li>Install and configure Python development environment</li>
+                        <li>Write and execute basic Python programs</li>
+                        <li>Use Python's interactive mode effectively</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Setting up Python environment, writing "Hello World" program
+                </div>
+                <div class="textbook-ref">Brown Ch. 1-2, Summerfield Ch. 1</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 2</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Variables and Data Types</div>
+                <div class="week-details">
+                    Variable declaration, naming conventions, numeric types (int, float, complex), strings, booleans, type conversion
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Week 1 - Python basics
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Declare and initialize variables following Python conventions</li>
+                        <li>Understand different data types and their uses</li>
+                        <li>Perform type conversion between different data types</li>
+                        <li>Use Python's dynamic typing effectively</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Variable manipulation, type checking, and conversion exercises
+                </div>
+                <div class="textbook-ref">Brown Ch. 3, Summerfield Ch. 2</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 3</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Control Structures - Conditional Statements</div>
+                <div class="week-details">
+                    if, elif, else statements, comparison operators, logical operators, nested conditions, boolean expressions
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Variables and data types
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Write conditional statements using if-elif-else</li>
+                        <li>Use comparison and logical operators effectively</li>
+                        <li>Create complex boolean expressions</li>
+                        <li>Implement nested conditional structures</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Grade calculator, number classification programs
+                </div>
+                <div class="textbook-ref">Brown Ch. 4, Summerfield Ch. 3</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 4</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Repetition Structures - Loops</div>
+                <div class="week-details">
+                    for loops, while loops, range() function, break and continue statements, nested loops, loop control
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Control structures
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Implement for and while loops appropriately</li>
+                        <li>Use range() function for iteration</li>
+                        <li>Control loop execution with break and continue</li>
+                        <li>Design nested loop structures</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Pattern printing, sum calculations, multiplication tables
+                </div>
+                <div class="textbook-ref">Brown Ch. 5, Summerfield Ch. 3</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 5</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Functions - Part 1</div>
+                <div class="week-details">
+                    Function definition and calling, parameters and arguments, return values, local vs global scope
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Basic programming constructs
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Define and call functions with parameters</li>
+                        <li>Understand function return values</li>
+                        <li>Distinguish between local and global scope</li>
+                        <li>Write modular code using functions</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Mathematical functions, utility functions
+                </div>
+                <div class="textbook-ref">Brown Ch. 6, Summerfield Ch. 4</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 6</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Functions - Part 2 & Modules</div>
+                <div class="week-details">
+                    Default parameters, keyword arguments, variable-length arguments, lambda functions, importing modules, creating modules
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Functions basics
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Use advanced function features (default params, *args, **kwargs)</li>
+                        <li>Create and use lambda functions</li>
+                        <li>Import and use built-in modules</li>
+                        <li>Create custom modules</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Module creation, math and random module usage
+                </div>
+                <div class="textbook-ref">Brown Ch. 7, Summerfield Ch. 5</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 7</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Strings - Part 1</div>
+                <div class="week-details">
+                    String creation, indexing, slicing, string immutability, basic string methods
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Basic Python syntax
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Manipulate strings using indexing and slicing</li>
+                        <li>Understand string immutability</li>
+                        <li>Use basic string methods effectively</li>
+                        <li>Perform string concatenation and repetition</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> String manipulation exercises, palindrome checker
+                </div>
+                <div class="textbook-ref">Brown Ch. 8, Summerfield Ch. 6</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 8</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Strings - Part 2</div>
+                <div class="week-details">
+                    Advanced string methods, string formatting, regular expressions basics, string validation
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Strings Part 1
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Use advanced string methods for text processing</li>
+                        <li>Format strings using various techniques</li>
+                        <li>Apply basic regular expressions</li>
+                        <li>Validate string input</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Text processing, word count, string formatting
+                </div>
+                <div class="textbook-ref">Brown Ch. 9, Summerfield Ch. 7</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 9</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Lists - Part 1</div>
+                <div class="week-details">
+                    List creation, indexing, slicing, list methods (append, insert, remove, pop), list comprehensions
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Basic Python constructs
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Create and manipulate lists effectively</li>
+                        <li>Use list methods for data manipulation</li>
+                        <li>Write list comprehensions</li>
+                        <li>Understand list mutability</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> List operations, data sorting, filtering
+                </div>
+                <div class="textbook-ref">Brown Ch. 10, Summerfield Ch. 8</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 10</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Lists - Part 2 & Advanced Data Structures</div>
+                <div class="week-details">
+                    Nested lists, tuples, sets, dictionaries, choosing appropriate data structures
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Lists Part 1
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Work with nested lists and multidimensional data</li>
+                        <li>Use tuples, sets, and dictionaries appropriately</li>
+                        <li>Choose optimal data structures for different scenarios</li>
+                        <li>Convert between different data structures</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Matrix operations, data organization, student record system
+                </div>
+                <div class="textbook-ref">Brown Ch. 11-12, Summerfield Ch. 9</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 11</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">File Input and Output</div>
+                <div class="week-details">
+                    Opening and closing files, reading from files, writing to files, file modes, exception handling with files
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Strings and basic data structures
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Read data from text files</li>
+                        <li>Write data to text files</li>
+                        <li>Handle file operations safely</li>
+                        <li>Process CSV and structured data files</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> File processing, data backup, log file analysis
+                </div>
+                <div class="textbook-ref">Brown Ch. 13, Summerfield Ch. 10</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 12</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Basic Data Structures & Algorithms</div>
+                <div class="week-details">
+                    Stacks, queues, searching algorithms (linear, binary), sorting algorithms (bubble, selection, insertion)
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Lists and functions
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Implement stack and queue data structures</li>
+                        <li>Write searching algorithms</li>
+                        <li>Implement basic sorting algorithms</li>
+                        <li>Analyze algorithm efficiency basics</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Stack calculator, search implementations, sorting comparisons
+                </div>
+                <div class="textbook-ref">Brown Ch. 14, Summerfield Ch. 11</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 13</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Object-Oriented Programming - Part 1</div>
+                <div class="week-details">
+                    Classes and objects, attributes and methods, constructor (__init__), instance vs class variables
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> Functions and data structures
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Define classes and create objects</li>
+                        <li>Implement constructors and methods</li>
+                        <li>Understand instance vs class variables</li>
+                        <li>Apply encapsulation principles</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Student class, Bank Account class, basic OOP exercises
+                </div>
+                <div class="textbook-ref">Brown Ch. 15, Summerfield Ch. 12</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 14</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Object-Oriented Programming - Part 2</div>
+                <div class="week-details">
+                    Inheritance, method overriding, polymorphism, special methods (__str__, __repr__), access modifiers
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> OOP Part 1
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Implement inheritance hierarchies</li>
+                        <li>Override methods appropriately</li>
+                        <li>Use polymorphism effectively</li>
+                        <li>Implement special methods</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Shape hierarchy, Employee management system
+                </div>
+                <div class="textbook-ref">Brown Ch. 16, Summerfield Ch. 13</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">Week 15</div>
+                    <div class="week-hours">3 Hours</div>
+                </div>
+                <div class="week-topic">Python Web Frameworks & Course Review</div>
+                <div class="week-details">
+                    Introduction to web frameworks (Flask/Django basics), course review, final project presentations, Python best practices
+                </div>
+                <div class="prerequisites">
+                    <strong>Prerequisites:</strong> All previous topics
+                </div>
+                <div class="learning-objectives">
+                    <h4>Learning Objectives:</h4>
+                    <ul>
+                        <li>Understand web framework concepts</li>
+                        <li>Create a simple web application</li>
+                        <li>Integrate multiple Python concepts</li>
+                        <li>Present and document projects effectively</li>
+                    </ul>
+                </div>
+                <div class="programming-activity">
+                    <strong>Lab Activity:</strong> Simple web application, final project presentation
+                </div>
+                <div class="textbook-ref">Brown Ch. 17-18, Web framework documentation</div>
+            </div>
+        </div>
+        
+        <div id="dependencies" class="tab-content">
+            <div class="dependency-map">
+                <h3>Course Dependency Structure</h3>
+                
+                <div class="module foundation">
+                    Week 1: Introduction & Python Basics
+                </div>
+                <div class="arrow">↓</div>
+                
+                <div class="module foundation">
+                    Week 2: Variables & Data Types
+                </div>
+                <div class="arrow">↓</div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex: 1; margin-right: 10px;">
+                        <div class="module foundation">
+                            Week 3: Control Structures
+                        </div>
+                    </div>
+                    <div style="flex: 1; margin-left: 10px;">
+                        <div class="module foundation">
+                            Week 4: Loops
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex: 1; margin-right: 10px;">
+                        <div class="module intermediate">
+                            Week 5: Functions Part 1
+                        </div>
+                    </div>
+                    <div style="flex: 1; margin-left: 10px;">
+                        <div class="module intermediate">
+                            Week 6: Functions Part 2 & Modules
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex: 1; margin-right: 10px;">
+                        <div class="module intermediate">
+                            Week 7: Strings Part 1
+                        </div>
+                    </div>
+                    <div style="flex: 1; margin-left: 10px;">
+                        <div class="module intermediate">
+                            Week 8: Strings Part 2
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex: 1; margin-right: 10px;">
+                        <div class="module intermediate">
+                            Week 9: Lists Part 1
+                        </div>
+                    </div>
+                    <div style="flex: 1; margin-left: 10px;">
+                        <div class="module intermediate">
+                            Week 10: Lists Part 2 & Data Structures
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex: 1; margin-right: 10px;">
+                        <div class="module intermediate">
+                            Week 11: File I/O
+                        </div>
+                    </div>
+                    <div style="flex: 1; margin-left: 10px;">
+                        <div class="module advanced">
+                            Week 12: Data Structures & Algorithms
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex: 1; margin-right: 10px;">
+                        <div class="module advanced">
+                            Week 13: OOP Part 1
+                        </div>
+                    </div>
+                    <div style="flex: 1; margin-left: 10px;">
+                        <div class="module advanced">
+                            Week 14: OOP Part 2
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                
+                <div class="module advanced">
+                    Week 15: Web Frameworks & Review
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h4>Dependency Legend:</h4>
+                    
