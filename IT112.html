@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT112 Computer Systems Lab - Course Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-code {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .course-details {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .week-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .week-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .week-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .week-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .week-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .week-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .topics {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .topics li {
+            background: #f8f9ff;
+            margin: 8px 0;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border-left: 3px solid #667eea;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .topics li:hover {
+            background: #e8f2ff;
+            transform: translateX(5px);
+        }
+
+        .topics li::before {
+            content: '▶';
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .objectives {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .objectives h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .objectives ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .objectives li {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #764ba2;
+            transition: all 0.3s ease;
+        }
+
+        .objectives li:hover {
+            background: #e8f2ff;
+            transform: translateX(5px);
+        }
+
+        .assessment {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .assessment h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .assessment-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .assessment-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .week-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="course-code">IT112</div>
+            <h1>Computer Systems Lab</h1>
+            <div class="course-details">
+                <strong>Credits:</strong> 0-0-2 | <strong>Duration:</strong> 14 Weeks | <strong>Type:</strong> Laboratory Course
+            </div>
+        </div>
+
+        <div class="objectives">
+            <h2>🎯 Course Objectives</h2>
+            <ul>
+                <li>Master fundamental Linux commands and shell programming techniques</li>
+                <li>Develop proficiency in C programming from basics to advanced concepts</li>
+                <li>Understand memory management and system-level programming</li>
+                <li>Learn debugging techniques and performance profiling</li>
+                <li>Gain hands-on experience with system calls and low-level operations</li>
+                <li>Build practical problem-solving skills through laboratory exercises</li>
+            </ul>
+        </div>
+
+        <div class="week-container">
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">1-2</div>
+                    <div class="week-title">Linux Fundamentals</div>
+                </div>
+                <ul class="topics">
+                    <li>Introduction to Linux Environment</li>
+                    <li>Basic File and Directory Commands</li>
+                    <li>File Permissions and Ownership</li>
+                    <li>Text Processing Commands</li>
+                    <li>Process Management Basics</li>
+                </ul>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">3-4</div>
+                    <div class="week-title">Shell Programming</div>
+                </div>
+                <ul class="topics">
+                    <li>Shell Scripting Fundamentals</li>
+                    <li>Variables and Environment</li>
+                    <li>Control Structures in Shell</li>
+                    <li>Functions and Parameter Passing</li>
+                    <li>Advanced Shell Features</li>
+                </ul>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">5-6</div>
+                    <div class="week-title">C Programming Basics</div>
+                </div>
+                <ul class="topics">
+                    <li>C Programming Environment Setup</li>
+                    <li>Writing First C Programs</li>
+                    <li>Data Types and Variables</li>
+                    <li>Input/Output Operations</li>
+                    <li>Testing and Debugging Techniques</li>
+                </ul>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">7-8</div>
+                    <div class="week-title">Control Structures</div>
+                </div>
+                <ul class="topics">
+                    <li>Conditional Statements (if, switch)</li>
+                    <li>Loop Structures (for, while, do-while)</li>
+                    <li>Nested Control Structures</li>
+                    <li>Break and Continue Statements</li>
+                    <li>Problem Solving with Loops</li>
+                </ul>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">9-10</div>
+                    <div class="week-title">Pointers & Arrays</div>
+                </div>
+                <ul class="topics">
+                    <li>Introduction to Pointers</li>
+                    <li>Pointer Arithmetic and Operations</li>
+                    <li>Arrays and Pointer Relationships</li>
+                    <li>Multi-dimensional Arrays</li>
+                    <li>Strings and Character Arrays</li>
+                </ul>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">11-12</div>
+                    <div class="week-title">Memory Management</div>
+                </div>
+                <ul class="topics">
+                    <li>Static vs Dynamic Memory Allocation</li>
+                    <li>malloc(), calloc(), realloc(), free()</li>
+                    <li>Memory Leaks and Prevention</li>
+                    <li>Pointer Best Practices</li>
+                    <li>Advanced Memory Techniques</li>
+                </ul>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">13</div>
+                    <div class="week-title">System Calls</div>
+                </div>
+                <ul class="topics">
+                    <li>Introduction to System Calls</li>
+                    <li>File I/O System Calls</li>
+                    <li>Process Management System Calls</li>
+                    <li>Error Handling in System Calls</li>
+                    <li>Practical System Programming</li>
+                </ul>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <div class="week-number">14</div>
+                    <div class="week-title">Profiling & Optimization</div>
+                </div>
+                <ul class="topics">
+                    <li>Introduction to Code Profiling</li>
+                    <li>Performance Analysis Tools</li>
+                    <li>Memory Profiling Techniques</li>
+                    <li>Code Optimization Strategies</li>
+                    <li>Final Project Integration</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="assessment">
+            <h2>📊 Assessment Structure</h2>
+            <div class="assessment-grid">
+                <div class="assessment-item">
+                    <h3>Lab Assignments</h3>
+                    <p>40%</p>
+                    <small>Weekly programming exercises and shell scripts</small>
+                </div>
+                <div class="assessment-item">
+                    <h3>Mid-term Lab Exam</h3>
+                    <p>25%</p>
+                    <small>Practical examination covering weeks 1-7</small>
+                </div>
+                <div class="assessment-item">
+                    <h3>Final Lab Exam</h3>
+                    <p>25%</p>
+                    <small>Comprehensive practical examination</small>
+                </div>
+                <div class="assessment-item">
+                    <h3>Project Work</h3>
+                    <p>10%</p>
+                    <small>System programming project with documentation</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>💻 Hands-on learning through practical implementation</p>
+            <p>🚀 Building strong foundations in system programming</p>
+        </div>
+    </div>
+</body>
+</html>

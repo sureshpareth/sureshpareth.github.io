@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Systems Lesson Plan - IT213</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: slidePattern 30s linear infinite;
+        }
+
+        @keyframes slidePattern {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-code {
+            font-size: 1.4em;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .course-title {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-credits {
+            font-size: 1.2em;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-tabs {
+            background: #f8f9fa;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #e9ecef;
+        }
+
+        .nav-tab {
+            padding: 20px 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #495057;
+            transition: all 0.3s ease;
+            position: relative;
+            margin: 0 5px;
+        }
+
+        .nav-tab:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+
+        .nav-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-tab.active::after {
+            transform: scaleX(1);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .week-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .week-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border-left: 5px solid #3498db;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .week-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(52, 152, 219, 0.05) 100%);
+            transition: all 0.3s ease;
+        }
+
+        .week-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-left-color: #e74c3c;
+        }
+
+        .week-card:hover::before {
+            background: linear-gradient(135deg, transparent 0%, rgba(231, 76, 60, 0.08) 100%);
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .week-number {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .week-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2c3e50;
+            flex: 1;
+        }
+
+        .week-duration {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .week-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .topics-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .topics-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            padding-left: 25px;
+            color: #495057;
+        }
+
+        .topics-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 0.8em;
+        }
+
+        .topics-list li:last-child {
+            border-bottom: none;
+        }
+
+        .learning-objectives {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .learning-objectives h4 {
+            color: #27ae60;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .learning-objectives ul {
+            color: #2c3e50;
+            padding-left: 20px;
+        }
+
+        .learning-objectives li {
+            margin-bottom: 5px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 15px 30px rgba(255, 118, 117, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .project-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-description {
+            font-size: 1.1em;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .books-section {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+            padding: 40px;
+            margin: 40px -40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .books-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="books" width="25" height="25" patternUnits="userSpaceOnUse"><rect width="25" height="25" fill="none"/><path d="M3 3h19v19H3z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23books)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .books-title {
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .book-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .book-author {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .book-title {
+            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .book-publisher {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin: 40px -40px 0;
+        }
+
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 2.2em;
+            }
+            
+            .week-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .books-section {
+                margin: 40px -20px 0;
+                padding: 30px 20px;
+            }
+            
+            .footer {
+                margin: 40px -20px 0;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="course-code">IT213</div>
+                <h1 class="course-title">Database Systems</h1>
+                <div class="course-credits">Credits: 3-0-2 | Total: 4</div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('theory')">Theory Lessons</button>
+            <button class="nav-tab" onclick="showTab('practical')">Practical Sessions</button>
+            <button class="nav-tab" onclick="showTab('projects')">Projects</button>
+            <button class="nav-tab" onclick="showTab('resources')">Resources</button>
+        </div>
+
+        <div class="content">
+            <div id="theory" class="tab-content active">
+                <h2 style="color: #2c3e50; margin-bottom: 30px; font-size: 2em;">📚 Theory Lessons (14 Weeks)</h2>
+                
+                <div class="week-container">
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">1</div>
+                            <div class="week-title">Introduction to Database Systems</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>What is a Database Management System?</li>
+                                <li>Advantages of DBMS over File Systems</li>
+                                <li>Database System Architecture</li>
+                                <li>Data Independence Concepts</li>
+                                <li>Database Users and Administrators</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Understand the fundamental concepts of databases</li>
+                                    <li>Differentiate between DBMS and file systems</li>
+                                    <li>Identify different types of database users</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">2</div>
+                            <div class="week-title">Data Models and Languages</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Hierarchical Data Model</li>
+                                <li>Network Data Model</li>
+                                <li>Relational Data Model</li>
+                                <li>Object-Oriented Data Model</li>
+                                <li>Data Definition Language (DDL)</li>
+                                <li>Data Manipulation Language (DML)</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Compare different data models</li>
+                                    <li>Understand database languages</li>
+                                    <li>Apply appropriate data model for given scenarios</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">3</div>
+                            <div class="week-title">Entity-Relationship Model</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Entities, Attributes, and Relationships</li>
+                                <li>ER Diagrams and Notation</li>
+                                <li>Cardinality and Participation Constraints</li>
+                                <li>Weak Entity Sets</li>
+                                <li>Extended ER Features</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Create ER diagrams for real-world scenarios</li>
+                                    <li>Identify relationships and constraints</li>
+                                    <li>Apply ER modeling techniques</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">4</div>
+                            <div class="week-title">Relational Model Fundamentals</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Relations, Tuples, and Attributes</li>
+                                <li>Keys: Primary, Foreign, Candidate</li>
+                                <li>Relational Algebra Operations</li>
+                                <li>Join Operations and Types</li>
+                                <li>Relational Calculus</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Understand relational model concepts</li>
+                                    <li>Perform relational algebra operations</li>
+                                    <li>Design relational schemas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">5</div>
+                            <div class="week-title">Database Design Theory</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Conceptual Database Design</li>
+                                <li>Logical Database Design</li>
+                                <li>Physical Database Design</li>
+                                <li>ER to Relational Mapping</li>
+                                <li>Design Guidelines and Best Practices</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Apply systematic database design methodology</li>
+                                    <li>Convert ER diagrams to relational schemas</li>
+                                    <li>Understand design phases and their importance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">6</div>
+                            <div class="week-title">Normalization Theory</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Functional Dependencies</li>
+                                <li>First Normal Form (1NF)</li>
+                                <li>Second Normal Form (2NF)</li>
+                                <li>Third Normal Form (3NF)</li>
+                                <li>Boyce-Codd Normal Form (BCNF)</li>
+                                <li>Multi-valued Dependencies and 4NF</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Identify and resolve data redundancy</li>
+                                    <li>Apply normalization rules</li>
+                                    <li>Design normalized database schemas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">7</div>
+                            <div class="week-title">SQL Fundamentals</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>SQL Data Types and Domains</li>
+                                <li>CREATE, ALTER, DROP statements</li>
+                                <li>INSERT, UPDATE, DELETE operations</li>
+                                <li>SELECT queries and WHERE clauses</li>
+                                <li>Sorting and Grouping</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Write basic SQL queries</li>
+                                    <li>Create and manipulate database tables</li>
+                                    <li>Perform data retrieval operations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">8</div>
+                            <div class="week-title">Advanced SQL</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Complex Joins and Subqueries</li>
+                                <li>Aggregate Functions and GROUP BY</li>
+                                <li>Views and Their Applications</li>
+                                <li>Stored Procedures and Functions</li>
+                                <li>Triggers and Their Implementation</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Write complex SQL queries</li>
+                                    <li>Create and use database views</li>
+                                    <li>Implement stored procedures and triggers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">9</div>
+                            <div class="week-title">Query Processing & Optimization</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Query Processing Architecture</li>
+                                <li>Query Parsing and Translation</li>
+                                <li>Query Optimization Techniques</li>
+                                <li>Cost-based Optimization</li>
+                                <li>Index Selection Strategies</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Understand query processing phases</li>
+                                    <li>Apply optimization techniques</li>
+                                    <li>Analyze query execution plans</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">10</div>
+                            <div class="week-title">Indexing and Hashing</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Index Types and Structures</li>
+                                <li>B-Tree and B+ Tree Indexing</li>
+                                <li>Hash-based Indexing</li>
+                                <li>Bitmap Indexing</li>
+                                <li>Index Selection and Maintenance</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Design appropriate indexing strategies</li>
+                                    <li>Understand different index types</li>
+                                    <li>Optimize database performance using indexes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">11</div>
+                            <div class="week-title">Transaction Management</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>ACID Properties</li>
+                                <li>Transaction States and Operations</li>
+                                <li>Concurrency Control</li>
+                                <li>Locking Protocols</li>
+                                <li>Deadlock Detection and Prevention</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Understand transaction concepts</li>
+                                    <li>Implement concurrency control mechanisms</li>
+                                    <li>Handle deadlock situations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">12</div>
+                            <div class="week-title">Recovery Systems</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Failure Types and Classifications</li>
+                                <li>Recovery Techniques</li>
+                                <li>Log-based Recovery</li>
+                                <li>Checkpointing</li>
+                                <li>Backup and Restore Strategies</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Implement recovery mechanisms</li>
+                                    <li>Design backup strategies</li>
+                                    <li>Handle system failures effectively</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">13</div>
+                            <div class="week-title">Distributed Databases</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Distributed Database Architecture</li>
+                                <li>Data Fragmentation and Allocation</li>
+                                <li>Distributed Query Processing</li>
+                                <li>Distributed Transaction Management</li>
+                                <li>Replication and Consistency</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Design distributed database systems</li>
+                                    <li>Understand data distribution strategies</li>
+                                    <li>Implement distributed transactions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">14</div>
+                            <div class="week-title">Current Trends & Future Directions</div>
+                            <div class="week-duration">3 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>NoSQL Databases</li>
+                                <li>Big Data and Database Systems</li>
+                                <li>Cloud Databases</li>
+                                <li>Data Warehousing and OLAP</li>
+                                <li>Machine Learning Integration</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Learning Objectives:</h4>
+                                <ul>
+                                    <li>Explore modern database technologies</li>
+                                    <li>Understand emerging trends in data management</li>
+                                    <li>Evaluate NoSQL vs traditional databases</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="practical" class="tab-content">
+                <h2 style="color: #2c3e50; margin-bottom: 30px; font-size: 2em;">🔬 Practical Sessions (14 Weeks)</h2>
+                
+                <div class="week-container">
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">1</div>
+                            <div class="week-title">Database Setup & Environment</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>MySQL/PostgreSQL Installation and Configuration</li>
+                                <li>Database Administration Tools Setup</li>
+                                <li>Creating Sample Databases</li>
+                                <li>Basic Command Line Operations</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Successfully installed DBMS environment</li>
+                                    <li>Created first database and table</li>
+                                    <li>Basic SQL commands execution</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">2</div>
+                            <div class="week-title">ER Modeling Workshop</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Using ER Diagram Tools (Lucidchart, Draw.io)</li>
+                                <li>Creating ER Diagrams for Sample Scenarios</li>
+                                <li>Library Management System ER Design</li>
+                                <li>Student Information System ER Design</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Complete ER diagrams for given scenarios</li>
+                                    <li>Documented design decisions</li>
+                                    <li>Peer review of ER models</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">3</div>
+                            <div class="week-title">Schema Creation & DDL</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Converting ER to Relational Schema</li>
+                                <li>CREATE TABLE with Constraints</li>
+                                <li>Primary and Foreign Key Implementation</li>
+                                <li>Data Type Selection and Validation</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Complete database schema creation</li>
+                                    <li>All constraints properly implemented</li>
+                                    <li>Schema documentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">4</div>
+                            <div class="week-title">Data Insertion & Basic Queries</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>INSERT statements with sample data</li>
+                                <li>Basic SELECT queries</li>
+                                <li>WHERE clause conditions</li>
+                                <li>Data validation and error handling</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Populated database with sample data</li>
+                                    <li>Set of basic query examples</li>
+                                    <li>Data consistency verification</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">5</div>
+                            <div class="week-title">Normalization Workshop</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Identifying Functional Dependencies</li>
+                                <li>Converting Unnormalized to 1NF</li>
+                                <li>Achieving 2NF and 3NF</li>
+                                <li>Practical Normalization Exercises</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Normalized database schemas</li>
+                                    <li>Before and after comparison</li>
+                                    <li>Normalization process documentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">6</div>
+                            <div class="week-title">Advanced SQL Queries</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>JOIN Operations Practice</li>
+                                <li>Subqueries and Nested Queries</li>
+                                <li>Aggregate Functions and GROUP BY</li>
+                                <li>HAVING clause and Complex Conditions</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Complex query solutions</li>
+                                    <li>Query optimization examples</li>
+                                    <li>Performance comparison analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">7</div>
+                            <div class="week-title">Views and Stored Procedures</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Creating and Managing Views</li>
+                                <li>Updatable Views Implementation</li>
+                                <li>Stored Procedure Development</li>
+                                <li>Function Creation and Usage</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Set of useful database views</li>
+                                    <li>Stored procedures for common operations</li>
+                                    <li>User-defined functions library</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">8</div>
+                            <div class="week-title">Triggers and Events</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>BEFORE and AFTER Triggers</li>
+                                <li>Audit Trail Implementation</li>
+                                <li>Data Validation Triggers</li>
+                                <li>Event Scheduling</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Trigger implementations for data integrity</li>
+                                    <li>Audit system setup</li>
+                                    <li>Automated maintenance scripts</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">9</div>
+                            <div class="week-title">Performance Tuning Lab</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Query Execution Plan Analysis</li>
+                                <li>Index Creation and Testing</li>
+                                <li>Query Optimization Techniques</li>
+                                <li>Performance Monitoring Tools</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Performance analysis report</li>
+                                    <li>Optimized query set</li>
+                                    <li>Index strategy documentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">10</div>
+                            <div class="week-title">Database Security Lab</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>User Account Management</li>
+                                <li>Role-based Access Control</li>
+                                <li>Data Encryption Implementation</li>
+                                <li>SQL Injection Prevention</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Security policy implementation</li>
+                                    <li>User role hierarchy</li>
+                                    <li>Secure coding practices guide</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">11</div>
+                            <div class="week-title">Transaction Management Lab</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Transaction Control Commands</li>
+                                <li>Isolation Level Testing</li>
+                                <li>Deadlock Simulation and Resolution</li>
+                                <li>Concurrent Transaction Scenarios</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Transaction management examples</li>
+                                    <li>Concurrency control demonstration</li>
+                                    <li>Deadlock handling procedures</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">12</div>
+                            <div class="week-title">Backup and Recovery Lab</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Database Backup Strategies</li>
+                                <li>Point-in-time Recovery</li>
+                                <li>Log File Management</li>
+                                <li>Disaster Recovery Planning</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Backup and recovery scripts</li>
+                                    <li>Recovery testing documentation</li>
+                                    <li>Disaster recovery plan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">13</div>
+                            <div class="week-title">Distributed Database Lab</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>Database Replication Setup</li>
+                                <li>Distributed Query Execution</li>
+                                <li>Data Synchronization</li>
+                                <li>Load Balancing Configuration</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>Distributed database setup</li>
+                                    <li>Replication configuration</li>
+                                    <li>Performance comparison analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-card">
+                        <div class="week-header">
+                            <div class="week-number">14</div>
+                            <div class="week-title">NoSQL Database Exploration</div>
+                            <div class="week-duration">2 hrs</div>
+                        </div>
+                        <div class="week-content">
+                            <ul class="topics-list">
+                                <li>MongoDB Installation and Setup</li>
+                                <li>Document-based Database Operations</li>
+                                <li>Comparison with Relational Databases</li>
+                                <li>Use Case Analysis</li>
+                            </ul>
+                            <div class="learning-objectives">
+                                <h4>Deliverables:</h4>
+                                <ul>
+                                    <li>NoSQL database implementation</li>
+                                    <li>Comparative analysis report</li>
+                                    <li>Migration strategy documentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="projects" class="tab-content">
+                <h2 style="color: #2c3e50; margin-bottom: 30px; font-size: 2em;">🚀 Major Projects</h2>
+                
+                <div class="project-card">
+                    <div class="project-title">🏢 Office Automation System</div>
+                    <div class="project-description">
+                        <strong>Duration:</strong> 4 weeks (Weeks 4-7)<br><br>
+                        <strong>Objective:</strong> Design and implement a comprehensive office automation database system that manages employee information, project assignments, resource allocation, and workflow processes.<br><br>
+                        <strong>Key Features:</strong><br>
+                        • Employee management with hierarchical reporting<br>
+                        • Project tracking and resource allocation<br>
+                        • Document management system<br>
+                        • Meeting scheduling and room booking<br>
+                        • Payroll and attendance management<br>
+                        • Report generation with forms and queries<br><br>
+                        <strong>Deliverables:</strong> ER diagram, normalized database schema, SQL implementation, forms, reports, and system documentation.
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">🏨 Hotel Management System</div>
+                    <div class="project-description">
+                        <strong>Duration:</strong> 4 weeks (Weeks 8-11)<br><br>
+                        <strong>Objective:</strong> Develop a complete hotel management database system that handles reservations, guest services, room management, and billing operations.<br><br>
+                        <strong>Key Features:</strong><br>
+                        • Room inventory and availability management<br>
+                        • Guest reservation and check-in/check-out<br>
+                        • Service ordering and billing<br>
+                        • Staff management and scheduling<br>
+                        • Housekeeping and maintenance tracking<br>
+                        • Financial reporting and analytics<br><br>
+                        <strong>Deliverables:</strong> Complete database design, stored procedures for business logic, user interface forms, comprehensive reports, and testing documentation.
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">🏥 Hospital Management System</div>
+                    <div class="project-description">
+                        <strong>Duration:</strong> 4 weeks (Weeks 12-15)<br><br>
+                        <strong>Objective:</strong> Create a sophisticated hospital management database system that manages patient care, medical records, staff coordination, and administrative operations.<br><br>
+                        <strong>Key Features:</strong><br>
+                        • Patient registration and medical history<br>
+                        • Doctor scheduling and appointment management<br>
+                        • Medical procedure and treatment tracking<br>
+                        • Pharmacy and inventory management<br>
+                        • Billing and insurance processing<br>
+                        • Emergency department workflow<br>
+                        • Medical equipment and facility management<br><br>
+                        <strong>Deliverables:</strong> Complete system analysis, database implementation, security features, backup/recovery procedures, and comprehensive system documentation.
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); color: white; border-radius: 15px; padding: 25px; margin-top: 30px;">
+                    <h3 style="margin-bottom: 15px; font-size: 1.5em;">📋 Project Requirements</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Technical Requirements:</h4>
+                            <ul style="padding-left: 20px; line-height: 1.8;">
+                                <li>Complete ER modeling and normalization</li>
+                                <li>SQL DDL and DML implementation</li>
+                                <li>Stored procedures and triggers</li>
+                                <li>Forms and reports development</li>
+                                <li>Query processing optimization</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Documentation:</h4>
+                            <ul style="padding-left: 20px; line-height: 1.8;">
+                                <li>System requirements analysis</li>
+                                <li>Database design documentation</li>
+                                <li>User manual and technical guide</li>
+                                <li>Testing procedures and results</li>
+                                <li>Project presentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="resources" class="tab-content">
+                <div class="books-section">
+                    <div class="books-title">📚 Recommended Textbooks</div>
+                    <div class="books-grid">
+                        <div class="book-item">
+                            <div class="book-author">R. Elmasri and S.B. Navathe</div>
+                            <div class="book-title">"Fundamentals of Database Systems"</div>
+                            <div class="book-publisher">The Benjamin/Cummings Publishing Company, 2000</div>
+                        </div>
+                        <div class="book-item">
+                            <div class="book-author">Raghu Ramakrishnan</div>
+                            <div class="book-title">"Database Management Systems"</div>
+                            <div class="book-publisher">McGraw Hill, 2000</div>
+                        </div>
+                        <div class="book-item">
+                            <div class="book-author">M. Tamer Özsu</div>
+                            <div class="book-title">"Principles of Distributed Database Systems"</div>
+                            <div class="book-publisher">Prentice Hall, 1999</div>
+                        </div>
+                        <div class="book-item">
+                            <div class="book-author">Silberschatz, Korth A.F., Sudarshan S.</div>
+                            <div class="book-title">"Database System Concepts"</div>
+                            <div class="book-publisher">McGraw Hill, 2005</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding: 40px; margin-top: 40px;">
+                    <h2 style="color: #2c3e50; margin-bottom: 30px; font-size: 2em;">🔗 Additional Resources</h2>
+                    
+                    <div class="week-container">
+                        <div class="week-card">
+                            <div class="week-header">
+                                <div class="week-number">💻</div>
+                                <div class="week-title">Software Tools</div>
+                            </div>
+                            <div class="week-content">
+                                <ul class="topics-list">
+                                    <li>MySQL Workbench - Database design and administration</li>
+                                    <li>PostgreSQL - Advanced open-source database</li>
+                                    <li>phpMyAdmin - Web-based MySQL administration</li>
+                                    <li>Lucidchart/Draw.io - ER diagram creation</li>
+                                    <li>Visual Studio Code - SQL development</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="week-card">
+                            <div class="week-header">
+                                <div class="week-number">🌐</div>
+                                <div class="week-title">Online Resources</div>
+                            </div>
+                            <div class="week-content">
+                                <ul class="topics-list">
+                                    <li>W3Schools SQL Tutorial</li>
+                                    <li>SQLBolt - Interactive SQL lessons</li>
+                                    <li>MySQL Documentation</li>
+                                    <li>PostgreSQL Official Tutorial</li>
+                                    <li>Database Design Tutorial (StudyTonight)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="week-card">
+                            <div class="week-header">
+                                <div class="week-number">📊</div>
+                                <div class="week-title">Assessment Structure</div>
+                            </div>
+                            <div class="week-content">
+                                <ul class="topics-list">
+                                    <li>Theory Examination - 60 marks</li>
+                                    <li>Practical Examination - 30 marks</li>
+                                    <li>Internal Assessment - 10 marks</li>
+                                    <li>Project Presentations - Continuous</li>
+                                    <li>Lab Performance - Weekly evaluation</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="week-card">
+                            <div class="week-header">
+                                <div class="week-number">🎯</div>
+                                <div class="week-title">Learning Outcomes</div>
+                            </div>
+                            <div class="week-content">
+                                <ul class="topics-list">
+                                    <li>Design efficient database systems</li>
+                                    <li>Implement complex SQL queries</li>
+                                    <li>Optimize database performance</li>
+                                    <li>Manage database security and recovery</li>
+                                    <li>Develop database-driven applications</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Database Systems Course Plan - IT213</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Comprehensive lesson plan designed for effective learning and practical implementation</p>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active class from all nav tabs
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked nav tab
+            event.target.classList.add('active');
+
+            // Update progress bar
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const activeTab = document.querySelector('.nav-tab.active');
+            const allTabs = document.querySelectorAll('.nav-tab');
+            const activeIndex = Array.from(allTabs).indexOf(activeTab);
+            const progress = ((activeIndex + 1) / allTabs.length) * 100;
+            
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Initialize progress bar
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressBar();
+            
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add scroll-based animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all week cards
+            document.querySelectorAll('.week-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // Enhanced card interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.week-card, .project-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+                
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-8px) scale(1.02)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
