@@ -3,394 +3,699 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Dr. Suresan Pareth - Academic Profile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e3a5f;
+            --secondary-color: #2c5282;
+            --accent-color: #3182ce;
+            --text-color: #2d3748;
+            --light-gray: #f7fafc;
+            --medium-gray: #e2e8f0;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        nav a.active {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 140px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        section:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            text-decoration: underline;
+            text-decoration-color: var(--accent-color);
+            text-underline-offset: 8px;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section */
+        #home {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        #home h2 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #home h2::after {
+            background: white;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Teaching Section Cards */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .course-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Research Section */
+        .research-item {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #e53e3e;
+        }
+
+        /* Education Table */
+        .education-container {
+            overflow-x: auto;
+            margin-top: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        th {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--medium-gray);
+            transition: background-color 0.3s ease;
+        }
+
+        tr:hover td {
+            background-color: var(--light-gray);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--gradient);
+            color: white;
+        }
+
+        #contact h2 {
+            color: white;
+        }
+
+        #contact h2::after {
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            main {
+                margin-top: 180px;
+                padding: 1rem;
+            }
+
+            section {
+                padding: 2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .loading.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Dr. Suresan Pareth</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-				<li><a href="#teaching">Teaching</a></li>
-				<li><a href="#research">Research</a></li>
-				<li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-                
-            </ul>
-        </nav>
+        <div class="header-content">
+            <div class="logo">
+                <h1>Dr. Suresan Pareth</h1>
+                <div class="subtitle">Technology-Driven Academic Professional</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#teaching" class="nav-link">Teaching</a></li>
+                    <li><a href="#research" class="nav-link">Research</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
     <main>
         <section id="home">
-            <h2>Home</h2>
-            <p style="text-align: justify;">With a rich experience spanning 22 years, I am a technology-driven professional, out of which approximately 17 years have been 
-dedicated to teaching diverse computer science subjects. My career has been marked by significant achievements, including my 
-contributions to the design and development of critical systems such as Debenture Floatation, Hall Ticket & Rank Generation, 
-Seat Allotment, and Centralized Admission for B.Ed & DEd programs. In addition, I have been instrumental in shaping innovative 
-Banking Modules covering Deposits and Loans. My communication skills, coupled with exceptional relationship management abilities, 
-have consistently facilitated effective collaboration. I possess a strong foundation in analytical thinking, adept problem-solving skills, 
-and well-honed administrative capabilities. My approach is characterized by flexibility and meticulous attention to detail.
-</p>
-        </section>
-        <section id="about">
-            <h2>About</h2>
-            <p>
-			
-<u>Professional Profile</u>
-<p style="text-align: justify;">With a rich experience spanning 22 years, I am a technology-driven professional, out of which approximately 17 years have been 
-dedicated to teaching diverse computer science subjects. My career has been marked by significant achievements, including my 
-contributions to the design and development of critical systems such as Debenture Floatation, Hall Ticket & Rank Generation, 
-Seat Allotment, and Centralized Admission for B.Ed & DEd programs. In addition, I have been instrumental in shaping innovative 
-Banking Modules covering Deposits and Loans. My communication skills, coupled with exceptional relationship management abilities, 
-have consistently facilitated effective collaboration. I possess a strong foundation in analytical thinking, adept problem-solving skills, 
-and well-honed administrative capabilities. My approach is characterized by flexibility and meticulous attention to detail.
-</p>
-
-
-<u>Professional Engagements</u>
-
-<p style="text-align: justify;">
-Professional Accomplishments:
-
-During my tenure as Principal, I have consistently exhibited unwavering dedication, sincerity, and a robust work ethic in executing my assigned duties. Over the course of my service, I have initiated and contributed to a diverse array of initiatives that have significantly impacted the institution's growth and development. Some of the noteworthy endeavors that I have led or been instrumental in are highlighted below:
-
-Effective Governance: I have proactively presented critical developmental issues during Governing Body meetings, ensuring timely consideration and facilitating transparent decision-making processes.
-
-Attendance Enhancement: I have spearheaded the enhancement of the centralized attendance system, resulting in a more streamlined monitoring of students' regular attendance.
-
-Valuation Excellence: I orchestrated a successful centralized valuation camp at IET for the assessment of engineering UG papers, ensuring a seamless and efficient valuation process.
-
-Stakeholder Engagement: A key focus has been on enhancing collaboration by implementing class-wise Parent-Teacher Association (PTA) meetings and monthly staff meetings, fostering open communication.
-
-Performance Enhancement: I have introduced a systematic mechanism for the periodic evaluation and appraisal of staff performance, garnering positive responses from both teaching and technical staff.
-
-Student Support: Recognizing its importance, I have strengthened the student mentoring system, offering comprehensive support for students' academic and personal growth.
-
-Orientation Program: In a bid to smoothen the transition of new entrants, I successfully organized an orientation program for first-year students, providing them with an informative and welcoming introduction.
-
-Placement Facilitation: I have taken proactive measures to secure placement opportunities for 15 final-year students in the Printing Technology Department, significantly enhancing their career prospects.
-
-Institutional Advancement: Demonstrating a forward-looking approach, I initiated strategic actions to revamp and restructure IET, aligning with the proposal put forth by the Dean, Faculty of Engineering.
-
-Efficient Liaison: I have consistently ensured prompt follow-up with the University and Department of Collegiate Education (DSFC), streamlining administrative processes and ensuring efficient communication.
-
-Communication Enhancement: To foster effective communication, I have intensified the SMS alert program, facilitating timely updates between students, parents, and the PTA.
-
-Stakeholder Collaboration: I have convened executive meetings of the PTA and periodic academic council meetings, fostering an environment of open dialogue and collaborative decision-making.
-
-Campus Safety: In line with ensuring a secure campus environment, I have established key committees including Anti Ragging Cell, Anti Ragging Squad, Women Cell, Internal Complaint Committee, Disciplinary Committee, Enquiry Committee, SC-ST Committee, and Grievance Cell.
-
-Academic Calendar Adherence: Maximizing the use of working days for academic activities, I have consistently ensured uninterrupted learning and engagement.
-
-Governance Excellence: I have overseen the smooth and systematic conduct of college union elections, showcasing my commitment to transparent and well-organized processes.
-
-External Examination Leadership: Recognizing the importance of robust examination processes, I have bolstered the examination system conducted by external agencies, including the development of a fee structure for exams such as AMIE.
-
-Curriculum Innovation: I have actively contributed to curriculum development by personally coordinating the design and framing of the syllabus for Artificial Intelligence and Machine Learning in the BTech Course. This showcases my commitment to creating a comprehensive and cutting-edge curriculum for students.
-
-Expansion Initiatives: Aiming for academic growth, I have proposed the introduction of new courses in B.Tech Civil Engineering and M.Tech in Electronics and Communication Engineering and Information Technology Departments.
-
-Pedagogical Engagement: Alongside administrative duties, I have taken up classroom teaching responsibilities in my area of expertise, ensuring direct involvement in students' learning journeys.
-
-Disciplinary Excellence: Aiming to create a conducive academic environment, I have taken proactive measures to curb indisciplinary actions, cultivating a positive and productive atmosphere within the IET campus.
-
-In summation, my tenure as Principal has been characterized by these multifaceted contributions, all aimed at elevating the institution's academic, administrative, and holistic growth. These accomplishments reflect my unwavering dedication to excellence and my fervent commitment to cultivating a positive and enriching educational atmosphere.
-</p>
-
-<u>Academic and Research Vision</u>
-<p style="text-align: justify;">
-
-Charting a Path for Academic Excellence and Global Impact
-
-My strategic vision is centered around crafting and fostering immersive, cohesive, and exceptional learning journeys in the realms of Computer Science and Mathematics. It encompasses the dual objective of leaving an enduring and transformative influence on learners and educators, both within India and on the global stage. In pursuit of this vision, I am committed to a perpetual quest for cutting-edge and purposeful technology, harmoniously balanced with the tenets of learning science and instructional methodology. My overarching goal is to ignite the curiosity and zeal of young minds, empowering them to confidently navigate the challenges of the future and proficiently cultivate skills that will be in high demand.
-
-Key Tenets of My Academic and Research Blueprint:
-
-Empowering Learning Experiences: My foremost ambition is to construct learning environments that captivate and empower learners. I am dedicated to designing comprehensive, interdisciplinary curricula that integrate Computer Science and Mathematics, fostering a holistic understanding that transcends traditional disciplinary boundaries.
-
-Enduring Global Impact: Beyond geographical boundaries, my aspiration is to leave a lasting imprint on education worldwide. By sharing insights and practices with the global academic community, I aim to contribute to the elevation of teaching and learning standards on a global scale.
-
-Innovative Technology Integration: Recognizing the paramount importance of technology, I am committed to identifying, developing, and implementing the most cutting-edge and relevant technological tools. This commitment is tempered by a steadfast adherence to the principles of learning science, ensuring that technology truly enhances the educational process.
-
-Nurturing Curiosity: One of my driving objectives is to invigorate young minds with the spirit of inquiry. Through dynamic pedagogical approaches, I seek to cultivate an environment where curiosity flourishes, encouraging students to explore, question, and discover.
-
-Skill Mastery for Future Challenges: My ultimate purpose is to equip students with not only knowledge but also the practical skills required to thrive in the future. By fostering critical thinking, problem-solving, and adaptability, I endeavor to prepare them for the ever-evolving landscape of technology and industry.
-
-To sum up: My academic and research trajectory is anchored in the pursuit of excellence, global impact, innovation, and empowerment. 
-It is a journey that bridges pedagogy with technology, and theory with application. Through collaborative endeavors, a commitment to 
-advancing learning science, and an unwavering passion for nurturing young minds, I aspire to foster a generation of learners and 
-educators who are poised to shape the world through the profound influence of Computer Science and Mathematics.</p>
-        </section>
-        
-		
-<section>	
-
-<section id="teaching">
-            <h2>Teaching</h2>
+            <h2>Welcome</h2>
+            <p>With a rich experience spanning 22 years, I am a technology-driven professional, out of which approximately 17 years have been dedicated to teaching diverse computer science subjects. My career has been marked by significant achievements, including my contributions to the design and development of critical systems such as Debenture Floatation, Hall Ticket & Rank Generation, Seat Allotment, and Centralized Admission for B.Ed & DEd programs.</p>
             
-		<u>Artificial Neural Networks:</u>
-<p style="text-align: justify;">
-Artificial Neural Networks (ANNs) have emerged as a cornerstone of modern machine learning and artificial intelligence. 
-In this comprehensive course, we will delve into the core concepts, methodologies, and applications of ANNs, exploring their power in 
-nonlinear modeling and their connection to kernel spaces.
-
-Convolutional Neural Networks (CNNs), a specialized form of ANNs, will take center stage. We will explore their unique architecture, 
-which has revolutionized image and visual data processing. Understanding CNNs is pivotal for tasks such as image recognition, object 
-detection, and image generation.
-
-Moving forward, we will delve into Recurrent Neural Networks (RNNs), which excel at sequential data processing and have led to 
-significant advancements in natural language understanding, machine translation, and speech recognition. We will explore the concept of 
-memory in RNNs and its implications for processing time-series data.
-</p>
-
-<u>Foundations of Deep Learning:</u>
-<p style="text-align: justify;">
-The essence of Deep Learning, showcasing its transformative power at the intersection of artificial intelligence and computer science. 
-Just as a masterful tapestry weaves together diverse threads, Deep Learning intertwines neural networks, hierarchical representations, 
-and advanced architectures to unravel complex patterns from data. This evolving discipline has not only revolutionized domains like computer 
-vision, speech recognition, and natural language processing but also holds the promise to emulate cognitive processes, fueling innovation 
-across fields like healthcare, agriculture, and beyond. Just as Machine Learning is a beacon of innovation, Deep Learning stands as a beacon 
-of intricacy, with its deep architectures and intricate algorithms shaping the future of artificial intelligence and problem-solving on an 
-unprecedented scale.
-</p>
-
-<u>Data Science:</u>
- 
-<p style="text-align: justify;">
-Data Science is an interdisciplinary field of study which uses scientific processes, approaches, 
-methods, systems and algorithms to extract requisite insights and information from structured and unstructured data. 
-Blend of business acumen, machine learning techniques, algorithms and mathematics, Data Science helps to find out the 
-hidden patterns from raw data. This skill becomes instrumental because this information will help the organization make 
-informed and big decisions relating to their business.
-</p>
-
-
-<u>Probability and Stochastic Processes:</u>
-<p style="text-align: justify;">
-The course topics include:introduction to discrete and continuous probability spaces, probability distributions, 
-Markov processes in discrete and continuous time with discrete and continuous sample spaces, etc.
-</p>
-
-<u>Mathematical Foundations of Machine Learning:</u>
-<p style="text-align: justify;">
-Nowadays, research is heavily focused on machine learning (ML), making it one of the most popular topics. 
-Its applications span across all areas of engineering and sciences, and various tools within ML have a rich mathematical theory. 
-To develop new algorithms for machine/deep learning, a comprehensive understanding of these mathematical concepts becomes necessary. 
-In this course, we will introduce the fundamental mathematical concepts relevant to machine/deep learning, particularly focusing on 
-topics from matrix algebra, calculus, optimization, and probability theory, which are strongly linked with ML. Real-life examples will 
-be used to illustrate the applications of these topics in ML.
-</p>
-
-<u>Statistical Machine Learning:</u>
-<p style="text-align: justify;">
-Machine Learning is the field of study that focuses on developing computer systems capable of learning from data and improving 
-their performance over time. In this comprehensive course on Statistical Machine Learning, we will explore the principles and methodologies 
-behind building intelligent systems using statistical methods.
-
-Throughout the course, we will delve into various topics, including supervised learning, where algorithms learn from labeled examples 
-and make predictions on new data. Additionally, we will explore unsupervised learning, which involves extracting patterns and relationships 
-from unlabeled data. Neural networks, a powerful subset of machine learning algorithms inspired by the human brain, will also be covered in 
-detail.
-
-Furthermore, we will investigate the role of probability theory in understanding uncertainty and making informed decisions in machine learning. We will discuss how optimization techniques play a crucial role in fine-tuning models and improving their performance.
-
-Practical implementation and real-world applications will be emphasized, enabling students to gain hands-on experience with various 
-machine learning tools and frameworks. By the end of this course, you will have a strong foundation in Statistical Machine Learning, 
-empowering you to create innovative solutions to complex real-world problems.
-
-</p>
-<u>Optimization Techniques in Artificial Intelligence</u>
-
-<p style="text-align: justify;">
-Optimization techniques have become a fundamental pillar of modern artificial intelligence and machine learning. In this comprehensive course, we will explore the core concepts, methodologies, and applications of optimization, examining their pivotal role in enhancing AI models and solving complex real-world problems.
-
-We begin with an introduction to optimization, covering its significance in AI and its applications across various domains. We will delve into the basic concepts, including objective functions, constraints, and feasible regions, laying a solid foundation for understanding more advanced topics.
-
-Next, we will explore convex sets and convex functions, which form the backbone of many optimization problems. Understanding the properties and visualizations of convex sets, as well as the characteristics of convex functions, is crucial for grasping the intricacies of optimization.
-
-Lagrange duality will be another focal point, offering insights into Lagrange multipliers, dual functions, and the weak and strong duality theorems. This understanding is essential for tackling constrained optimization problems effectively.
-
-The course will then dive into various convex optimization algorithms, including gradient descent, Newton's method, and quasi-Newton methods. We will discuss the practical considerations of these algorithms, such as convergence analysis and stopping criteria, supported by case studies and examples to illustrate their real-world applications.
-
-As we progress, we will explore advanced optimization techniques like second-order cone programming (SOCP), semidefinite programming, and semi-infinite programming. These methods are vital for solving complex optimization problems in areas such as finance, engineering, and artificial intelligence.
-
-Specialized optimization methods, including minimax optimization, sublinear algorithms, interior point methods, and active set methods, will be covered in detail. Additionally, we will examine the applications of stochastic gradient descent (SGD), coordinate descent, and the cutting planes method in various AI and machine learning tasks.
-
-The course will culminate in practical applications of optimization techniques to image, video, and multimedia processing. We will study case studies and practical implementations that showcase the power of optimization in enhancing AI models and solving real-world challenges.
-
-Throughout the course, you will engage in hands-on programming assignments and projects that align with the topics covered in the lectures, reinforcing your understanding and providing practical experience.
-
-
-</p>
-<u>Web Technologies and Apllications</u>
-
-<p style="text-align: justify;">
-
-Web technologies have become the backbone of modern internet applications, driving innovation and connectivity across the globe. In this comprehensive course, we will delve into the foundational concepts, methodologies, and applications of web technologies, exploring their transformative impact on the digital landscape.
-
-We will begin with an in-depth exploration of HTML, CSS, and JavaScript, the core technologies that form the building blocks of web development. These languages enable the creation of rich, interactive, and responsive web pages, and understanding their synergy is crucial for any aspiring web developer.
-
-Next, we will examine the intricacies of HTTP and HTTPS protocols, which facilitate the communication between clients and servers. Secure data transmission and web security principles will be highlighted, emphasizing their importance in protecting sensitive information and ensuring user trust.
-
-Server-side technologies, including popular frameworks like Node.js, Django, and Ruby on Rails, will be thoroughly covered. These frameworks empower developers to build robust, scalable, and efficient web applications, managing everything from database interactions to user authentication and session management.
-
-Our journey will also take us through the dynamic world of client-side frameworks such as React, Angular, and Vue.js. These tools have revolutionized front-end development, enabling the creation of complex, high-performance single-page applications (SPAs) with seamless user experiences.
-
-We will explore the power of web APIs and services, focusing on RESTful and SOAP protocols. Understanding how to design, implement, and consume web services is essential for integrating disparate systems and enhancing the functionality of web applications.
-
-Moreover, we will delve into the realm of data storage and management, covering both SQL and NoSQL databases. Efficient data handling is vital for the performance and scalability of web applications, and we will examine the strengths and use cases of different database technologies.
-
-Finally, we will look ahead to emerging trends and technologies in the web domain, such as Progressive Web Apps (PWAs), WebAssembly, and the integration of the Internet of Things (IoT). These advancements are shaping the future of web applications, offering new possibilities for innovation and connectivity.
-
-By the end of this course, you will have a thorough understanding of web technologies and their applications, equipping you with the skills to build, deploy, and maintain sophisticated web applications. Whether you are aiming to become a full-stack developer, a front-end specialist, or a back-end expert, this course will provide you with the knowledge and tools to succeed in the ever-evolving field of web development.
- </p>
- </section>
- 
- <section>
- <section id="research">
-            <h2>Research</h2>
-			
- <u>Inverse and Ill-Posed Problems</u>
-<p style="text-align: justify;">
-Inverse problems constitute a fascinating realm where the objective is to discern the causal factors behind a given observation or effect. 
-This field has been a subject of study for nearly a century, predominantly driven by practical applications. A pivotal characteristic, 
-both from a theoretical and numerical standpoint, of inverse problems is their intrinsic ill-posed nature. Specifically, we term the 
-problem :math:F(x) = f^{\delta} as ill-posed due to the fact that its solution lacks continuous dependence on the right-hand side. 
-In other words, they deviate from Hadamard's classical prerequisites of solution existence, uniqueness, and stability in the face of 
-perturbed data.
-
-The solutions to inverse problems may not universally exist for all conceivable data scenarios. For instance, a 
-consistent temperature history is only viable for an exceedingly smooth final temperature in the classical heat equation model. 
-Furthermore, uniqueness might not be guaranteed, thereby prompting the practical question of identifiability—whether the available data 
-holds sufficient information to deduce the desired quantity. Additionally, instability in relation to data perturbations is a salient aspect. 
-This becomes particularly crucial as real-world measurements invariably contain noise, with errors in numerical methods further amplifying 
-the issue. As a remedy, regularization methods are devised to craft approximation techniques that are minimally influenced by noise. 
-These techniques will be explored within the framework of "Emerging Applications of Inverse Problems Techniques to Signal Reconstruction 
-and Imaging Science."
-
-The scope of these applications encompasses an array of challenges, including signal restoration or approximation from noisy data, 
-tomography in medical imaging, microscopy, atmospheric imaging, biometrics, integrating optics and imaging, and computer vision methodologies. 
-Moreover, applications extend to domains such as applied optics and remote sensing sciences. One pertinent example is atmospheric 
-turbulence blur, which arises in applied optics and remote sensing due to prolonged exposure through the atmosphere. 
-The turbulence within the atmosphere gives rise to random fluctuations in the refractive index, contributing to image degradation.
-
-In conclusion, the study of inverse and ill-posed problems not only delves into the intricate task of deciphering hidden causes but also 
-navigates the complex interplay between data noise, instability, and the quest for accurate solutions. The diverse applications, ranging 
-from medical imaging to atmospheric sciences, underscore the significance of addressing ill-posedness for the advancement of various fields.
-</p>
-
-
-<u>Machine Learning</u>
-
-<p style="text-align: justify;">
-
-Navigating the Landscape of Machine Learning: Unveiling its Multidisciplinary Tapestry:
-
-In the realm of technological advancement, Machine Learning stands as a beacon of innovation, aimed at constructing computer programs that evolve and improve autonomously through experience. This pursuit, in statistical parlance, entails the art of learning from the everyday data tapestry that we weave. Machine Learning's significance transcends disciplinary boundaries, offering a transformative means of automating problem-solving processes on a grand scale.
-
-Positioned at the intersection of artificial intelligence and computer science, Machine Learning harnesses the power of data - a resource we generate in abundance. It finds kinship with the realms of statistics and mathematics, intertwining disparate disciplines into a harmonious tapestry. This harmonization is reflected in its ability to address diverse challenges spanning DNA analysis, medical diagnosis, product recommendations, stock trading, and credit card fraud detection.
-
-Machine Learning's roots trace back to the seeds of pattern recognition, but its evolution over the past decades has been nothing short of revolutionary. Its purview has expanded to enfold domains like computer vision, speech recognition, and natural language processing within the fold of artificial intelligence systems.
-
-Central to the learning process is the training of models to improve performance, a trio composed of the training data, learning algorithms, and test data. The pantheon of machine learning lies in its algorithms, a plethora of solutions crafted to tackle an array of challenges. It's pertinent to note that no single algorithm holds the key to all machine learning problems; rather, a mosaic of techniques is tailored to the task at hand.
-
-The paradigms of supervised learning, unsupervised learning, and reinforcement learning provide a framework for understanding machine learning's mechanisms. These categories, while serving as intellectual guideposts, often blend together in the real-world applications, reflecting the versatility of machine learning techniques.
-
-Today's computational milieu, epitomized by High-Performance Computing, transcends its initial role in computational modeling and simulation. It has seamlessly integrated the demands of big data processing, analysis, data mining, and machine learning. This transformation has not only led to computational prowess but also encompasses expertise in computational science, data science, and data management.
-
-The domain of machine learning is a dynamic frontier, where new formalizations of learning problems continually push its boundaries. A keen focus lies on refining algorithms, given the plethora of parameters they rely upon. Novel methods of parameter tuning promise significant efficiency gains. Additionally, distributed learning has emerged as a prominent trend, enabling machine learning algorithms to operate across distributed computing architectures. This evolution addresses resource constraints and facilitates the simultaneous processing of multiple hyperparameters, opening avenues for more intricate algorithms.
-
-Machine Learning's future holds promise as it inches towards emulating natural cognitive processes. It serves the national interest by bolstering fields like weather prediction, disaster response, and cyber and biosecurity. The tapestry of applications extends to agriculture, telecommunications, healthcare, and beyond. This synergy between human-like learning and technological innovation ensures Machine Learning's continued prominence as the modern-day solution to age-old challenges.
-
-</p>
-
-
-<u>Data Science</u>
-<p style="text-align: justify;">
-
-Unveiling the Landscape of Data Science: A Multidisciplinary Exploration. In the contemporary landscape of technology and knowledge, a relatively nascent multidisciplinary field has arisen — a domain dedicated to the collection, preparation, analysis, visualization, management, and preservation of extensive repositories of information. This evolving area is poised to generate intrinsic value from the data it encompasses.
-
-At its core, data science encapsulates a diverse array of research domains, spanning from medical sciences and astrophysics to other specialized branches. The bedrock of these fields is rooted in data science, forming a symbiotic relationship between scientific progress and data-driven inquiry.
-
-Intriguingly, data science is not confined to scientific realms alone. It also assumes a pivotal role in domains like bioinformatics, neuroinformatics, and social informatics. These domains leverage data technology to effectively engage with the intricate fabric of data science.
-
-Another dimension of data science manifests in its application to the business sphere. Its essence lies in extracting actionable insights from data to tackle complex business problems. In the present era of technology, the ability to amass voluminous data about companies and consumers alike has become more feasible than ever before.
-
-Central to the heart of data science is an amalgamation of statistics, computing technology, and artificial intelligence. This fusion of disciplines gives rise to a new paradigm of data-driven scientific discovery. This shift reverberates across diverse domains such as social sciences, Internet of Things, sensor networks, healthcare, and cloud computing. This paradigm positions data science as a driving force behind transformative research that ranges from environmental concerns to social dynamics.
-
-Within this shifting paradigm, data scientists grapple with a host of scientific challenges. The journey commences with data capture, delves into the intricacies of data creation, storage, and retrieval, and culminates in the complex interplay of data modeling, analysis, and visualization. The orchestration of heterogeneous and interdependent data resources, the imperative for real-time decision-making, the challenges of streaming data, and the collaborative aspects of data science all demand meticulous attention.
-
-In this expansive tapestry, data science interweaves the threads of statistics, mathematics, computer science, information theory, machine learning, and optimization. Its significance transcends domains, and its application is requisite for extracting meaningful insights from large datasets. Whether in the corridors of enterprises, the chambers of government, or the expanses of the web, data science has become an indispensable conduit for converting data into actionable intelligence.
-
-In summation, data science has blossomed into a pivotal crossroads of knowledge, a realm where disparate disciplines converge to unveil the latent value within data. As the digital age propels us toward uncharted territories, data science remains a compass that guides our navigation through this sea of information.
-</p>
- </section>
-		
-        <section id="education">
-			<h1>Educational Qualifications</h1>
-			<table>
-        <thead>
-            <tr>
-                <th>Degree</th>
-                <th>Year</th>
-                <th>Institute</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="justify">PhD</td>
-                <td class="justify">2010 Dec. - 2013 Apr.</td>
-                <td class="justify">National Institute of Technology Karnataka, India</td>
-            </tr>
-            <tr>
-                <td class="justify">MTech</td>
-                <td class="justify">2001</td>
-                <td class="justify">National Institute of Technology Karnataka, India</td>
-            </tr>
-            <tr>
-                <td class="justify">MCA</td>
-                <td class="justify">1996</td>
-                <td class="justify">National Institute of Technology Karnataka, India</td>
-            </tr>
-            <tr>
-                <td class="justify">MSc</td>
-                <td class="justify">1988</td>
-                <td class="justify">Department of Mathematics, University of Calicut Kerala, India</td>
-            </tr>
-            <tr>
-                <td class="justify">BSc</td>
-                <td class="justify">1986</td>
-                <td class="justify">Govt. Brennen College, Thalassery, University of Calicut, Kerala, India</td>
-            </tr>
-            <tr>
-                <td class="justify">PDC</td>
-                <td class="justify">1983</td>
-                <td class="justify">Govt. Brennen College, Thalassery, University of Calicut, Kerala, India</td>
-            </tr>
-            <tr>
-                <td class="justify">SSLC</td>
-                <td class="justify">1981</td>
-                <td class="justify">Govt. High School Palayad, Thalassery, Kerala, India</td>
-            </tr>
-        </tbody>
-    </table>
-           
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">22</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">17</span>
+                    <span class="stat-label">Years Teaching</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">PhD</span>
+                    <span class="stat-label">From NIT Karnataka</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">AI/ML</span>
+                    <span class="stat-label">Specialization</span>
+                </div>
+            </div>
         </section>
-		<section id="contact">
-            <h2>Contact</h2>
-            <p>Department Information Technology</p>
-			<p>National Institute of Technology</p>
-			<p>Srinivas Nagar,Surathkal, Mangalore</p>
-			<p>Karnataka</p>
-			<p>email:sureshpareth.gmail.com</p>
-			<p>al.sureshpareth.it.edu.in</p>
-			<p>mobile:8123123705</p>
+
+        <section id="about">
+            <h2>About Me</h2>
+            
+            <h3>Professional Profile</h3>
+            <p>With a rich experience spanning 22 years, I am a technology-driven professional, out of which approximately 17 years have been dedicated to teaching diverse computer science subjects. My career has been marked by significant achievements, including my contributions to the design and development of critical systems such as Debenture Floatation, Hall Ticket & Rank Generation, Seat Allotment, and Centralized Admission for B.Ed & DEd programs. In addition, I have been instrumental in shaping innovative Banking Modules covering Deposits and Loans. My communication skills, coupled with exceptional relationship management abilities, have consistently facilitated effective collaboration. I possess a strong foundation in analytical thinking, adept problem-solving skills, and well-honed administrative capabilities. My approach is characterized by flexibility and meticulous attention to detail.</p>
+
+            <h3>Professional Engagements</h3>
+            <p>During my tenure as Principal, I have consistently exhibited unwavering dedication, sincerity, and a robust work ethic in executing my assigned duties. Over the course of my service, I have initiated and contributed to a diverse array of initiatives that have significantly impacted the institution's growth and development.</p>
+            
+            <p>Key accomplishments include effective governance through proactive presentation of critical developmental issues during Governing Body meetings, enhancement of centralized attendance systems, orchestration of successful valuation camps, stakeholder engagement through PTA meetings, performance enhancement through systematic staff evaluation, strengthening of student mentoring systems, and successful placement facilitation for students.</p>
+
+            <h3>Academic and Research Vision</h3>
+            <p>My strategic vision is centered around crafting and fostering immersive, cohesive, and exceptional learning journeys in the realms of Computer Science and Mathematics. It encompasses the dual objective of leaving an enduring and transformative influence on learners and educators, both within India and on the global stage. In pursuit of this vision, I am committed to a perpetual quest for cutting-edge and purposeful technology, harmoniously balanced with the tenets of learning science and instructional methodology.</p>
+        </section>
+
+        <section id="teaching">
+            <h2>Teaching Expertise</h2>
+            
+            <div class="teaching-grid">
+                <div class="course-card">
+                    <div class="course-title">Artificial Neural Networks</div>
+                    <p>Comprehensive exploration of ANNs, CNNs, and RNNs. Covering core concepts, methodologies, and applications in modern machine learning, with focus on nonlinear modeling and kernel spaces.</p>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-title">Foundations of Deep Learning</div>
+                    <p>Unveiling the transformative power of Deep Learning at the intersection of AI and computer science. Exploring neural networks, hierarchical representations, and advanced architectures.</p>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-title">Data Science</div>
+                    <p>Interdisciplinary approach using scientific processes and algorithms to extract insights from structured and unstructured data. Blend of business acumen, ML techniques, and mathematics.</p>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-title">Probability and Stochastic Processes</div>
+                    <p>Introduction to discrete and continuous probability spaces, probability distributions, and Markov processes in various time and sample space configurations.</p>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-title">Mathematical Foundations of ML</div>
+                    <p>Comprehensive mathematical concepts for machine learning, focusing on matrix algebra, calculus, optimization, and probability theory with real-life applications.</p>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-title">Statistical Machine Learning</div>
+                    <p>Principles and methodologies for building intelligent systems using statistical methods, covering supervised/unsupervised learning and neural networks.</p>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-title">Optimization Techniques in AI</div>
+                    <p>Fundamental optimization techniques in AI/ML, covering convex optimization, gradient descent, Newton's method, and advanced optimization algorithms.</p>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-title">Web Technologies & Applications</div>
+                    <p>Comprehensive coverage of modern web technologies including HTML, CSS, JavaScript, server-side frameworks, and emerging trends like PWAs and WebAssembly.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="research">
+            <h2>Research Areas</h2>
+
+            <div class="research-item">
+                <h3>Inverse and Ill-Posed Problems</h3>
+                <p>Inverse problems constitute a fascinating realm where the objective is to discern the causal factors behind a given observation or effect. This field has been a subject of study for nearly a century, predominantly driven by practical applications. The scope of applications encompasses signal restoration, tomography in medical imaging, microscopy, atmospheric imaging, biometrics, and computer vision methodologies.</p>
+            </div>
+
+            <div class="research-item">
+                <h3>Machine Learning</h3>
+                <p>Positioned at the intersection of artificial intelligence and computer science, Machine Learning harnesses the power of data. It finds kinship with statistics and mathematics, addressing diverse challenges spanning DNA analysis, medical diagnosis, product recommendations, stock trading, and fraud detection. The domain focuses on refining algorithms, distributed learning, and emulating natural cognitive processes.</p>
+            </div>
+
+            <div class="research-item">
+                <h3>Data Science</h3>
+                <p>A multidisciplinary field dedicated to collection, preparation, analysis, visualization, management, and preservation of extensive information repositories. Data science encompasses statistics, computing technology, and artificial intelligence, driving transformative research across environmental concerns, social dynamics, healthcare, and cloud computing.</p>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Educational Qualifications</h2>
+            
+            <div class="education-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-graduation-cap"></i> Degree</th>
+                            <th><i class="fas fa-calendar"></i> Year</th>
+                            <th><i class="fas fa-university"></i> Institute</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PhD</td>
+                            <td>2010 Dec. - 2013 Apr.</td>
+                            <td>National Institute of Technology Karnataka, India</td>
+                        </tr>
+                        <tr>
+                            <td>MTech</td>
+                            <td>2001</td>
+                            <td>National Institute of Technology Karnataka, India</td>
+                        </tr>
+                        <tr>
+                            <td>MCA</td>
+                            <td>1996</td>
+                            <td>National Institute of Technology Karnataka, India</td>
+                        </tr>
+                        <tr>
+                            <td>MSc</td>
+                            <td>1988</td>
+                            <td>Department of Mathematics, University of Calicut Kerala, India</td>
+                        </tr>
+                        <tr>
+                            <td>BSc</td>
+                            <td>1986</td>
+                            <td>Govt. Brennen College, Thalassery, University of Calicut, Kerala, India</td>
+                        </tr>
+                        <tr>
+                            <td>PDC</td>
+                            <td>1983</td>
+                            <td>Govt. Brennen College, Thalassery, University of Calicut, Kerala, India</td>
+                        </tr>
+                        <tr>
+                            <td>SSLC</td>
+                            <td>1981</td>
+                            <td>Govt. High School Palayad, Thalassery, Kerala, India</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Information</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-building contact-icon"></i>
+                    <div>
+                        <strong>Department</strong><br>
+                        Information Technology<br>
+                        National Institute of Technology
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <div>
+                        <strong>Address</strong><br>
+                        Srinivas Nagar, Surathkal<br>
+                        Mangalore, Karnataka
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div>
+                        <strong>Email</strong><br>
+                        sureshpareth@gmail.com<br>
+                        sureshpareth@nitk.edu.in
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <div>
+                        <strong>Mobile</strong><br>
+                        +91 8123123705
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 My Personal Website</p>
+        <p>&copy; 2024 Dr. Suresan Pareth - Academic Profile</p>
     </footer>
-    <script src="scripts.js"></script>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Loading animation
+        window.addEventListener('load', () => {
+            const elements = document.querySelectorAll('.loading');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('loaded');
+                }, index * 100);
+            });
+        });
+
+        // Course card hover effects
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
