@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT111 - Fundamentals of Computer Systems Course Plan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-20px, -20px) rotate(180deg); }
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .course-code {
+            font-size: 1.2em;
+            margin-top: 10px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .credits {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section h2 {
+            color: #1e3c72;
+            margin-top: 0;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .week-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .week-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .week-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+        
+        .week-number {
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .topic-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e6ed;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .topic-list li:before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 0.8em;
+        }
+        
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .learning-objective {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .assessment-item {
+            background: linear-gradient(135deg, #fff8e1 0%, #fffacd 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #ff9800;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .weight {
+            font-weight: bold;
+            color: #e65100;
+            background: rgba(255, 152, 0, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .textbook {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #2196f3;
+            margin: 20px 0;
+        }
+        
+        .textbook h3 {
+            margin-top: 0;
+            color: #1565c0;
+        }
+        
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .week-schedule {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Fundamentals of Computer Systems</h1>
+            <div class="course-code">IT111</div>
+            <div class="credits">4 Credits (4-0-0)</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2><span class="section-icon">📋</span>Course Overview</h2>
+                <p>This course provides a comprehensive introduction to computer systems from a programmer's perspective. Students will explore how computer systems execute programs, store information, and communicate. The course bridges the gap between high-level programming and the underlying hardware, giving students the knowledge needed to write efficient programs and understand system behavior.</p>
+                
+                <div class="learning-objective">
+                    <strong>Primary Learning Outcomes:</strong>
+                    <ul>
+                        <li>Understand how programs are represented and executed at the machine level</li>
+                        <li>Master data representation and manipulation techniques</li>
+                        <li>Comprehend processor architecture and optimization strategies</li>
+                        <li>Analyze memory hierarchy and system performance</li>
+                        <li>Understand linking, virtual memory, and operating system fundamentals</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">📚</span>Required Textbook</h2>
+                <div class="textbook">
+                    <h3>Computer Systems: A Programmer's Perspective</h3>
+                    <p><strong>Authors:</strong> Randal E. Bryant, David R. O'Hallaron</p>
+                    <p><strong>Publisher:</strong> Pearson, 2016 (3rd Edition)</p>
+                    <p><strong>ISBN:</strong> 978-0134092669</p>
+                    <p>This textbook provides the theoretical foundation and practical examples that align perfectly with our course objectives.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">📅</span>Weekly Schedule</h2>
+                <div class="week-schedule">
+                    <div class="week-card">
+                        <div class="week-number">Week 1-2: Course Introduction & Information Representation</div>
+                        <ul class="topic-list">
+                            <li>Course overview and expectations</li>
+                            <li>History and evolution of computer systems</li>
+                            <li>Binary number systems and arithmetic</li>
+                            <li>Integer representation and operations</li>
+                            <li>Floating-point representation (IEEE 754)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="week-card">
+                        <div class="week-number">Week 3-4: Machine-Level Representation</div>
+                        <ul class="topic-list">
+                            <li>Assembly language fundamentals</li>
+                            <li>x86-64 instruction set architecture</li>
+                            <li>Register usage and calling conventions</li>
+                            <li>Control flow and conditional execution</li>
+                            <li>Procedures and stack management</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="week-card">
+                        <div class="week-number">Week 5-6: Processor Architecture</div>
+                        <ul class="topic-list">
+                            <li>Sequential processor implementation</li>
+                            <li>Pipelined processor design</li>
+                            <li>Hazards and forwarding</li>
+                            <li>Branch prediction and speculation</li>
+                            <li>Superscalar and out-of-order execution</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="week-card">
+                        <div class="week-number">Week 7-8: Program Optimization</div>
+                        <ul class="topic-list">
+                            <li>Compiler optimizations</li>
+                            <li>Loop unrolling and vectorization</li>
+                            <li>Memory access patterns</li>
+                            <li>Cache-friendly programming</li>
+                            <li>Profiling and performance measurement</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="week-card">
+                        <div class="week-number">Week 9-10: Memory Hierarchy</div>
+                        <ul class="topic-list">
+                            <li>Storage technologies and trends</li>
+                            <li>Cache memory organization</li>
+                            <li>Cache performance and optimization</li>
+                            <li>Memory mountain and locality</li>
+                            <li>Cache-conscious programming techniques</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="week-card">
+                        <div class="week-number">Week 11-12: Linking and Loading</div>
+                        <ul class="topic-list">
+                            <li>Static and dynamic linking</li>
+                            <li>Object file formats (ELF)</li>
+                            <li>Symbol resolution and relocation</li>
+                            <li>Shared libraries and position-independent code</li>
+                            <li>Library interpositioning techniques</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="week-card">
+                        <div class="week-number">Week 13-14: Exceptional Control Flow</div>
+                        <ul class="topic-list">
+                            <li>Exceptions, interrupts, and system calls</li>
+                            <li>Process creation and termination</li>
+                            <li>Signal handling and non-local jumps</li>
+                            <li>Process synchronization</li>
+                            <li>Inter-process communication</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="week-card">
+                        <div class="week-number">Week 15-16: Virtual Memory & OS Fundamentals</div>
+                        <ul class="topic-list">
+                            <li>Virtual memory concepts</li>
+                            <li>Address translation and page tables</li>
+                            <li>Memory protection and sharing</li>
+                            <li>Operating system overview</li>
+                            <li>System calls and kernel interface</li>
+                            <li>Course review and final preparation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">🎯</span>Learning Objectives</h2>
+                <div class="learning-objective">
+                    <strong>By the end of this course, students will be able to:</strong>
+                    <ul>
+                        <li><strong>Analyze</strong> how high-level programs are translated and executed at the machine level</li>
+                        <li><strong>Design</strong> efficient algorithms that consider underlying system constraints</li>
+                        <li><strong>Evaluate</strong> program performance and identify optimization opportunities</li>
+                        <li><strong>Implement</strong> low-level programming techniques for system-level applications</li>
+                        <li><strong>Troubleshoot</strong> system-level issues using debugging and profiling tools</li>
+                        <li><strong>Explain</strong> the interaction between hardware and software components</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">📊</span>Assessment and Grading</h2>
+                
+                <div class="assessment-item">
+                    <div>
+                        <strong>Programming Assignments (4)</strong>
+                        <p>Hands-on coding projects involving assembly programming, performance optimization, and system-level programming</p>
+                    </div>
+                    <div class="weight">30%</div>
+                </div>
+                
+                <div class="assessment-item">
+                    <div>
+                        <strong>Midterm Examination</strong>
+                        <p>Comprehensive exam covering weeks 1-8: representation, machine-level programming, and processor architecture</p>
+                    </div>
+                    <div class="weight">25%</div>
+                </div>
+                
+                <div class="assessment-item">
+                    <div>
+                        <strong>Final Examination</strong>
+                        <p>Cumulative exam with emphasis on memory hierarchy, linking, virtual memory, and operating systems</p>
+                    </div>
+                    <div class="weight">30%</div>
+                </div>
+                
+                <div class="assessment-item">
+                    <div>
+                        <strong>Quizzes and Class Participation</strong>
+                        <p>Regular quizzes, homework problems, and active participation in class discussions</p>
+                    </div>
+                    <div class="weight">15%</div>
+                </div>
+
+                <div style="margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 8px;">
+                    <strong>Grading Scale:</strong> A (90-100%), B (80-89%), C (70-79%), D (60-69%), F (<60%)
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">💻</span>Programming Assignments</h2>
+                
+                <div class="assessment-item">
+                    <div>
+                        <strong>Assignment 1: Data Representation</strong>
+                        <p>Implement functions for bit manipulation, integer arithmetic, and floating-point operations</p>
+                    </div>
+                    <div style="font-size: 0.9em; color: #666;">Week 3</div>
+                </div>
+                
+                <div class="assessment-item">
+                    <div>
+                        <strong>Assignment 2: Assembly Programming</strong>
+                        <p>Write x86-64 assembly functions and analyze machine-level code generation</p>
+                    </div>
+                    <div style="font-size: 0.9em; color: #666;">Week 6</div>
+                </div>
+                
+                <div class="assessment-item">
+                    <div>
+                        <strong>Assignment 3: Performance Optimization</strong>
+                        <p>Optimize program performance through algorithmic and cache-aware improvements</p>
+                    </div>
+                    <div style="font-size: 0.9em; color: #666;">Week 10</div>
+                </div>
+                
+                <div class="assessment-item">
+                    <div>
+                        <strong>Assignment 4: System Programming</strong>
+                        <p>Implement a shell with process management and signal handling capabilities</p>
+                    </div>
+                    <div style="font-size: 0.9em; color: #666;">Week 14</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">🛠️</span>Required Tools and Software</h2>
+                <ul class="topic-list">
+                    <li><strong>GCC Compiler:</strong> For compiling C programs and generating assembly code</li>
+                    <li><strong>GDB Debugger:</strong> For debugging and analyzing program execution</li>
+                    <li><strong>Valgrind:</strong> For memory error detection and profiling</li>
+                    <li><strong>Linux Environment:</strong> Virtual machine or native Linux installation</li>
+                    <li><strong>Text Editor/IDE:</strong> vim, emacs, VSCode, or similar</li>
+                    <li><strong>Git:</strong> For version control and assignment submission</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">📖</span>Supplementary Resources</h2>
+                <ul class="topic-list">
+                    <li><strong>Online Lectures:</strong> Carnegie Mellon 15-213 course materials</li>
+                    <li><strong>Reference Manual:</strong> Intel x86-64 Architecture Manual</li>
+                    <li><strong>Practice Problems:</strong> Additional exercises from textbook website</li>
+                    <li><strong>Lab Resources:</strong> System programming tutorials and examples</li>
+                    <li><strong>Office Hours:</strong> Weekly sessions for individual assistance</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">⚠️</span>Course Policies</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin-top: 0; color: #1e3c72;">Attendance Policy</h4>
+                        <p>Regular attendance is expected. Missing more than 3 classes may result in grade reduction.</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin-top: 0; color: #1e3c72;">Late Assignment Policy</h4>
+                        <p>Late assignments lose 10% per day. No assignments accepted more than 3 days late.</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin-top: 0; color: #1e3c72;">Academic Integrity</h4>
+                        <p>All work must be original. Collaboration on concepts is encouraged, but code must be individual.</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin-top: 0; color: #1e3c72;">Make-up Exams</h4>
+                        <p>Make-up exams available only for documented emergencies with prior notification.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>IT111 - Fundamentals of Computer Systems | Course Plan 2025</p>
+            <p>For questions or clarifications, please contact the instructor during office hours</p>
+        </div>
+    </div>
+</body>
+</html>
