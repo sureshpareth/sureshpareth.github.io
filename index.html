@@ -69,9 +69,10 @@
             opacity: 0.9;
             margin-top: 0.5rem;
         }
-	nav {
-    		margin-top: 2rem; 
-	}
+		
+		nav {
+   			 margin-top: 3rem; /* Add desired space, e.g., 2rem */
+		}
         nav ul {
         list-style: none;
         padding: 0;
@@ -79,7 +80,7 @@
         display: flex;
         justify-content: center;
         gap: 20px;
-       }
+    }
         nav a {
             color: white;
             text-decoration: none;
@@ -420,6 +421,422 @@
             opacity: 1;
             transform: translateY(0);
         }
+		
+		.header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 3rem;
+        }
+
+		.course-section {
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .course-section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin-right: 1rem;
+            border-radius: 2px;
+        }
+
+		.course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-code {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .course-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .course-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .course-format {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            background: #f8f9fa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .course-credits {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 2rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+		
+		.publication-item {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .publication-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .publication-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .authors {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #34495e;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .journal {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 1rem;
+            background: rgba(103, 126, 234, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .year-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .conference-section {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(231, 76, 60, 0.1);
+        }
+
+        .conference-section .section-title {
+            color: #e74c3c;
+        }
+
+        .conference-section .section-title::before {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .conference-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.08);
+            border-left: 4px solid #e74c3c;
+            transition: all 0.3s ease;
+        }
+
+        .conference-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(231, 76, 60, 0.15);
+        }
+
+        .profiles-section {
+            background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(46, 204, 113, 0.1);
+        }
+
+        .profiles-section .section-title {
+            color: #27ae60;
+        }
+
+        .profiles-section .section-title::before {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.8rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(46, 204, 113, 0.3);
+        }
+
+        .profile-card a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .profile-card:hover a {
+            color: #27ae60;
+        }
+
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .scopus-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .scopus-card .profile-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .scopus-id {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 2rem;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .profiles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-overview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -529,33 +946,34 @@
                         Optimization Techniques in AI
                         <i class="fas fa-external-link-alt course-link-icon"></i>
                     </div>
-                    <p>Optimization techniques have become a fundamental pillar of modern artificial intelligence and machine learning. In this comprehensive course, we will explore the core concepts, methodologies, and applications of optimization, examining their pivotal role in enhancing AI models and solving complex real-world problems. We begin with an introduction to optimization, covering its significance in AI and its applications across various domains. We will delve into the basic concepts, including objective functions, constraints, and feasible regions, laying a solid foundation for understanding more advanced topics. Next, we will explore convex sets and convex functions, which form the backbone of many optimization problems. Understanding the properties and visualizations of convex sets, as well as the characteristics of convex functions, is crucial for grasping the intricacies of optimization. Lagrange duality will be another focal point, offering insights into Lagrange multipliers, dual functions, and the weak and strong duality theorems. This understanding is essential for tackling constrained optimization problems effectively. The course will then dive into various convex optimization algorithms, including gradient descent, Newton's method, and quasi-Newton methods. We will discuss the practical considerations of these algorithms, such as convergence analysis and stopping criteria, supported by case studies and examples to illustrate their real-world applications. As we progress, we will explore advanced optimization techniques like second-order cone programming (SOCP), semidefinite programming, and semi-infinite programming. These methods are vital for solving complex optimization problems in areas such as finance, engineering, and artificial intelligence. Specialized optimization methods, including minimax optimization, sublinear algorithms, interior point methods, and active set methods, will be covered in detail. Additionally, we will examine the applications of stochastic gradient descent (SGD), coordinate descent, and the cutting planes method in various AI and machine learning tasks. The course will culminate in practical applications of optimization techniques to image, video, and multimedia processing. We will study case studies and practical implementations that showcase the power of optimization in enhancing AI models and solving real-world challenges. Throughout the course, you will engage in hands-on programming assignments and projects that align with the topics covered in the lectures, reinforcing your understanding and providing practical experience.</p>
+                    <p>This course provides a comprehensive introduction to optimization techniques, with a strong focus on their applications, particularly in machine learning and multimedia processing. Students will delve into foundational concepts such as convex sets, convex functions, and Lagrange duality, building a solid theoretical understanding. The curriculum covers a wide array of optimization algorithms, including convex optimization algorithms, second-order cone models, semidefinite programming, semi-infinite programming, minimax, sublinear algorithms, interior point methods, active set methods, stochastic gradient descent, coordinate descent, and cutting planes methods. Through this course, students will gain practical skills in applying these advanced optimization tools to solve real-world problems in various computational domains.</p>
                     <div class="course-meta">
                         <span class="course-code">IT304 (3-0-2) 4 Credits</span>
                         <span class="view-syllabus">Click to view detailed syllabus</span>
                     </div>
                 </div>
+				<!--
                 <div class="course-card">
                     <div class="course-title">Web Technologies & Applications</div>
                     <p>Web technologies have become the backbone of modern internet applications, driving innovation and connectivity across the globe. In this comprehensive course, we will delve into the foundational concepts, methodologies, and applications of web technologies, exploring their transformative impact on the digital landscape. We will begin with an in-depth exploration of HTML, CSS, and JavaScript, the core technologies that form the building blocks of web development. These languages enable the creation of rich, interactive, and responsive web pages, and understanding their synergy is crucial for any aspiring web developer. Next, we will examine the intricacies of HTTP and HTTPS protocols, which facilitate the communication between clients and servers. Secure data transmission and web security principles will be highlighted, emphasizing their importance in protecting sensitive information and ensuring user trust. Server-side technologies, including popular frameworks like Node.js, Django, and Ruby on Rails, will be thoroughly covered. These frameworks empower developers to build robust, scalable, and efficient web applications, managing everything from database interactions to user authentication and session management. Our journey will also take us through the dynamic world of client-side frameworks such as React, Angular, and Vue.js. These tools have revolutionized front-end development, enabling the creation of complex, high-performance single-page applications (SPAs) with seamless user experiences. We will explore the power of web APIs and services, focusing on RESTful and SOAP protocols. Understanding how to design, implement, and consume web services is essential for integrating disparate systems and enhancing the functionality of web applications. Moreover, we will delve into the realm of data storage and management, covering both SQL and NoSQL databases. Efficient data handling is vital for the performance and scalability of web applications, and we will examine the strengths and use cases of different database technologies. Finally, we will look ahead to emerging trends and technologies in the web domain, such as Progressive Web Apps (PWAs), WebAssembly, and the integration of the Internet of Things (IoT). These advancements are shaping the future of web applications, offering new possibilities for innovation and connectivity. By the end of this course, you will have a thorough understanding of web technologies and their applications, equipping you with the skills to build, deploy, and maintain sophisticated web applications. Whether you are aiming to become a full-stack developer, a front-end specialist, or a back-end expert, this course will provide you with the knowledge and tools to succeed in the ever-evolving field of web development.</p>
                 </div>
             </div>
-			 <!--<div class="course-card">
+			 <div class="course-card">
                     <div class="course-title">Python Programming</div>
                     <p>Overview of programming languages, history of Python, Python installation, IDLE, interactive mode, basic syntax.</p>
                 </div> -->
 				<div class="course-card clickable-card" onclick="window.open('IT111.html', '_blank')">
                     <div class="course-title">
-                        Computer Systems
+                        Fundamentals of Computer Systems
                         <i class="fas fa-external-link-alt course-link-icon"></i>
                     </div>
                     <p>This course, aligned with Computer Systems: A Programmer's Perspective by Randal E. Bryant and David R. O'Hallaron (Pearson, 2016), introduces the core concepts of computer systems from a programmer's viewpoint. It begins with an introduction to computer systems, exploring how hardware and software interact. Program structure and execution are covered, focusing on how information is represented and manipulated, including binary data, integers, and floating-point numbers. The machine-level representation of programs is examined, teaching how high-level code translates to assembly and machine instructions. Processor architecture is explored, detailing how CPUs execute instructions and process data. Techniques for optimizing program performance are introduced, emphasizing efficient code and resource use. The memory hierarchy is studied, covering caches, main memory, and storage to understand speed and efficiency trade-offs. Linking is explained, detailing how object code is combined into executable programs. Exceptional control flow is addressed, including interrupts, exceptions, and process control. Virtual memory is covered, explaining how systems manage memory allocation and protection. The fundamentals of operating systems are introduced, highlighting process management, file systems, and concurrency. This course, grounded in Bryant and O'Hallaron’s text, equips students with a deep understanding of how programs run on modern computer systems.</p>
                     <div class="course-meta">
-                        <span class="course-code">IT252M (3-0-0) 3 Credits</span>
+                        <span class="course-code">IT111 (4-0-0) 4 Credits</span>
                         <span class="view-syllabus">Click to view detailed syllabus</span>
                     </div>
                 </div>
-		<div class="course-card clickable-card" onclick="window.open('IT112.html', '_blank')">
+				<div class="course-card clickable-card" onclick="window.open('IT112.html', '_blank')">
                     <div class="course-title">
                         Computer Systems Lab
                         <i class="fas fa-external-link-alt course-link-icon"></i>
@@ -566,7 +984,7 @@
                         <span class="view-syllabus">Click to view detailed syllabus</span>
                     </div>
                 </div>
-		<div class="course-card clickable-card" onclick="window.open('IT151.html', '_blank')">
+				<div class="course-card clickable-card" onclick="window.open('IT151.html', '_blank')">
                     <div class="course-title">
                         Python Programming
                         <i class="fas fa-external-link-alt course-link-icon"></i>
@@ -577,59 +995,238 @@
                         <span class="view-syllabus">Click to view detailed syllabus</span>
                     </div>
                 </div>
-		<div class="course-card clickable-card" onclick="window.open('IT152.html', '_blank')">
+				<div class="course-card clickable-card" onclick="window.open('IT152.html', '_blank')">
                     <div class="course-title">
                         Python Programming Lab
                         <i class="fas fa-external-link-alt course-link-icon"></i>
                     </div>
                     <p>This course provides a comprehensive introduction to Python programming, designed for beginners and those looking to solidify their foundational knowledge. Students will learn the essentials of writing, testing, and debugging Python programs, mastering core control flow structures like loops and conditionals. A significant portion of the course will focus on Object-Oriented Programming (OOP) concepts, enabling students to design and implement robust, modular applications. Furthermore, the course covers essential data handling techniques, including reading from and writing to files, performing various string operations, and working with fundamental data structures and algorithms. The curriculum also introduces the exciting world of Python web frameworks, giving students a glimpse into building dynamic web applications. By the end of this course, students will be equipped with the practical skills necessary to develop efficient and scalable Python solutions for a variety of tasks.</p>
                     <div class="course-meta">
-                        <span class="course-code">IT152 (3-0-0) 3 Credits</span>
+                        <span class="course-code">IT152 (0-0-2) 1 Credits</span>
                         <span class="view-syllabus">Click to view detailed syllabus</span>
                     </div>
                 </div>
-		<div class="course-card clickable-card" onclick="window.open('IT252M.html', '_blank')">
+				<div class="course-card clickable-card" onclick="window.open('IT252M.html', '_blank')">
                     <div class="course-title">
                         Database Systems
                         <i class="fas fa-external-link-alt course-link-icon"></i>
                     </div>
                     <p>This course provides a comprehensive exploration of database systems, beginning with basic concepts to understand the purpose and principles of databases. It delves into data models and languages, covering structures like relational and hierarchical models, alongside query languages such as SQL. The course addresses database design, teaching both conceptual techniques, like creating ER diagrams, and physical design, focusing on storage and indexing. Students learn system implementation techniques to build and optimize databases effectively. Current trends in database technology are examined to keep pace with modern advancements. The course also covers distributed databases, exploring the challenges of managing data across multiple locations. Practical skills are developed through the design and implementation of database systems or packages tailored for applications like office automation, hotel management, and hospital management. This includes the deployment of forms and reports for user interaction. Normalization techniques are taught to eliminate redundancy and ensure data integrity, while query processing algorithms are studied for efficient execution within these application projects. Hands-on implementation of key components rounds out the course, preparing students for real-world database scenarios.</p>
                     <div class="course-meta">
-                        <span class="course-code">IT252M (3-0-0) 3 Credits</span>
+                        <span class="course-code">IT252M (3-0-2) 4 Credits</span>
                         <span class="view-syllabus">Click to view detailed syllabus</span>
                     </div>
                 </div>
-				   </section>
-				<section><div><h2>Courses Taught at NITK</h2>
-         <p><ul>
-                <li>IT111 Fundamentals of Computer Systems (4-0-0) 4</li>
-                <li>IT112 Computer Systems Lab (0-0-2) 1</li>
-                <li>IT151 Python Programming (3-0-0) 3</li>
-                <li>IT152 Python Programming Lab (0-0-2) 1</li>
-                <li>IT304 Optimization Techniques (3-0-2) 4</li>
-                <li>IT252M Database Systems (3-0-2) 4</li>
-                <li>IT254M Web Technologies and Applications (3-0-2) 4</li>
-            </ul></p></div>
-			<div class="section">
-            <h2>Other Courses Taught</h2>
-            <ul>
-                <li>19SAL71 Foundations of Deep Learning (4-0-0) 4</li>
-                <li>21SAL53 Introduction to Artificial Neural Network (4-0-0) 4</li>
-                <li>22SAL351 Principles of Artificial Intelligence (4-0-0) 4</li>
-                <li>CST413 Machine Learning (2-1-0) 3</li>
-                <li>CST306 Algorithm Analysis and Design (3-1-0) 4</li>
-                <li>MAT204 Probability, Random Processes and Numerical Methods (3-1-0) 4</li>
-                <li>CE306 Computer Programming Computational Techniques (3-0-0) 3</li>
-                <li>MA606 Data Structures and Algorithms (3-0-0) 3</li>
-                <li>MA613 Software Engineering (3-0-0) 3</li>
-            </ul>
-        </div>
-			</section>
 				
-				
-     
+				<div class="course-card clickable-card" onclick="window.open('IT254M.html', '_blank')">
+                    <div class="course-title">
+                        Web Technologies & Applications
+                        <i class="fas fa-external-link-alt course-link-icon"></i>
+                    </div>
+                    <p>This course provides comprehensive coverage of web technologies, from fundamental concepts to advanced frameworks. Students will learn both client-side and server-side programming, explore modern web architectures, and understand emerging trends in web development. The course combines theoretical knowledge with practical hands-on experience through extensive laboratory work.</p>
+                    <div class="course-meta">
+                        <span class="course-code">IT254M (3-0-2) 4 Credits</span>
+                        <span class="view-syllabus">Click to view detailed syllabus</span>
+                    </div>
+                </div>
+				<div class="course-card clickable-card" onclick="window.open('IT307.html', '_blank')">
+                    <div class="course-title">
+                        Machine Learning
+                        <i class="fas fa-external-link-alt course-link-icon"></i>
+                    </div>
+                    <p>This course provides a foundational yet comprehensive introduction to Machine Learning, exploring its basic principles, diverse applications, and inherent challenges. The curriculum is divided into key areas, starting with Supervised Learning, where students will master techniques such as Linear Regression (single and multiple variables), Gradient Descent, Classification, Logistic Regression, and methods to combat Overfitting through Regularization. Advanced supervised models like Support Vector Machines, Artificial Neural Networks (including Perceptrons, Multilayer Networks, and back-propagation), Decision Trees, and Ensemble Methods will also be covered.
 
-        <section id="research">
+The course then transitions to Unsupervised Learning, focusing on Clustering algorithms like K-means, K-medoids, and Hierarchical Clustering. Students will also learn about crucial Dimensionality Reduction techniques, particularly Principal Component Analysis (PCA). Throughout the course, emphasis will be placed on understanding the practical applications of various machine learning methods across different domains, equipping students with the knowledge to implement and evaluate these powerful algorithms.</p>
+                    <div class="course-meta">
+                        <span class="course-code">IT254M (3-0-2) 4 Credits</span>
+                        <span class="view-syllabus">Click to view detailed syllabus</span>
+                    </div>
+                </div>
+				</section>
+				<section>
+				<div class="container">
+		        <div class="header">
+		            <h1>Course Portfolio</h1>
+		            <p>National Institute of Technology Karnataka (NITK) & Other Institutions</p>
+		        </div>
+        
+        <div class="content">
+            <div class="course-section">
+                <h2 class="section-title">Courses Taught at NITK</h2>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <div class="course-code">IT111</div>
+                        <div class="course-name">Fundamentals of Computer Systems</div>
+                        <div class="course-details">
+                            <span class="course-format">(4-0-0)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">IT112</div>
+                        <div class="course-name">Computer Systems Lab</div>
+                        <div class="course-details">
+                            <span class="course-format">(0-0-2)</span>
+                            <span class="course-credits">1 Credit</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">IT151</div>
+                        <div class="course-name">Python Programming</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-0-0)</span>
+                            <span class="course-credits">3 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">IT152</div>
+                        <div class="course-name">Python Programming Lab</div>
+                        <div class="course-details">
+                            <span class="course-format">(0-0-2)</span>
+                            <span class="course-credits">1 Credit</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">IT304</div>
+                        <div class="course-name">Optimization Techniques</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-0-2)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">IT252M</div>
+                        <div class="course-name">Database Systems</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-0-2)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">IT254M</div>
+                        <div class="course-name">Web Technologies and Applications</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-0-2)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="course-section">
+                <h2 class="section-title">Other Courses Taught</h2>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <div class="course-code">19SAL71</div>
+                        <div class="course-name">Foundations of Deep Learning</div>
+                        <div class="course-details">
+                            <span class="course-format">(4-0-0)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">21SAL53</div>
+                        <div class="course-name">Introduction to Artificial Neural Network</div>
+                        <div class="course-details">
+                            <span class="course-format">(4-0-0)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">22SAL351</div>
+                        <div class="course-name">Principles of Artificial Intelligence</div>
+                        <div class="course-details">
+                            <span class="course-format">(4-0-0)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">CST413</div>
+                        <div class="course-name">Machine Learning</div>
+                        <div class="course-details">
+                            <span class="course-format">(2-1-0)</span>
+                            <span class="course-credits">3 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">CST306</div>
+                        <div class="course-name">Algorithm Analysis and Design</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-1-0)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">MAT204</div>
+                        <div class="course-name">Probability, Random Processes and Numerical Methods</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-1-0)</span>
+                            <span class="course-credits">4 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">CE306</div>
+                        <div class="course-name">Computer Programming Computational Techniques</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-0-0)</span>
+                            <span class="course-credits">3 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">MA606</div>
+                        <div class="course-name">Data Structures and Algorithms</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-0-0)</span>
+                            <span class="course-credits">3 Credits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-code">MA613</div>
+                        <div class="course-name">Software Engineering</div>
+                        <div class="course-details">
+                            <span class="course-format">(3-0-0)</span>
+                            <span class="course-credits">3 Credits</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">16</div>
+                    <div class="stat-label">Total Courses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">55</div>
+                    <div class="stat-label">Total Credits</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">NITK Courses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Other Courses</div>
+                </div>
+            </div>
+        </div>
+    </div>
+		</section>		     
+       <section id="research">
             <h2>Research Areas</h2>
 
             <div class="research-item">
@@ -646,35 +1243,137 @@
                 <h3>Data Science</h3>
                 <p>A multidisciplinary field dedicated to collection, preparation, analysis, visualization, management, and preservation of extensive information repositories. Data science encompasses statistics, computing technology, and artificial intelligence, driving transformative research across environmental concerns, social dynamics, healthcare, and cloud computing.</p>
             </div>
-        </section>
-
-		<section id="publication">
-            <h2>Publication</h2>
-			<p><ul>
-                <li>George, S., & Pareth, S. (2012). Two-Step Modified Newton Method for Nonlinear Lavrentiev Regularization. <i>ISRN Applied Mathematics</i>.</li>
-                <li>George, S., & Pareth, S. (2012). An Application of Newton Type Iterative Method for Lavrentiev Regularization for Ill-Posed Equations. <i>IAENG International Journal of Applied Mathematics</i>.</li>
-                <li>George, S., & Pareth, S. (2013). An Application of Newton type Iterative Method for the Approximate Implementation of Lavrentiev Regularization. <i>Journal of Applied Analysis, De Gruyter</i>.</li>
-                <li>George, S., Pareth, S., & Kunhanandan, M. (2013). Newton Lavrentiev regularization for ill-posed operator equations in Hilbert scales. <i>Applied Mathematics and Computation, Elsevier</i>.</li>
-                <li>Pareth, S. Advanced Optimization Techniques in Neural Networks: A Sobolev Space Approach (Communicated).</li>
-            </ul></p>
-			<h2>Conference Papers</h2>
-			<p>
-            <ul>
-                <li>Pareth, S., & George, S. (2012). Projection Scheme for Newton-type Iterative Method for Lavrentiev Regularization. <i>ICECCS 2012, Springer</i>.</li>
-                <li>Pareth, S. (2012). Finite Dimensional Realization of Lavrentiev Regularization for Nonlinear Ill-Posed Equations. <i>ICERECT 2012, Springer</i>.</li>
-                <li>Pareth, S. (2014). Gauss-Newton Regularization Method for Signal Reconstruction. <i>ACCIS-14, Elsevier</i>.</li>
-            </ul>
-			</p>
-			<div class="section">
-            <h2>Academic and Research Profiles</h2>
-            <ul>
-                <li><a href="https://scholar.google.com/citations?user=Kft7A0kAAAAJ">Google Scholar</a></li>
-                <li><a href="https://www.semanticscholar.org/author/Suresan-Pareth/3198646">Semantic Scholar</a></li>
-                <li><a href="https://dblp.org/pid/132/0418.html">DBLP</a></li>
-                <li><a href="https://orcid.org/0000-0002-1106-3301">ORCID</a></li>
-                <li><strong>Scopus Author ID:</strong> 55341747200</li>
-            </ul>
-        </div>		
+       
+<div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>Research Publications</h1>
+                <p>Advancing Mathematical Sciences through Innovative Research in Optimization, Regularization, and Neural Networks</p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">Journal Publications</h2>
+                
+                <div class="publication-item">
+                    <div class="year-badge">2012</div>
+                    <div class="authors">George, S., & Pareth, S.</div>
+                    <div class="title">Two-Step Modified Newton Method for Nonlinear Lavrentiev Regularization</div>
+                    <div class="journal">ISRN Applied Mathematics</div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="year-badge">2012</div>
+                    <div class="authors">George, S., & Pareth, S.</div>
+                    <div class="title">An Application of Newton Type Iterative Method for Lavrentiev Regularization for Ill-Posed Equations</div>
+                    <div class="journal">IAENG International Journal of Applied Mathematics</div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="year-badge">2013</div>
+                    <div class="authors">George, S., & Pareth, S.</div>
+                    <div class="title">An Application of Newton type Iterative Method for the Approximate Implementation of Lavrentiev Regularization</div>
+                    <div class="journal">Journal of Applied Analysis, De Gruyter</div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="year-badge">2013</div>
+                    <div class="authors">George, S., Pareth, S., & Kunhanandan, M.</div>
+                    <div class="title">Newton Lavrentiev regularization for ill-posed operator equations in Hilbert scales</div>
+                    <div class="journal">Applied Mathematics and Computation, Elsevier</div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="year-badge">Submitted</div>
+                    <div class="authors">Pareth, S.</div>
+                    <div class="title">Advanced Optimization Techniques in Neural Networks: A Sobolev Space Approach</div>
+                    <div class="journal">Communicated</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="conference-section">
+                    <h2 class="section-title">Conference Papers</h2>
+                    
+                    <div class="conference-item">
+                        <div class="year-badge">2012</div>
+                        <div class="authors">Pareth, S., & George, S.</div>
+                        <div class="title">Projection Scheme for Newton-type Iterative Method for Lavrentiev Regularization</div>
+                        <div class="journal">ICECCS 2012, Springer</div>
+                    </div>
+                    
+                    <div class="conference-item">
+                        <div class="year-badge">2012</div>
+                        <div class="authors">Pareth, S.</div>
+                        <div class="title">Finite Dimensional Realization of Lavrentiev Regularization for Nonlinear Ill-Posed Equations</div>
+                        <div class="journal">ICERECT 2012, Springer</div>
+                    </div>
+                    
+                    <div class="conference-item">
+                        <div class="year-badge">2014</div>
+                        <div class="authors">Pareth, S.</div>
+                        <div class="title">Gauss-Newton Regularization Method for Signal Reconstruction</div>
+                        <div class="journal">ACCIS-14, Elsevier</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="profiles-section">
+                    <h2 class="section-title">Academic & Research Profiles</h2>
+                    
+                    <div class="profiles-grid">
+                        <div class="profile-card">
+                            <div class="profile-icon">GS</div>
+                            <a href="https://scholar.google.com/citations?user=Kft7A0kAAAAJ" target="_blank">Google Scholar</a>
+                        </div>
+                        
+                        <div class="profile-card">
+                            <div class="profile-icon">SS</div>
+                            <a href="https://www.semanticscholar.org/author/Suresan-Pareth/3198646" target="_blank">Semantic Scholar</a>
+                        </div>
+                        
+                        <div class="profile-card">
+                            <div class="profile-icon">DB</div>
+                            <a href="https://dblp.org/pid/132/0418.html" target="_blank">DBLP</a>
+                        </div>
+                        
+                        <div class="profile-card">
+                            <div class="profile-icon">OR</div>
+                            <a href="https://orcid.org/0000-0002-1106-3301" target="_blank">ORCID</a>
+                        </div>
+                        
+                        <div class="profile-card scopus-card">
+                            <div class="profile-icon">SC</div>
+                            <div><strong>Scopus Author ID</strong></div>
+                            <div class="scopus-id">55341747200</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-overview">
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Total Publications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Journal Articles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Conference Papers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Research Profiles</div>
+                </div>
+            </div>
+        </div>
+    </div>
+		
         </section>
 
         <section id="education">
