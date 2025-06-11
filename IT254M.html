@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT254M Web Technologies and Applications - Course Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-code {
+            font-size: 1.2rem;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .course-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-credits {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .content {
+            padding: 3rem;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-left: 6px solid #4CAF50;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .overview h2::before {
+            content: '🎯';
+            margin-right: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 35px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 3px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .module-card:nth-child(1) { border-top-color: #e74c3c; }
+        .module-card:nth-child(2) { border-top-color: #3498db; }
+        .module-card:nth-child(3) { border-top-color: #f39c12; }
+        .module-card:nth-child(4) { border-top-color: #9b59b6; }
+        .module-card:nth-child(5) { border-top-color: #1abc9c; }
+        .module-card:nth-child(6) { border-top-color: #e67e22; }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .module-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .module-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            padding-right: 3rem;
+        }
+
+        .module-duration {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .topics-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .topics-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .topics-list li:last-child {
+            border-bottom: none;
+        }
+
+        .topics-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-size: 0.8rem;
+        }
+
+        .lab-section {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 152, 0, 0.2);
+        }
+
+        .lab-section .section-title {
+            color: #f57c00;
+        }
+
+        .lab-section .section-title::before {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+
+        .lab-exercises {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .lab-exercise {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #ff9800;
+            transition: all 0.3s ease;
+        }
+
+        .lab-exercise:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 152, 0, 0.2);
+        }
+
+        .lab-exercise h4 {
+            color: #f57c00;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .assessment-section {
+            background: linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(156, 39, 176, 0.2);
+        }
+
+        .assessment-section .section-title {
+            color: #8e24aa;
+        }
+
+        .assessment-section .section-title::before {
+            background: linear-gradient(135deg, #9c27b0, #8e24aa);
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .assessment-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(156, 39, 176, 0.1);
+            border-top: 4px solid #9c27b0;
+        }
+
+        .assessment-percentage {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #8e24aa;
+            margin-bottom: 0.5rem;
+        }
+
+        .assessment-type {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .references-section {
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .reference-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #4CAF50;
+        }
+
+        .reference-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .reference-authors {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+
+        .reference-title {
+            font-style: italic;
+            color: #34495e;
+            margin-bottom: 0.3rem;
+        }
+
+        .reference-publisher {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .schedule-table th {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .schedule-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .schedule-table tr:hover {
+            background: #f8f9ff;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 2rem;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .assessment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="course-code">IT254 / IT254M</div>
+                <h1 class="course-title">Web Technologies and Applications</h1>
+                <div class="course-credits">Credits: (3-0-2) 4 | Theory: 3 hrs | Lab: 2 hrs</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="overview">
+                <h2>Course Overview</h2>
+                <p>This course provides comprehensive coverage of web technologies, from fundamental concepts to advanced frameworks. Students will learn both client-side and server-side programming, explore modern web architectures, and understand emerging trends in web development. The course combines theoretical knowledge with practical hands-on experience through extensive laboratory work.</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Learning Modules</h2>
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <div class="module-number">1</div>
+                        <h3 class="module-title">Internet and Web Fundamentals</h3>
+                        <div class="module-duration">Duration: 8 hours</div>
+                        <ul class="topics-list">
+                            <li>Internet and World Wide Web Overview</li>
+                            <li>Web System Architecture</li>
+                            <li>Web Clients and Web Servers</li>
+                            <li>Application Servers</li>
+                            <li>Domain Name System (DNS)</li>
+                            <li>Web Standards and Protocols</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-number">2</div>
+                        <h3 class="module-title">HTTP Protocol & Security</h3>
+                        <div class="module-duration">Duration: 6 hours</div>
+                        <ul class="topics-list">
+                            <li>HTTP Primitives and Methods</li>
+                            <li>Content Transport Mechanisms</li>
+                            <li>HTTP/1.1 vs HTTP/2</li>
+                            <li>HTTPS and SSL/TLS</li>
+                            <li>Web Security Fundamentals</li>
+                            <li>Authentication and Authorization</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-number">3</div>
+                        <h3 class="module-title">Client-Side Technologies</h3>
+                        <div class="module-duration">Duration: 12 hours</div>
+                        <ul class="topics-list">
+                            <li>XHTML and HTML5 Fundamentals</li>
+                            <li>CSS3 Styling and Layouts</li>
+                            <li>Responsive Web Design</li>
+                            <li>JavaScript Programming</li>
+                            <li>Event-Driven Programming</li>
+                            <li>Client-Side Form Validation</li>
+                            <li>DOM Manipulation</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-number">4</div>
+                        <h3 class="module-title">Server-Side Programming</h3>
+                        <div class="module-duration">Duration: 10 hours</div>
+                        <ul class="topics-list">
+                            <li>Server-Side Programming Concepts</li>
+                            <li>Sessions and State Management</li>
+                            <li>Session Tracking Techniques</li>
+                            <li>Server-Side Validation</li>
+                            <li>Database Connectivity</li>
+                            <li>Error Handling and Debugging</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-number">5</div>
+                        <h3 class="module-title">Advanced Web Technologies</h3>
+                        <div class="module-duration">Duration: 8 hours</div>
+                        <ul class="topics-list">
+                            <li>jQuery Library and Plugins</li>
+                            <li>AJAX Programming</li>
+                            <li>JSON Data Format</li>
+                            <li>RESTful Web Services</li>
+                            <li>Web APIs and Integration</li>
+                            <li>Progressive Web Apps (PWA)</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-number">6</div>
+                        <h3 class="module-title">XML & Next Generation Web</h3>
+                        <div class="module-duration">Duration: 6 hours</div>
+                        <ul class="topics-list">
+                            <li>XML Syntax and Semantics</li>
+                            <li>DTD and XML Schemas</li>
+                            <li>XPath and XSLT</li>
+                            <li>Web Frameworks Overview</li>
+                            <li>Search Engines and SEO</li>
+                            <li>Social Web, Semantic Web</li>
+                            <li>Internet of Things (IoT)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="lab-section">
+                    <h2 class="section-title">Laboratory Exercises</h2>
+                    <div class="lab-exercises">
+                        <div class="lab-exercise">
+                            <h4>Lab 1-2: HTML5 & CSS3</h4>
+                            <p>Create responsive web pages using HTML5 semantic elements and CSS3 styling techniques including flexbox and grid layouts.</p>
+                        </div>
+                        <div class="lab-exercise">
+                            <h4>Lab 3-4: JavaScript & DOM</h4>
+                            <p>Implement interactive web applications using JavaScript, event handling, and DOM manipulation techniques.</p>
+                        </div>
+                        <div class="lab-exercise">
+                            <h4>Lab 5-6: Forms & Validation</h4>
+                            <p>Develop dynamic forms with client-side and server-side validation, including file uploads and data processing.</p>
+                        </div>
+                        <div class="lab-exercise">
+                            <h4>Lab 7-8: AJAX & jQuery</h4>
+                            <p>Build dynamic web applications using jQuery library and AJAX for asynchronous data exchange.</p>
+                        </div>
+                        <div class="lab-exercise">
+                            <h4>Lab 9-10: Web Services</h4>
+                            <p>Create and consume RESTful web services, work with JSON data, and integrate third-party APIs.</p>
+                        </div>
+                        <div class="lab-exercise">
+                            <h4>Lab 11-12: Project Work</h4>
+                            <p>Develop a complete web application incorporating all learned technologies and best practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="assessment-section">
+                    <h2 class="section-title">Assessment Structure</h2>
+                    <div class="assessment-grid">
+                        <div class="assessment-item">
+                            <div class="assessment-percentage">30%</div>
+                            <div class="assessment-type">Internal Assessment</div>
+                        </div>
+                        <div class="assessment-item">
+                            <div class="assessment-percentage">20%</div>
+                            <div class="assessment-type">Laboratory Work</div>
+                        </div>
+                        <div class="assessment-item">
+                            <div class="assessment-percentage">10%</div>
+                            <div class="assessment-type">Assignments</div>
+                        </div>
+                        <div class="assessment-item">
+                            <div class="assessment-percentage">40%</div>
+                            <div class="assessment-type">End Semester Exam</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Weekly Schedule</h2>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Theory Topics</th>
+                            <th>Lab Work</th>
+                            <th>Assessment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1-2</strong></td>
+                            <td>Internet & Web Fundamentals, Web Architecture</td>
+                            <td>HTML5 Basics, Semantic Elements</td>
+                            <td>Quiz 1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3-4</strong></td>
+                            <td>HTTP Protocol, HTTPS, Security</td>
+                            <td>CSS3 Styling, Responsive Design</td>
+                            <td>Assignment 1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5-6</strong></td>
+                            <td>HTML5, CSS3, JavaScript Fundamentals</td>
+                            <td>JavaScript Programming, Events</td>
+                            <td>Lab Test 1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7-8</strong></td>
+                            <td>Event Programming, Client-side Validation</td>
+                            <td>Form Handling, Validation</td>
+                            <td>Mid-term Exam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9-10</strong></td>
+                            <td>Server-side Programming, Sessions</td>
+                            <td>jQuery, AJAX Implementation</td>
+                            <td>Assignment 2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11-12</strong></td>
+                            <td>jQuery, AJAX, Web Services</td>
+                            <td>REST APIs, JSON Processing</td>
+                            <td>Lab Test 2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>13-14</strong></td>
+                            <td>XML Technologies, Web Frameworks</td>
+                            <td>Project Development</td>
+                            <td>Project Demo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>15-16</strong></td>
+                            <td>Next Generation Web, SEO, Modern Trends</td>
+                            <td>Project Completion</td>
+                            <td>Final Exam</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <div class="references-section">
+                    <h2 class="section-title">References</h2>
+                    
+                    <div class="reference-item">
+                        <div class="reference-authors">Jeffrey C. Jackson</div>
+                        <div class="reference-title">"Web Technologies – A Computer Science Perspective"</div>
+                        <div class="reference-publisher">Pearson Education, 2009</div>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <div class="reference-authors">Robert W. Sebesta</div>
+                        <div class="reference-title">"Programming the World Wide Web", 7th Edition</div>
+                        <div class="reference-publisher">Pearson Education, 2014</div>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <div class="reference-authors">Deitel and Nieto</div>
+                        <div class="reference-title">"Internet and World Wide Web — How to Program"</div>
+                        <div class="reference-publisher">Pearson, 2010</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
