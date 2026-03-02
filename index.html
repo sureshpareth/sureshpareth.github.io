@@ -1,1617 +1,1311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Suresan Pareth - Academic Profile</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #1e3a5f;
-            --secondary-color: #2c5282;
-            --accent-color: #3182ce;
-            --text-color: #2d3748;
-            --light-gray: #f7fafc;
-            --medium-gray: #e2e8f0;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --card-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-
-        /* Header Styles */
-        header {
-            background: var(--gradient);
-            color: white;
-            padding: 2rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-			
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-			
-        }
-
-        .logo h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #fff, #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-top: 0.5rem;
-        }
-		
-		nav {
-   			 margin-top: 3rem; /* Add desired space, e.g., 2rem */
-		}
-        nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Suresan Pareth — Academic Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #04040a;
+      --surface: #0d0d1a;
+      --card: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.08);
+      --text: #eeeef0;
+      --muted: #7a7a9a;
+      --violet: #7c3aed;
+      --indigo: #4f46e5;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --pink: #ec4899;
+      --grad1: linear-gradient(135deg, #7c3aed, #4f46e5, #06b6d4);
+      --grad2: linear-gradient(135deg, #f43f5e, #ec4899, #f59e0b);
+      --grad3: linear-gradient(135deg, #10b981, #06b6d4, #4f46e5);
     }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        nav a.active {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 140px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 2rem;
-        }
-
-        /* Section Styles */
-        section {
-            background: white;
-            margin: 2rem 0;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        section:nth-child(even) {
-            animation-delay: 0.2s;
-        }
-
-        section:nth-child(odd) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h2 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        h3 {
-            color: var(--secondary-color);
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem;
-            text-decoration: underline;
-            text-decoration-color: var(--accent-color);
-            text-underline-offset: 8px;
-        }
-
-        p {
-            text-align: justify;
-            line-height: 1.8;
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-        }
-
-        /* Hero Section */
-        #home {
-            background: var(--gradient);
-            color: white;
-            text-align: center;
-            padding: 4rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-
-        #home h2 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        #home h2::after {
-            background: white;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Teaching Section Cards */
-        .teaching-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .course-card {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 5px solid var(--accent-color);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient);
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-
-        .course-title {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        /* Research Section */
-        .research-item {
-            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
-            margin: 2rem 0;
-            padding: 2.5rem;
-            border-radius: 15px;
-            border-left: 5px solid #e53e3e;
-        }
-
-        /* Education Table */
-        .education-container {
-            overflow-x: auto;
-            margin-top: 2rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-        }
-
-        th {
-            background: var(--gradient);
-            color: white;
-            padding: 1.5rem;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        td {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--medium-gray);
-            transition: background-color 0.3s ease;
-        }
-
-        tr:hover td {
-            background-color: var(--light-gray);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Contact Section */
-        #contact {
-            background: var(--gradient);
-            color: white;
-        }
-
-        #contact h2 {
-            color: white;
-        }
-
-        #contact h2::after {
-            background: white;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: #ffd700;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-
-            main {
-                margin-top: 180px;
-                padding: 1rem;
-            }
-
-            section {
-                padding: 2rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .hero-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .teaching-grid {
-                grid-template-columns: 1fr;
-            }
-
-            table {
-                font-size: 0.9rem;
-            }
-
-            th, td {
-                padding: 1rem;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading animation */
-        .loading {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .loading.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-		
-		.header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 3rem;
-        }
-
-		.course-section {
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .course-section:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 30px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            margin-right: 1rem;
-            border-radius: 2px;
-        }
-
-		.course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .course-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .course-code {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
-        }
-
-        .course-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-
-        .course-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .course-format {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            background: #f8f9fa;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .course-credits {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #27ae60;
-            background: rgba(39, 174, 96, 0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 15px;
-            color: white;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 2rem;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .course-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-		
-		.publication-item {
-            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .publication-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 0 2px 2px 0;
-        }
-
-        .publication-item:hover {
-            transform: translateX(8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .authors {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-
-        .title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #34495e;
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
-        }
-
-        .journal {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 1rem;
-            background: rgba(103, 126, 234, 0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        .year-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .conference-section {
-            background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 2px solid rgba(231, 76, 60, 0.1);
-        }
-
-        .conference-section .section-title {
-            color: #e74c3c;
-        }
-
-        .conference-section .section-title::before {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-
-        .conference-item {
-            background: white;
-            border-radius: 12px;
-            padding: 1.8rem;
-            margin-bottom: 1.2rem;
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.08);
-            border-left: 4px solid #e74c3c;
-            transition: all 0.3s ease;
-        }
-
-        .conference-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(231, 76, 60, 0.15);
-        }
-
-        .profiles-section {
-            background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 2px solid rgba(46, 204, 113, 0.1);
-        }
-
-        .profiles-section .section-title {
-            color: #27ae60;
-        }
-
-        .profiles-section .section-title::before {
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-        }
-
-        .profiles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .profile-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.8rem;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #27ae60, #2ecc71);
-        }
-
-        .profile-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border-color: rgba(46, 204, 113, 0.3);
-        }
-
-        .profile-card a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: block;
-            transition: color 0.3s ease;
-        }
-
-        .profile-card:hover a {
-            color: #27ae60;
-        }
-
-        .profile-icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .scopus-card {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .scopus-card .profile-icon {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .scopus-id {
-            font-family: 'Courier New', monospace;
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-top: 0.5rem;
-        }
-
-        .stats-overview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            color: white;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 2rem;
-            }
-            
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .profiles-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-overview {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: .4;
+    }
+
+    /* ── AMBIENT BLOBS ── */
+    .blobs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: .18;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .blob-1 { width: 600px; height: 600px; background: var(--violet); top: -200px; left: -150px; animation-delay: 0s; }
+    .blob-2 { width: 500px; height: 500px; background: var(--cyan); top: 40%; right: -150px; animation-delay: -6s; }
+    .blob-3 { width: 400px; height: 400px; background: var(--rose); bottom: -100px; left: 30%; animation-delay: -12s; }
+    .blob-4 { width: 350px; height: 350px; background: var(--emerald); top: 60%; left: 10%; animation-delay: -4s; }
+
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to { transform: translate(40px, 60px) scale(1.1); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(4,4,10,.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 500;
+      padding: .4rem .9rem;
+      border-radius: 50px;
+      transition: all .25s;
+      letter-spacing: .02em;
+    }
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,.07);
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-inner { max-width: 860px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(124,58,237,.15);
+      border: 1px solid rgba(124,58,237,.35);
+      border-radius: 50px;
+      padding: .4rem 1.2rem;
+      font-size: .82rem;
+      color: #a78bfa;
+      margin-bottom: 2rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600;
+      animation: fadeUp .8s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #a78bfa;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.4); }
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .8s ease .1s both;
+    }
+
+    .hero-title span {
+      display: block;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      font-weight: 300;
+      animation: fadeUp .8s ease .2s both;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      animation: fadeUp .8s ease .3s both;
+    }
+
+    .stat-pill {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      min-width: 130px;
+      backdrop-filter: blur(10px);
+      transition: transform .3s, border-color .3s;
+    }
+
+    .stat-pill:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124,58,237,.5);
+    }
+
+    .stat-pill .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .stat-pill .lbl {
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: .25rem;
+    }
+
+    /* ── MAIN WRAPPER ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin: 5rem 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .icon-violet { background: rgba(124,58,237,.2); color: #a78bfa; }
+    .icon-cyan   { background: rgba(6,182,212,.2);  color: #67e8f9; }
+    .icon-emerald{ background: rgba(16,185,129,.2); color: #6ee7b7; }
+    .icon-rose   { background: rgba(244,63,94,.2);  color: #fb7185; }
+    .icon-amber  { background: rgba(245,158,11,.2); color: #fcd34d; }
+    .icon-pink   { background: rgba(236,72,153,.2); color: #f9a8d4; }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .glass:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124,58,237,.3);
+      box-shadow: 0 20px 60px rgba(124,58,237,.1);
+    }
+
+    /* ── ABOUT ── */
+    .about-body {
+      padding: 2.5rem;
+      line-height: 1.9;
+      color: #c0c0d8;
+      font-size: 1.02rem;
+      font-weight: 300;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .highlight-card {
+      padding: 1.8rem;
+      border-radius: 16px;
+    }
+    .highlight-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+      color: #fff;
+    }
+    .highlight-card p {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .hc-violet { background: linear-gradient(135deg, rgba(124,58,237,.12), rgba(79,70,229,.08)); border: 1px solid rgba(124,58,237,.2); }
+    .hc-cyan   { background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(16,185,129,.08)); border: 1px solid rgba(6,182,212,.2); }
+    .hc-rose   { background: linear-gradient(135deg, rgba(244,63,94,.12), rgba(236,72,153,.08)); border: 1px solid rgba(244,63,94,.2); }
+    .hc-amber  { background: linear-gradient(135deg, rgba(245,158,11,.12), rgba(251,191,36,.08)); border: 1px solid rgba(245,158,11,.2); }
+
+    /* ── TEACHING ── */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .course-card {
+      padding: 1.8rem;
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .cc-1::before { background: var(--grad1); }
+    .cc-2::before { background: var(--grad2); }
+    .cc-3::before { background: var(--grad3); }
+    .cc-4::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+
+    .course-code-tag {
+      display: inline-block;
+      background: rgba(124,58,237,.18);
+      color: #a78bfa;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: .25rem .75rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .course-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .75rem;
+      line-height: 1.35;
+    }
+
+    .course-desc {
+      font-size: .87rem;
+      color: var(--muted);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .course-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .credit-badge {
+      background: rgba(16,185,129,.15);
+      color: #6ee7b7;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .25rem .75rem;
+      border-radius: 50px;
+    }
+
+    /* ── SECTION TABS ── */
+    .tab-bar {
+      display: flex;
+      gap: .5rem;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: .4rem;
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .87rem;
+      font-weight: 500;
+      padding: .5rem 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all .2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: rgba(124,58,237,.2);
+      color: #a78bfa;
+    }
+
+    /* ── RESEARCH CARDS ── */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .research-card {
+      padding: 2rem;
+      border-radius: 18px;
+      position: relative;
+    }
+
+    .research-card .r-icon {
+      width: 50px; height: 50px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .research-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .7rem;
+    }
+
+    .research-card p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub-item {
+      padding: 1.8rem 2rem;
+      border-radius: 18px;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .pub-year {
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: .85rem;
+    }
+
+    .pub-authors {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-bottom: .4rem;
+    }
+
+    .pub-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .6rem;
+      padding-right: 4rem;
+      line-height: 1.45;
+    }
+
+    .pub-journal {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(6,182,212,.12);
+      color: #67e8f9;
+      font-size: .78rem;
+      padding: .25rem .8rem;
+      border-radius: 50px;
+      font-style: italic;
+    }
+
+    /* ── EDUCATION TABLE ── */
+    .edu-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .edu-table thead tr th {
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 1rem 1.5rem;
+      text-align: left;
+    }
+
+    .edu-table tbody tr {
+      border-top: 1px solid var(--card-border);
+      transition: background .2s;
+    }
+
+    .edu-table tbody tr:hover { background: rgba(255,255,255,.03); }
+
+    .edu-table td {
+      padding: 1.2rem 1.5rem;
+      font-size: .92rem;
+      color: #c0c0d8;
+      vertical-align: middle;
+    }
+
+    .edu-table td:first-child {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .degree-badge {
+      display: inline-block;
+      padding: .25rem .8rem;
+      border-radius: 8px;
+      font-size: .8rem;
+      font-weight: 700;
+      font-family: 'Syne', sans-serif;
+    }
+    .d-phd   { background: rgba(124,58,237,.2);  color: #a78bfa; }
+    .d-pg    { background: rgba(6,182,212,.2);   color: #67e8f9; }
+    .d-ug    { background: rgba(16,185,129,.2);  color: #6ee7b7; }
+    .d-school{ background: rgba(245,158,11,.2);  color: #fcd34d; }
+
+    /* ── EXPERIENCE ── */
+    .exp-table { width: 100%; border-collapse: collapse; }
+    .exp-table thead tr th {
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 1rem 1.5rem;
+      text-align: left;
+    }
+    .exp-table tbody tr { border-top: 1px solid var(--card-border); transition: background .2s; }
+    .exp-table tbody tr:hover { background: rgba(255,255,255,.03); }
+    .exp-table td { padding: 1.1rem 1.5rem; font-size: .9rem; color: #c0c0d8; vertical-align: middle; }
+    .exp-table td:first-child { font-weight: 600; color: #fff; }
+
+    .role-tag {
+      display: inline-block;
+      padding: .2rem .7rem;
+      border-radius: 6px;
+      font-size: .76rem;
+      font-weight: 600;
+      margin: .15rem 0;
+    }
+    .r-principal { background: rgba(244,63,94,.15); color: #fb7185; }
+    .r-prof      { background: rgba(124,58,237,.15); color: #a78bfa; }
+    .r-assoc     { background: rgba(6,182,212,.15);  color: #67e8f9; }
+    .r-other     { background: rgba(245,158,11,.15); color: #fcd34d; }
+
+    /* ── PROFILES ── */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .profile-card {
+      padding: 1.8rem 1.2rem;
+      border-radius: 18px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform .3s, border-color .3s;
+    }
+
+    .profile-card:hover { transform: translateY(-6px); }
+
+    .profile-card .p-icon {
+      width: 54px; height: 54px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      font-family: 'Syne', sans-serif;
+      margin: 0 auto 1rem;
+    }
+
+    .profile-card .p-name {
+      font-family: 'Syne', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .profile-card .p-sub {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: .25rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      padding: 1.8rem;
+      border-radius: 18px;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .contact-card .c-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-card .c-label {
+      font-size: .75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+
+    .contact-card .c-value {
+      font-size: .9rem;
+      color: #c0c0d8;
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--muted);
+      font-size: .85rem;
+      border-top: 1px solid var(--card-border);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer span {
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* ── DIVIDER ── */
+    .shimmer-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(124,58,237,.5), rgba(6,182,212,.5), transparent);
+      margin: 3rem 0;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(124,58,237,.12), rgba(6,182,212,.08));
+      border: 1px solid rgba(124,58,237,.2);
+      margin-top: 2rem;
+    }
+
+    .stats-bar .s-item { text-align: center; }
+    .stats-bar .s-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      display: block;
+    }
+    .stats-bar .s-lbl { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      main { padding: 1rem 1rem 4rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1rem; }
+    }
+  </style>
 </head>
-	<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8RZ46MX263"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-8RZ46MX263');
-</script>
-
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <h1>Dr. Suresan Pareth</h1>
-                <div class="subtitle">Technology-Driven Academic Professional</div>
-            </div>
-			</div>
-			<div>
-            <nav>
-                <ul>
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#teaching" class="nav-link">Teaching</a></li>
-                    <li><a href="#research" class="nav-link">Research</a></li>
-					<li><a href="#publication" class="nav-link">Publication</a></li>
-                    <li><a href="#education" class="nav-link">Education</a></li>
-					<li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <section id="home">
-            <h2>Welcome</h2>
-            <p>With a rich experience spanning 22 years, I am a technology-driven professional, out of which approximately 17 years have been dedicated to teaching diverse computer science subjects. My career has been marked by significant achievements, including my contributions to the design and development of critical systems such as Debenture Floatation, Hall Ticket & Rank Generation, Seat Allotment, and Centralized Admission for B.Ed & DEd programs.</p>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number">22</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">17</span>
-                    <span class="stat-label">Years Teaching</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">PhD</span>
-                    <span class="stat-label">From NIT Karnataka</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">AI/ML</span>
-                    <span class="stat-label">Specialization</span>
-                </div>
-            </div>
-        </section>
+<!-- Ambient blobs -->
+<div class="blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
 
-        <section id="about">
-            <h2>About Me</h2>
-            
-            <h3>Professional Profile</h3>
-            <p>With a rich experience spanning 22 years, I am a technology-driven professional, out of which approximately 17 years have been dedicated to teaching diverse computer science subjects. My career has been marked by significant achievements, including my contributions to the design and development of critical systems such as Debenture Floatation, Hall Ticket & Rank Generation, Seat Allotment, and Centralized Admission for B.Ed & DEd programs. In addition, I have been instrumental in shaping innovative Banking Modules covering Deposits and Loans. My communication skills, coupled with exceptional relationship management abilities, have consistently facilitated effective collaboration. I possess a strong foundation in analytical thinking, adept problem-solving skills, and well-honed administrative capabilities. My approach is characterized by flexibility and meticulous attention to detail.</p>
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Dr. Suresan Pareth</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-            <h3>Professional Engagements</h3>
-            <p>Professional Accomplishments: During my tenure as Principal, I have consistently exhibited unwavering dedication, sincerity, and a robust work ethic in executing my assigned duties. Over the course of my service, I have initiated and contributed to a diverse array of initiatives that have significantly impacted the institution's growth and development. Some of the noteworthy endeavors that I have led or been instrumental in are highlighted below: Effective Governance: I have proactively presented critical developmental issues during Governing Body meetings, ensuring timely consideration and facilitating transparent decision-making processes. Attendance Enhancement: I have spearheaded the enhancement of the centralized attendance system, resulting in a more streamlined monitoring of students' regular attendance. Valuation Excellence: I orchestrated a successful centralized valuation camp at IET for the assessment of engineering UG papers, ensuring a seamless and efficient valuation process. Stakeholder Engagement: A key focus has been on enhancing collaboration by implementing class-wise Parent-Teacher Association (PTA) meetings and monthly staff meetings, fostering open communication. Performance Enhancement: I have introduced a systematic mechanism for the periodic evaluation and appraisal of staff performance, garnering positive responses from both teaching and technical staff. Student Support: Recognizing its importance, I have strengthened the student mentoring system, offering comprehensive support for students' academic and personal growth. Orientation Program: In a bid to smoothen the transition of new entrants, I successfully organized an orientation program for first-year students, providing them with an informative and welcoming introduction. Placement Facilitation: I have taken proactive measures to secure placement opportunities for 15 final-year students in the Printing Technology Department, significantly enhancing their career prospects. Institutional Advancement: Demonstrating a forward-looking approach, I initiated strategic actions to revamp and restructure IET, aligning with the proposal put forth by the Dean, Faculty of Engineering. Efficient Liaison: I have consistently ensured prompt follow-up with the University and Department of Collegiate Education (DSFC), streamlining administrative processes and ensuring efficient communication. Communication Enhancement: To foster effective communication, I have intensified the SMS alert program, facilitating timely updates between students, parents, and the PTA. Stakeholder Collaboration: I have convened executive meetings of the PTA and periodic academic council meetings, fostering an environment of open dialogue and collaborative decision-making. Campus Safety: In line with ensuring a secure campus environment, I have established key committees including Anti Ragging Cell, Anti Ragging Squad, Women Cell, Internal Complaint Committee, Disciplinary Committee, Enquiry Committee, SC-ST Committee, and Grievance Cell. Academic Calendar Adherence: Maximizing the use of working days for academic activities, I have consistently ensured uninterrupted learning and engagement. Governance Excellence: I have overseen the smooth and systematic conduct of college union elections, showcasing my commitment to transparent and well-organized processes. External Examination Leadership: Recognizing the importance of robust examination processes, I have bolstered the examination system conducted by external agencies, including the development of a fee structure for exams such as AMIE. Curriculum Innovation: I have actively contributed to curriculum development by personally coordinating the design and framing of the syllabus for Artificial Intelligence and Machine Learning in the BTech Course. This showcases my commitment to creating a comprehensive and cutting-edge curriculum for students. Expansion Initiatives: Aiming for academic growth, I have proposed the introduction of new courses in B.Tech Civil Engineering and M.Tech in Electronics and Communication Engineering and Information Technology Departments. Pedagogical Engagement: Alongside administrative duties, I have taken up classroom teaching responsibilities in my area of expertise, ensuring direct involvement in students' learning journeys. Disciplinary Excellence: Aiming to create a conducive academic environment, I have taken proactive measures to curb indisciplinary actions, cultivating a positive and productive atmosphere within the IET campus. In summation, my tenure as Principal has been characterized by these multifaceted contributions, all aimed at elevating the institution's academic, administrative, and holistic growth. These accomplishments reflect my unwavering dedication to excellence and my fervent commitment to cultivating a positive and enriching educational atmosphere.</p>
-            
-            <p>Key accomplishments include effective governance through proactive presentation of critical developmental issues during Governing Body meetings, enhancement of centralized attendance systems, orchestration of successful valuation camps, stakeholder engagement through PTA meetings, performance enhancement through systematic staff evaluation, strengthening of student mentoring systems, and successful placement facilitation for students.</p>
-
-            <h3>Academic and Research Vision</h3>
-            <p>Charting a Path for Academic Excellence and Global Impact My strategic vision is centered around crafting and fostering immersive, cohesive, and exceptional learning journeys in the realms of Computer Science and Mathematics. It encompasses the dual objective of leaving an enduring and transformative influence on learners and educators, both within India and on the global stage. In pursuit of this vision, I am committed to a perpetual quest for cutting-edge and purposeful technology, harmoniously balanced with the tenets of learning science and instructional methodology. My overarching goal is to ignite the curiosity and zeal of young minds, empowering them to confidently navigate the challenges of the future and proficiently cultivate skills that will be in high demand. Key Tenets of My Academic and Research Blueprint: Empowering Learning Experiences: My foremost ambition is to construct learning environments that captivate and empower learners. I am dedicated to designing comprehensive, interdisciplinary curricula that integrate Computer Science and Mathematics, fostering a holistic understanding that transcends traditional disciplinary boundaries. Enduring Global Impact: Beyond geographical boundaries, my aspiration is to leave a lasting imprint on education worldwide. By sharing insights and practices with the global academic community, I aim to contribute to the elevation of teaching and learning standards on a global scale. Innovative Technology Integration: Recognizing the paramount importance of technology, I am committed to identifying, developing, and implementing the most cutting-edge and relevant technological tools. This commitment is tempered by a steadfast adherence to the principles of learning science, ensuring that technology truly enhances the educational process. Nurturing Curiosity: One of my driving objectives is to invigorate young minds with the spirit of inquiry. Through dynamic pedagogical approaches, I seek to cultivate an environment where curiosity flourishes, encouraging students to explore, question, and discover. Skill Mastery for Future Challenges: My ultimate purpose is to equip students with not only knowledge but also the practical skills required to thrive in the future. By fostering critical thinking, problem-solving, and adaptability, I endeavor to prepare them for the ever-evolving landscape of technology and industry. To sum up: My academic and research trajectory is anchored in the pursuit of excellence, global impact, innovation, and empowerment. It is a journey that bridges pedagogy with technology, and theory with application. Through collaborative endeavors, a commitment to advancing learning science, and an unwavering passion for nurturing young minds, I aspire to foster a generation of learners and educators who are poised to shape the world through the profound influence of Computer Science and Mathematics.</p>
-        </section>
-
-        <section id="teaching">
-            <h2>Teaching Expertise</h2>
-            
-            <div class="teaching-grid">
-                <div class="course-card">
-                    <div class="course-title">Artificial Neural Networks</div>
-                    <p>Artificial Neural Networks (ANNs) have emerged as a cornerstone of modern machine learning and artificial intelligence. In this comprehensive course, we will delve into the core concepts, methodologies, and applications of ANNs, exploring their power in nonlinear modeling and their connection to kernel spaces. Convolutional Neural Networks (CNNs), a specialized form of ANNs, will take center stage. We will explore their unique architecture, which has revolutionized image and visual data processing. Understanding CNNs is pivotal for tasks such as image recognition, object detection, and image generation. Moving forward, we will delve into Recurrent Neural Networks (RNNs), which excel at sequential data processing and have led to significant advancements in natural language understanding, machine translation, and speech recognition. We will explore the concept of memory in RNNs and its implications for processing time-series data.</p>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-title">Foundations of Deep Learning</div>
-                    <p>The essence of Deep Learning, showcasing its transformative power at the intersection of artificial intelligence and computer science. Just as a masterful tapestry weaves together diverse threads, Deep Learning intertwines neural networks, hierarchical representations, and advanced architectures to unravel complex patterns from data. This evolving discipline has not only revolutionized domains like computer vision, speech recognition, and natural language processing but also holds the promise to emulate cognitive processes, fueling innovation across fields like healthcare, agriculture, and beyond. Just as Machine Learning is a beacon of innovation, Deep Learning stands as a beacon of intricacy, with its deep architectures and intricate algorithms shaping the future of artificial intelligence and problem-solving on an unprecedented scale.</p>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-title">Data Science</div>
-                    <p>Interdisciplinary approach using scientific processes and algorithms to extract insights from structured and unstructured data. Blend of business acumen, ML techniques, and mathematics.</p>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-title">Probability and Stochastic Processes</div>
-                    <p>Introduction to discrete and continuous probability spaces, probability distributions, and Markov processes in various time and sample space configurations.</p>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-title">Mathematical Foundations of ML</div>
-                    <p>Comprehensive mathematical concepts for machine learning, focusing on matrix algebra, calculus, optimization, and probability theory with real-life applications.</p>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-title">Statistical Machine Learning</div>
-                    <p>Principles and methodologies for building intelligent systems using statistical methods, covering supervised/unsupervised learning and neural networks.</p>
-                </div>
-				<!--
-                <div class="course-card">
-                    <div class="course-title">Optimization Techniques in AI</div>
-                    <p>Fundamental optimization techniques in AI/ML, covering convex optimization, gradient descent, Newton's method, and advanced optimization algorithms.</p>
-                </div> -->
-		
-				<!--
-                <div class="course-card">
-                    <div class="course-title">Web Technologies & Applications</div>
-                    <p>Web technologies have become the backbone of modern internet applications, driving innovation and connectivity across the globe. In this comprehensive course, we will delve into the foundational concepts, methodologies, and applications of web technologies, exploring their transformative impact on the digital landscape. We will begin with an in-depth exploration of HTML, CSS, and JavaScript, the core technologies that form the building blocks of web development. These languages enable the creation of rich, interactive, and responsive web pages, and understanding their synergy is crucial for any aspiring web developer. Next, we will examine the intricacies of HTTP and HTTPS protocols, which facilitate the communication between clients and servers. Secure data transmission and web security principles will be highlighted, emphasizing their importance in protecting sensitive information and ensuring user trust. Server-side technologies, including popular frameworks like Node.js, Django, and Ruby on Rails, will be thoroughly covered. These frameworks empower developers to build robust, scalable, and efficient web applications, managing everything from database interactions to user authentication and session management. Our journey will also take us through the dynamic world of client-side frameworks such as React, Angular, and Vue.js. These tools have revolutionized front-end development, enabling the creation of complex, high-performance single-page applications (SPAs) with seamless user experiences. We will explore the power of web APIs and services, focusing on RESTful and SOAP protocols. Understanding how to design, implement, and consume web services is essential for integrating disparate systems and enhancing the functionality of web applications. Moreover, we will delve into the realm of data storage and management, covering both SQL and NoSQL databases. Efficient data handling is vital for the performance and scalability of web applications, and we will examine the strengths and use cases of different database technologies. Finally, we will look ahead to emerging trends and technologies in the web domain, such as Progressive Web Apps (PWAs), WebAssembly, and the integration of the Internet of Things (IoT). These advancements are shaping the future of web applications, offering new possibilities for innovation and connectivity. By the end of this course, you will have a thorough understanding of web technologies and their applications, equipping you with the skills to build, deploy, and maintain sophisticated web applications. Whether you are aiming to become a full-stack developer, a front-end specialist, or a back-end expert, this course will provide you with the knowledge and tools to succeed in the ever-evolving field of web development.</p>
-                </div>
-            </div>
-			 <div class="course-card">
-                    <div class="course-title">Python Programming</div>
-                    <p>Overview of programming languages, history of Python, Python installation, IDLE, interactive mode, basic syntax.</p>
-                </div> -->
-		<div class="course-card clickable-card" onclick="window.open('IT307.html', '_blank')">
-		<div class="course-title">
-                        Machine Learning
-                        <i class="fas fa-external-link-alt course-link-icon"></i>
-                    </div>
-                    <p>This course provides a foundational yet comprehensive introduction to Machine Learning, exploring its basic principles, diverse applications, and inherent challenges. The curriculum is divided into key areas, starting with Supervised Learning, where students will master techniques such as Linear Regression (single and multiple variables), Gradient Descent, Classification, Logistic Regression, and methods to combat Overfitting through Regularization. Advanced supervised models like Support Vector Machines, Artificial Neural Networks (including Perceptrons, Multilayer Networks, and back-propagation), Decision Trees, and Ensemble Methods will also be covered.The course then transitions to Unsupervised Learning, focusing on Clustering algorithms like K-means, K-medoids, and Hierarchical Clustering. Students will also learn about crucial Dimensionality Reduction techniques, particularly Principal Component Analysis (PCA). Throughout the course, emphasis will be placed on understanding the practical applications of various machine learning methods across different domains, equipping students with the knowledge to implement and evaluate these powerful algorithms.</p>
-                    <div class="course-meta">
-                        <span class="course-code">IT254M (3-0-2) 4 Credits</span>
-                        <span class="view-syllabus">Click to view detailed syllabus</span>
-                    </div>
-                </div>
-		
-		<div class="course-card clickable-card" onclick="window.open('IT111.html', '_blank')">
-                    <div class="course-title">
-                        Fundamentals of Computer Systems
-                        <i class="fas fa-external-link-alt course-link-icon"></i>
-                    </div>
-                    <p>This course, aligned with Computer Systems: A Programmer's Perspective by Randal E. Bryant and David R. O'Hallaron (Pearson, 2016), introduces the core concepts of computer systems from a programmer's viewpoint. It begins with an introduction to computer systems, exploring how hardware and software interact. Program structure and execution are covered, focusing on how information is represented and manipulated, including binary data, integers, and floating-point numbers. The machine-level representation of programs is examined, teaching how high-level code translates to assembly and machine instructions. Processor architecture is explored, detailing how CPUs execute instructions and process data. Techniques for optimizing program performance are introduced, emphasizing efficient code and resource use. The memory hierarchy is studied, covering caches, main memory, and storage to understand speed and efficiency trade-offs. Linking is explained, detailing how object code is combined into executable programs. Exceptional control flow is addressed, including interrupts, exceptions, and process control. Virtual memory is covered, explaining how systems manage memory allocation and protection. The fundamentals of operating systems are introduced, highlighting process management, file systems, and concurrency. This course, grounded in Bryant and O'Hallaron’s text, equips students with a deep understanding of how programs run on modern computer systems.</p>
-                    <div class="course-meta">
-                        <span class="course-code">IT111 (4-0-0) 4 Credits</span>
-                        <span class="view-syllabus">Click to view detailed syllabus</span>
-                    </div>
-                </div>
-		
-		<div class="course-card clickable-card" onclick="window.open('IT112.html', '_blank')">
-                    <div class="course-title">
-                        Computer Systems Lab
-                        <i class="fas fa-external-link-alt course-link-icon"></i>
-                    </div>
-                    <p>This laboratory-based course provides hands-on experience with fundamental concepts in computer systems. Students will gain practical proficiency in navigating and managing the Linux operating system through basic commands and shell scripting. The core of the course focuses on C programming, starting from writing, testing, and debugging simple programs, then advancing to implementing control flow with conditionals and loops. Key topics include an in-depth understanding of pointers, memory allocation, and memory management in C. The course also introduces basic system calls and provides an introduction to profiling tools, enabling students to understand and optimize program performance at a low level.</p>
-                    <div class="course-meta">
-                        <span class="course-code">IT112 (0-0-2) 1 Credits</span>
-                        <span class="view-syllabus">Click to view detailed syllabus</span>
-                    </div>
-                </div>
-		<div class="course-card clickable-card" onclick="window.open('IT152.html', '_blank')">
-                    <div class="course-title">
-                        Python Programming Lab
-                        <i class="fas fa-external-link-alt course-link-icon"></i>
-                    </div>
-                    <p>This course provides a comprehensive introduction to Python programming, designed for beginners and those looking to solidify their foundational knowledge. Students will learn the essentials of writing, testing, and debugging Python programs, mastering core control flow structures like loops and conditionals. A significant portion of the course will focus on Object-Oriented Programming (OOP) concepts, enabling students to design and implement robust, modular applications. Furthermore, the course covers essential data handling techniques, including reading from and writing to files, performing various string operations, and working with fundamental data structures and algorithms. The curriculum also introduces the exciting world of Python web frameworks, giving students a glimpse into building dynamic web applications. By the end of this course, students will be equipped with the practical skills necessary to develop efficient and scalable Python solutions for a variety of tasks.</p>
-                    <div class="course-meta">
-                        <span class="course-code">IT152 (0-0-2) 1 Credits</span>
-                        <span class="view-syllabus">Click to view detailed syllabus</span>
-                    </div>
-                </div>
-		<div class="course-card clickable-card" onclick="window.open('IT151.html', '_blank')">
-                    <div class="course-title">
-                        Python Programming
-                        <i class="fas fa-external-link-alt course-link-icon"></i>
-                    </div>
-                    <p>This course offers a comprehensive introduction to programming, focusing on Python as a versatile and beginner-friendly language. It starts with an overview of programming languages, highlighting their purpose and types. Python basics are covered, including syntax, setup, and writing simple programs. Students learn about variables and data types, such as integers, floats, strings, and booleans, to store and manipulate data. Control structures, including conditionals like if-else statements, are explored to manage program flow. Repetition structures, such as for and while loops, are introduced to handle iterative tasks. The course delves into functions and modules, teaching how to define reusable code blocks and organize programs using Python’s modular system. String manipulation and list operations are covered for handling text and collections of data. File input and output techniques are taught for reading from and writing to files. Basic data structures, like tuples, sets, and dictionaries, are introduced for efficient data organization. Object-oriented programming concepts, including classes, objects, inheritance, and encapsulation, are explained to build structured and scalable code. Finally, the course touches on Python web frameworks, such as Django and Flask, which simplify web development by providing tools for routing, templating, and database integration to create dynamic web applications.</p>
-                    <div class="course-meta">
-                        <span class="course-code">IT151 (3-0-0) 3 Credits</span>
-                        <span class="view-syllabus">Click to view detailed syllabus</span>
-                    </div>
-                </div>
-				
-		
-		<div class="course-card clickable-card" onclick="window.open('IT252M.html', '_blank')">
-                    <div class="course-title">
-                        Database Systems
-                        <i class="fas fa-external-link-alt course-link-icon"></i>
-                    </div>
-                    <p>This course provides a comprehensive exploration of database systems, beginning with basic concepts to understand the purpose and principles of databases. It delves into data models and languages, covering structures like relational and hierarchical models, alongside query languages such as SQL. The course addresses database design, teaching both conceptual techniques, like creating ER diagrams, and physical design, focusing on storage and indexing. Students learn system implementation techniques to build and optimize databases effectively. Current trends in database technology are examined to keep pace with modern advancements. The course also covers distributed databases, exploring the challenges of managing data across multiple locations. Practical skills are developed through the design and implementation of database systems or packages tailored for applications like office automation, hotel management, and hospital management. This includes the deployment of forms and reports for user interaction. Normalization techniques are taught to eliminate redundancy and ensure data integrity, while query processing algorithms are studied for efficient execution within these application projects. Hands-on implementation of key components rounds out the course, preparing students for real-world database scenarios.</p>
-                    <div class="course-meta">
-                        <span class="course-code">IT252M (3-0-2) 4 Credits</span>
-                        <span class="view-syllabus">Click to view detailed syllabus</span>
-                    </div>
-                </div>
-		<div class="course-card clickable-card" onclick="window.open('IT304.html', '_blank')">
-                    <div class="course-title">
-                        Optimization Techniques in AI
-                        <i class="fas fa-external-link-alt course-link-icon"></i>
-                    </div>
-                    <p>This course provides a comprehensive introduction to optimization techniques, with a strong focus on their applications, particularly in machine learning and multimedia processing. Students will delve into foundational concepts such as convex sets, convex functions, and Lagrange duality, building a solid theoretical understanding. The curriculum covers a wide array of optimization algorithms, including convex optimization algorithms, second-order cone models, semidefinite programming, semi-infinite programming, minimax, sublinear algorithms, interior point methods, active set methods, stochastic gradient descent, coordinate descent, and cutting planes methods. Through this course, students will gain practical skills in applying these advanced optimization tools to solve real-world problems in various computational domains.</p>
-                    <div class="course-meta">
-                        <span class="course-code">IT304 (3-0-2) 4 Credits</span>
-                        <span class="view-syllabus">Click to view detailed syllabus</span>
-                    </div>
-                </div>
-
-		<div class="course-card clickable-card" onclick="window.open('IT254M.html', '_blank')">
-                    <div class="course-title">
-                        Web Technologies & Applications
-                        <i class="fas fa-external-link-alt course-link-icon"></i>
-                    </div>
-                    <p>This course provides comprehensive coverage of web technologies, from fundamental concepts to advanced frameworks. Students will learn both client-side and server-side programming, explore modern web architectures, and understand emerging trends in web development. The course combines theoretical knowledge with practical hands-on experience through extensive laboratory work.</p>
-                    <div class="course-meta">
-                        <span class="course-code">IT254M (3-0-2) 4 Credits</span>
-                        <span class="view-syllabus">Click to view detailed syllabus</span>
-                    </div>
-                </div>
-	</section>
-	<section>
-		<div class="container">
-		        <div class="header">
-		            <h1>Course Portfolio</h1>
-		            <p>National Institute of Technology Karnataka (NITK) & Other Institutions</p>
-		        </div>
-                
-					
-        <div class="content">
-            <div class="course-section">
-                <h2 class="section-title">Courses Taught at NITK</h2>
-                <div class="course-grid">
-                    <div class="course-card">
-                        <div class="course-code">IT111</div>
-                        <div class="course-name">Fundamentals of Computer Systems</div>
-                        <div class="course-details">
-                            <span class="course-format">(4-0-0)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">IT112</div>
-                        <div class="course-name">Computer Systems Lab</div>
-                        <div class="course-details">
-                            <span class="course-format">(0-0-2)</span>
-                            <span class="course-credits">1 Credit</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">IT151</div>
-                        <div class="course-name">Python Programming</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-0-0)</span>
-                            <span class="course-credits">3 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">IT152</div>
-                        <div class="course-name">Python Programming Lab</div>
-                        <div class="course-details">
-                            <span class="course-format">(0-0-2)</span>
-                            <span class="course-credits">1 Credit</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">IT304</div>
-                        <div class="course-name">Optimization Techniques</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-0-2)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">IT252M</div>
-                        <div class="course-name">Database Systems</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-0-2)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">IT254M</div>
-                        <div class="course-name">Web Technologies and Applications</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-0-2)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="course-section">
-                <h2 class="section-title">Other Courses Taught</h2>
-                <div class="course-grid">
-                    <div class="course-card">
-                        <div class="course-code">19SAL71</div>
-                        <div class="course-name">Foundations of Deep Learning</div>
-                        <div class="course-details">
-                            <span class="course-format">(4-0-0)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">21SAL53</div>
-                        <div class="course-name">Introduction to Artificial Neural Network</div>
-                        <div class="course-details">
-                            <span class="course-format">(4-0-0)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">22SAL351</div>
-                        <div class="course-name">Principles of Artificial Intelligence</div>
-                        <div class="course-details">
-                            <span class="course-format">(4-0-0)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">CST413</div>
-                        <div class="course-name">Machine Learning</div>
-                        <div class="course-details">
-                            <span class="course-format">(2-1-0)</span>
-                            <span class="course-credits">3 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">CST306</div>
-                        <div class="course-name">Algorithm Analysis and Design</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-1-0)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">MAT204</div>
-                        <div class="course-name">Probability, Random Processes and Numerical Methods</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-1-0)</span>
-                            <span class="course-credits">4 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">CE306</div>
-                        <div class="course-name">Computer Programming Computational Techniques</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-0-0)</span>
-                            <span class="course-credits">3 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">MA606</div>
-                        <div class="course-name">Data Structures and Algorithms</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-0-0)</span>
-                            <span class="course-credits">3 Credits</span>
-                        </div>
-                    </div>
-                    
-                    <div class="course-card">
-                        <div class="course-code">MA613</div>
-                        <div class="course-name">Software Engineering</div>
-                        <div class="course-details">
-                            <span class="course-format">(3-0-0)</span>
-                            <span class="course-credits">3 Credits</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">16</div>
-                    <div class="stat-label">Total Courses</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">55</div>
-                    <div class="stat-label">Total Credits</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">7</div>
-                    <div class="stat-label">NITK Courses</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">9</div>
-                    <div class="stat-label">Other Courses</div>
-                </div>
-            </div>
-        </div>
+<!-- HERO -->
+<section id="home">
+  <div class="hero-inner">
+    <div class="hero-badge">NIT Karnataka · Information Technology</div>
+    <h1 class="hero-title">
+      Dr. Suresan Pareth
+      <span>Academic & Researcher</span>
+    </h1>
+    <p class="hero-sub">Technology-driven professional with 22+ years of experience in teaching, research, and institutional leadership. Specializing in AI, ML, and Mathematical Optimization.</p>
+    <div class="hero-stats">
+      <div class="stat-pill"><span class="num">22+</span><span class="lbl">Years Experience</span></div>
+      <div class="stat-pill"><span class="num">17</span><span class="lbl">Years Teaching</span></div>
+      <div class="stat-pill"><span class="num">PhD</span><span class="lbl">NIT Karnataka</span></div>
+      <div class="stat-pill"><span class="num">AI/ML</span><span class="lbl">Specialization</span></div>
+      <div class="stat-pill"><span class="num">8</span><span class="lbl">Publications</span></div>
     </div>
-		</section>		     
-       <section id="research">
-            <h2>Research Areas</h2>
-
-            <div class="research-item">
-                <h3>Inverse and Ill-Posed Problems</h3>
-                <p>Inverse problems constitute a fascinating realm where the objective is to discern the causal factors behind a given observation or effect. This field has been a subject of study for nearly a century, predominantly driven by practical applications. The scope of applications encompasses signal restoration, tomography in medical imaging, microscopy, atmospheric imaging, biometrics, and computer vision methodologies.</p>
-            </div>
-
-            <div class="research-item">
-                <h3>Machine Learning</h3>
-                <p>Positioned at the intersection of artificial intelligence and computer science, Machine Learning harnesses the power of data. It finds kinship with statistics and mathematics, addressing diverse challenges spanning DNA analysis, medical diagnosis, product recommendations, stock trading, and fraud detection. The domain focuses on refining algorithms, distributed learning, and emulating natural cognitive processes.</p>
-            </div>
-
-            <div class="research-item">
-                <h3>Data Science</h3>
-                <p>A multidisciplinary field dedicated to collection, preparation, analysis, visualization, management, and preservation of extensive information repositories. Data science encompasses statistics, computing technology, and artificial intelligence, driving transformative research across environmental concerns, social dynamics, healthcare, and cloud computing.</p>
-            </div>
-       
-<div class="container">
-        <div class="header">
-            <div class="header-content">
-                <h1>Research Publications</h1>
-                <p>Advancing Mathematical Sciences through Innovative Research in Optimization, Regularization, and Neural Networks</p>
-            </div>
-        </div>
-        
-        <div class="content">
-            <div class="section">
-                <h2 class="section-title">Journal Publications</h2>
-                
-                <div class="publication-item">
-                    <div class="year-badge">2012</div>
-                    <div class="authors">George, S., & Pareth, S.</div>
-                    <div class="title">Two-Step Modified Newton Method for Nonlinear Lavrentiev Regularization</div>
-                    <div class="journal">ISRN Applied Mathematics</div>
-                </div>
-                
-                <div class="publication-item">
-                    <div class="year-badge">2012</div>
-                    <div class="authors">George, S., & Pareth, S.</div>
-                    <div class="title">An Application of Newton Type Iterative Method for Lavrentiev Regularization for Ill-Posed Equations</div>
-                    <div class="journal">IAENG International Journal of Applied Mathematics</div>
-                </div>
-                
-                <div class="publication-item">
-                    <div class="year-badge">2013</div>
-                    <div class="authors">George, S., & Pareth, S.</div>
-                    <div class="title">An Application of Newton type Iterative Method for the Approximate Implementation of Lavrentiev Regularization</div>
-                    <div class="journal">Journal of Applied Analysis, De Gruyter</div>
-                </div>
-                
-                <div class="publication-item">
-                    <div class="year-badge">2013</div>
-                    <div class="authors">George, S., Pareth, S., & Kunhanandan, M.</div>
-                    <div class="title">Newton Lavrentiev regularization for ill-posed operator equations in Hilbert scales</div>
-                    <div class="journal">Applied Mathematics and Computation, Elsevier</div>
-                </div>
-                
-                <div class="publication-item">
-                    <div class="year-badge">Submitted</div>
-                    <div class="authors">Pareth, S.</div>
-                    <div class="title">Advanced Optimization Techniques in Neural Networks: A Sobolev Space Approach</div>
-                    <div class="journal">Communicated</div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <div class="conference-section">
-                    <h2 class="section-title">Conference Papers</h2>
-                    
-                    <div class="conference-item">
-                        <div class="year-badge">2012</div>
-                        <div class="authors">Pareth, S., & George, S.</div>
-                        <div class="title">Projection Scheme for Newton-type Iterative Method for Lavrentiev Regularization</div>
-                        <div class="journal">ICECCS 2012, Springer</div>
-                    </div>
-                    
-                    <div class="conference-item">
-                        <div class="year-badge">2012</div>
-                        <div class="authors">Pareth, S.</div>
-                        <div class="title">Finite Dimensional Realization of Lavrentiev Regularization for Nonlinear Ill-Posed Equations</div>
-                        <div class="journal">ICERECT 2012, Springer</div>
-                    </div>
-                    
-                    <div class="conference-item">
-                        <div class="year-badge">2014</div>
-                        <div class="authors">Pareth, S.</div>
-                        <div class="title">Gauss-Newton Regularization Method for Signal Reconstruction</div>
-                        <div class="journal">ACCIS-14, Elsevier</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <div class="profiles-section">
-                    <h2 class="section-title">Academic & Research Profiles</h2>
-                    
-                    <div class="profiles-grid">
-                        <div class="profile-card">
-                            <div class="profile-icon">GS</div>
-                            <a href="https://scholar.google.com/citations?user=Kft7A0kAAAAJ" target="_blank">Google Scholar</a>
-                        </div>
-                        
-                        <div class="profile-card">
-                            <div class="profile-icon">SS</div>
-                            <a href="https://www.semanticscholar.org/author/Suresan-Pareth/3198646" target="_blank">Semantic Scholar</a>
-                        </div>
-                        
-                        <div class="profile-card">
-                            <div class="profile-icon">DB</div>
-                            <a href="https://dblp.org/pid/132/0418.html" target="_blank">DBLP</a>
-                        </div>
-                        
-                        <div class="profile-card">
-                            <div class="profile-icon">OR</div>
-                            <a href="https://orcid.org/0000-0002-1106-3301" target="_blank">ORCID</a>
-                        </div>
-                        
-                        <div class="profile-card scopus-card">
-                            <div class="profile-icon">SC</div>
-                            <div><strong>Scopus Author ID</strong></div>
-                            <div class="scopus-id">55341747200</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="stats-overview">
-                <div class="stat-item">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Total Publications</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Journal Articles</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Conference Papers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Research Profiles</div>
-                </div>
-            </div>
-        </div>
-    </div>
-		
-        </section>
-
-        <section id="education">
-            <h2>Educational Qualifications</h2>
-            
-            <div class="education-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th><i class="fas fa-graduation-cap"></i> Degree</th>
-                            <th><i class="fas fa-calendar"></i> Year</th>
-                            <th><i class="fas fa-university"></i> Institute</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>PhD</td>
-                            <td>2010 Dec. - 2013 Apr.</td>
-                            <td>National Institute of Technology Karnataka, India</td>
-                        </tr>
-                        <tr>
-                            <td>MTech</td>
-                            <td>2001</td>
-                            <td>National Institute of Technology Karnataka, India</td>
-                        </tr>
-                        <tr>
-                            <td>MCA</td>
-                            <td>1996</td>
-                            <td>National Institute of Technology Karnataka, India</td>
-                        </tr>
-                        <tr>
-                            <td>MSc</td>
-                            <td>1988</td>
-                            <td>Department of Mathematics, University of Calicut Kerala, India</td>
-                        </tr>
-                        <tr>
-                            <td>BSc</td>
-                            <td>1986</td>
-                            <td>Govt. Brennen College, Thalassery, University of Calicut, Kerala, India</td>
-                        </tr>
-                        <tr>
-                            <td>PDC</td>
-                            <td>1983</td>
-                            <td>Govt. Brennen College, Thalassery, University of Calicut, Kerala, India</td>
-                        </tr>
-                        <tr>
-                            <td>SSLC</td>
-                            <td>1981</td>
-                            <td>Govt. High School Palayad, Thalassery, Kerala, India</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-<section id="experience">
-<h2>Professional Experience</h2>
-<div><p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Institution</th>
-        <th>Position</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>NITK, Surathkal, Karnataka</td>
-        <td>Adhoc Faculty, IT Department<br>Lecturer</td>
-        <td>July 2024 – Present<br>July 2010 – Dec 2010</td>
-      </tr>
-      <tr>
-        <td>TEC, Thrissur</td>
-        <td>Professor & Head, CSE</td>
-        <td>May 2022 – May 2023</td>
-      </tr>
-      <tr>
-        <td>SNGCET, Payyannur</td>
-        <td>Principal<br>Assistant Professor & Head, CSE</td>
-        <td>May 2021 – April 2022<br>Apr 2007 – Apr 2008</td>
-      </tr>
-      <tr>
-        <td>RCET, Thrissur</td>
-        <td>Professor & Head, S&H</td>
-        <td>Jan 2020 – May 2021</td>
-      </tr>
-      <tr>
-        <td>IET, Calicut University</td>
-        <td>Principal<br>Assistant Professor & Head, IT</td>
-        <td>June 2017 – Dec 2019<br>Apr 2008 – Aug 2009</td>
-      </tr>
-      <tr>
-        <td>NMIT, Kanhangad</td>
-        <td>Principal</td>
-        <td>Jan 2014 – June 2017</td>
-      </tr>
-      <tr>
-        <td>SSE, Mangalore, Karnataka</td>
-        <td>Associate Professor & Head, CSE<br>Professor & Head, AIML</td>
-        <td>Aug 2009 – May 2010<br>June 2023 – June 2024</td>
-      </tr>
-      <tr>
-        <td>SCMS, Cochin, Kerala</td>
-        <td>Assistant Professor</td>
-        <td>June 2006 – Mar 2007</td>
-      </tr>
-      <tr>
-        <td>CET CELL, Bangalore, Karnataka</td>
-        <td>Software Developer</td>
-        <td>July 2004 – Apr 2006</td>
-      </tr>
-      <tr>
-        <td>ITEC, Kannur University</td>
-        <td>Assistant Director</td>
-        <td>Oct 2001 – Dec 2002</td>
-      </tr>
-    </tbody>
-  </table>
-</p></div>
+  </div>
 </section>
-        <section id="contact">
-            <h2>Contact Information</h2>
-            
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <i class="fas fa-building contact-icon"></i>
-                    <div>
-                        <strong>Department</strong><br>
-                        Information Technology<br>
-                        National Institute of Technology
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt contact-icon"></i>
-                    <div>
-                        <strong>Address</strong><br>
-                        Srinivas Nagar, Surathkal<br>
-                        Mangalore, Karnataka
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-envelope contact-icon"></i>
-                    <div>
-                        <strong>Email</strong><br>
-                        sureshpareth@gmail.com<br>
-                        al.sureshpareth.it@nitk.edu.in
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-phone contact-icon"></i>
-                    <div>
-                        <strong>Mobile</strong><br>
-                        +91 8123123705
-                    </div>
-                </div>
-            </div>
-        </section>
-		  
-    </main>
 
-    <footer>
-        <p>&copy; 2024 Dr. Suresan Pareth - Academic Profile</p>
-    </footer>
+<main>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <!-- ── ABOUT ── -->
+  <div class="section" id="about">
+    <div class="section-header">
+      <div class="section-icon icon-violet"><i class="fa-solid fa-user-astronaut"></i></div>
+      <h2 class="section-title">About Me</h2>
+    </div>
 
-        // Active navigation highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
+    <div class="glass about-body">
+      With a rich experience spanning 22 years, I am a technology-driven professional, out of which approximately 17 years have been dedicated to teaching diverse computer science subjects. My career has been marked by significant achievements, including contributions to the design and development of critical systems such as Debenture Floatation, Hall Ticket & Rank Generation, Seat Allotment, and Centralized Admission for B.Ed & DEd programs. I possess a strong foundation in analytical thinking, adept problem-solving skills, and well-honed administrative capabilities.
+    </div>
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
+    <div class="about-highlights">
+      <div class="highlight-card hc-violet">
+        <h4>🎓 Academic Leadership</h4>
+        <p>Served as Principal at multiple institutions. Championed governance, curriculum innovation, and student mentoring systems.</p>
+      </div>
+      <div class="highlight-card hc-cyan">
+        <h4>🤖 AI/ML Expertise</h4>
+        <p>Personally coordinated design and framing of syllabus for Artificial Intelligence and Machine Learning in BTech programs.</p>
+      </div>
+      <div class="highlight-card hc-rose">
+        <h4>🔬 Research Focus</h4>
+        <p>Published in journals including Elsevier and De Gruyter on inverse problems, regularization, and neural network optimization.</p>
+      </div>
+      <div class="highlight-card hc-amber">
+        <h4>🏗️ Systems Development</h4>
+        <p>Designed critical academic systems including centralized admission, rank generation, and banking modules.</p>
+      </div>
+    </div>
+  </div>
 
-        // Loading animation
-        window.addEventListener('load', () => {
-            const elements = document.querySelectorAll('.loading');
-            elements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.classList.add('loaded');
-                }, index * 100);
-            });
-        });
+  <div class="shimmer-line"></div>
 
-        // Course card hover effects
-        document.querySelectorAll('.course-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    </script>
+  <!-- ── TEACHING ── -->
+  <div class="section" id="teaching">
+    <div class="section-header">
+      <div class="section-icon icon-cyan"><i class="fa-solid fa-chalkboard-user"></i></div>
+      <h2 class="section-title">Teaching Expertise</h2>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="filterCourses('nitk', this)">NITK Courses</button>
+      <button class="tab-btn" onclick="filterCourses('other', this)">Other Institutions</button>
+      <button class="tab-btn" onclick="filterCourses('all', this)">All Courses</button>
+    </div>
+
+    <div class="courses-grid" id="courses-grid">
+      <!-- NITK Courses -->
+      <div class="course-card glass cc-1" data-set="nitk">
+        <div class="course-code-tag">IT111</div>
+        <div class="course-name">Fundamentals of Computer Systems</div>
+        <div class="course-desc">Introduces core concepts of computer systems from a programmer's viewpoint — from binary representation to processor architecture, virtual memory, and OS fundamentals.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(4-0-0)</span>
+          <span class="credit-badge">4 Credits</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-2" data-set="nitk">
+        <div class="course-code-tag">IT112</div>
+        <div class="course-name">Computer Systems Lab</div>
+        <div class="course-desc">Hands-on Linux, C programming, pointers, memory management, system calls, and profiling tools to complement theoretical concepts.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(0-0-2)</span>
+          <span class="credit-badge">1 Credit</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-3" data-set="nitk">
+        <div class="course-code-tag">IT151</div>
+        <div class="course-name">Python Programming</div>
+        <div class="course-desc">Comprehensive Python from syntax to OOP, data structures, file I/O, and web frameworks like Django and Flask.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(3-0-0)</span>
+          <span class="credit-badge">3 Credits</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-4" data-set="nitk">
+        <div class="course-code-tag">IT152</div>
+        <div class="course-name">Python Programming Lab</div>
+        <div class="course-desc">Testing, debugging, OOP, data handling, string operations, algorithms, and web framework introductions.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(0-0-2)</span>
+          <span class="credit-badge">1 Credit</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-1" data-set="nitk">
+        <div class="course-code-tag">IT304</div>
+        <div class="course-name">Optimization Techniques in AI</div>
+        <div class="course-desc">Convex optimization, Lagrange duality, SDP, SGD, interior point methods, and cutting planes for ML applications.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(3-0-2)</span>
+          <span class="credit-badge">4 Credits</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-2" data-set="nitk">
+        <div class="course-code-tag">IT252M</div>
+        <div class="course-name">Database Systems</div>
+        <div class="course-desc">Relational models, SQL, ER diagrams, normalization, distributed databases, and hands-on application projects.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(3-0-2)</span>
+          <span class="credit-badge">4 Credits</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-3" data-set="nitk">
+        <div class="course-code-tag">IT254M</div>
+        <div class="course-name">Web Technologies & Applications</div>
+        <div class="course-desc">Full-stack web: HTML/CSS/JS, RESTful APIs, server-side frameworks, client-side React/Vue, and PWAs.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(3-0-2)</span>
+          <span class="credit-badge">4 Credits</span>
+        </div>
+      </div>
+      <!-- Other Courses -->
+      <div class="course-card glass cc-1" data-set="other" style="display:none;">
+        <div class="course-code-tag">19SAL71</div>
+        <div class="course-name">Foundations of Deep Learning</div>
+        <div class="course-desc">Neural networks, hierarchical representations, CNNs, RNNs, and deep architectures for vision and NLP.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(4-0-0)</span>
+          <span class="credit-badge">4 Credits</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-2" data-set="other" style="display:none;">
+        <div class="course-code-tag">21SAL53</div>
+        <div class="course-name">Intro to Artificial Neural Networks</div>
+        <div class="course-desc">ANN fundamentals, backpropagation, kernel spaces, CNNs for image processing, and RNNs for sequential data.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(4-0-0)</span>
+          <span class="credit-badge">4 Credits</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-3" data-set="other" style="display:none;">
+        <div class="course-code-tag">CST413</div>
+        <div class="course-name">Machine Learning</div>
+        <div class="course-desc">Supervised & unsupervised learning, SVMs, decision trees, ensemble methods, K-means, PCA, and regularization.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(2-1-0)</span>
+          <span class="credit-badge">3 Credits</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-4" data-set="other" style="display:none;">
+        <div class="course-code-tag">CST306</div>
+        <div class="course-name">Algorithm Analysis and Design</div>
+        <div class="course-desc">Complexity analysis, sorting, graph algorithms, dynamic programming, greedy strategies, and NP theory.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(3-1-0)</span>
+          <span class="credit-badge">4 Credits</span>
+        </div>
+      </div>
+      <div class="course-card glass cc-1" data-set="other" style="display:none;">
+        <div class="course-code-tag">MAT204</div>
+        <div class="course-name">Probability, Random Processes & Numerical Methods</div>
+        <div class="course-desc">Probability distributions, stochastic processes, Markov chains, and numerical methods for engineering.</div>
+        <div class="course-footer">
+          <span style="font-size:.78rem;color:var(--muted);">(3-1-0)</span>
+          <span class="credit-badge">4 Credits</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="s-item"><span class="s-num" style="background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">16</span><span class="s-lbl">Total Courses</span></div>
+      <div class="s-item"><span class="s-num" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">55</span><span class="s-lbl">Total Credits</span></div>
+      <div class="s-item"><span class="s-num" style="background:var(--grad3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">7</span><span class="s-lbl">NITK Courses</span></div>
+      <div class="s-item"><span class="s-num" style="background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">9</span><span class="s-lbl">Other Courses</span></div>
+    </div>
+  </div>
+
+  <div class="shimmer-line"></div>
+
+  <!-- ── RESEARCH ── -->
+  <div class="section" id="research">
+    <div class="section-header">
+      <div class="section-icon icon-emerald"><i class="fa-solid fa-flask-vial"></i></div>
+      <h2 class="section-title">Research Areas</h2>
+    </div>
+
+    <div class="research-grid">
+      <div class="research-card glass">
+        <div class="r-icon" style="background:rgba(124,58,237,.2);color:#a78bfa;">∇</div>
+        <h3>Inverse & Ill-Posed Problems</h3>
+        <p>Discerning causal factors behind observations. Applications in signal restoration, medical tomography, atmospheric imaging, biometrics, and computer vision.</p>
+      </div>
+      <div class="research-card glass">
+        <div class="r-icon" style="background:rgba(6,182,212,.2);color:#67e8f9;font-size:1.1rem;"><i class="fa-solid fa-brain"></i></div>
+        <h3>Machine Learning</h3>
+        <p>Algorithms and distributed learning at the intersection of AI and computer science. Applications in medical diagnosis, fraud detection, and product recommendations.</p>
+      </div>
+      <div class="research-card glass">
+        <div class="r-icon" style="background:rgba(16,185,129,.2);color:#6ee7b7;font-size:1.1rem;"><i class="fa-solid fa-database"></i></div>
+        <h3>Data Science</h3>
+        <p>Multidisciplinary collection, analysis, and visualization of large datasets. Driving research in environmental concerns, healthcare, and cloud computing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="shimmer-line"></div>
+
+  <!-- ── PUBLICATIONS ── -->
+  <div class="section" id="publications">
+    <div class="section-header">
+      <div class="section-icon icon-rose"><i class="fa-solid fa-book-open"></i></div>
+      <h2 class="section-title">Publications</h2>
+    </div>
+
+    <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.2rem;">Journal Articles</h3>
+
+    <div class="pub-item glass">
+      <div class="pub-year">2012</div>
+      <div class="pub-authors">George, S., & Pareth, S.</div>
+      <div class="pub-title">Two-Step Modified Newton Method for Nonlinear Lavrentiev Regularization</div>
+      <span class="pub-journal"><i class="fa-solid fa-journal-whills"></i> ISRN Applied Mathematics</span>
+    </div>
+
+    <div class="pub-item glass">
+      <div class="pub-year">2012</div>
+      <div class="pub-authors">George, S., & Pareth, S.</div>
+      <div class="pub-title">An Application of Newton Type Iterative Method for Lavrentiev Regularization for Ill-Posed Equations</div>
+      <span class="pub-journal"><i class="fa-solid fa-journal-whills"></i> IAENG International Journal of Applied Mathematics</span>
+    </div>
+
+    <div class="pub-item glass">
+      <div class="pub-year">2013</div>
+      <div class="pub-authors">George, S., & Pareth, S.</div>
+      <div class="pub-title">An Application of Newton type Iterative Method for the Approximate Implementation of Lavrentiev Regularization</div>
+      <span class="pub-journal"><i class="fa-solid fa-journal-whills"></i> Journal of Applied Analysis — De Gruyter</span>
+    </div>
+
+    <div class="pub-item glass">
+      <div class="pub-year">2013</div>
+      <div class="pub-authors">George, S., Pareth, S., & Kunhanandan, M.</div>
+      <div class="pub-title">Newton Lavrentiev regularization for ill-posed operator equations in Hilbert scales</div>
+      <span class="pub-journal"><i class="fa-solid fa-journal-whills"></i> Applied Mathematics and Computation — Elsevier</span>
+    </div>
+
+    <div class="pub-item glass" style="border: 1px solid rgba(124,58,237,.3);">
+      <div class="pub-year" style="color:#a78bfa;">In Progress</div>
+      <div class="pub-authors">Pareth, S.</div>
+      <div class="pub-title">Advanced Optimization Techniques in Neural Networks: A Sobolev Space Approach</div>
+      <span class="pub-journal" style="background:rgba(124,58,237,.15);color:#a78bfa;"><i class="fa-solid fa-clock"></i> Communicated</span>
+    </div>
+
+    <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:2rem 0 1.2rem;">Conference Papers</h3>
+
+    <div class="pub-item glass" style="border-left: 3px solid #f43f5e;">
+      <div class="pub-year" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">2012</div>
+      <div class="pub-authors">Pareth, S., & George, S.</div>
+      <div class="pub-title">Projection Scheme for Newton-type Iterative Method for Lavrentiev Regularization</div>
+      <span class="pub-journal" style="background:rgba(244,63,94,.12);color:#fb7185;"><i class="fa-solid fa-users"></i> ICECCS 2012, Springer</span>
+    </div>
+
+    <div class="pub-item glass" style="border-left: 3px solid #f43f5e;">
+      <div class="pub-year" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">2012</div>
+      <div class="pub-authors">Pareth, S.</div>
+      <div class="pub-title">Finite Dimensional Realization of Lavrentiev Regularization for Nonlinear Ill-Posed Equations</div>
+      <span class="pub-journal" style="background:rgba(244,63,94,.12);color:#fb7185;"><i class="fa-solid fa-users"></i> ICERECT 2012, Springer</span>
+    </div>
+
+    <div class="pub-item glass" style="border-left: 3px solid #f43f5e;">
+      <div class="pub-year" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">2014</div>
+      <div class="pub-authors">Pareth, S.</div>
+      <div class="pub-title">Gauss-Newton Regularization Method for Signal Reconstruction</div>
+      <span class="pub-journal" style="background:rgba(244,63,94,.12);color:#fb7185;"><i class="fa-solid fa-users"></i> ACCIS-14, Elsevier</span>
+    </div>
+
+    <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:2rem 0 1.2rem;">Academic Profiles</h3>
+    <div class="profiles-grid">
+      <a href="https://scholar.google.com/citations?user=Kft7A0kAAAAJ" target="_blank" class="glass profile-card">
+        <div class="p-icon" style="background:rgba(66,133,244,.2);color:#93c5fd;">GS</div>
+        <div class="p-name">Google Scholar</div>
+        <div class="p-sub">Citation Metrics</div>
+      </a>
+      <a href="https://www.semanticscholar.org/author/Suresan-Pareth/3198646" target="_blank" class="glass profile-card">
+        <div class="p-icon" style="background:rgba(16,185,129,.2);color:#6ee7b7;">SS</div>
+        <div class="p-name">Semantic Scholar</div>
+        <div class="p-sub">AI-powered Research</div>
+      </a>
+      <a href="https://dblp.org/pid/132/0418.html" target="_blank" class="glass profile-card">
+        <div class="p-icon" style="background:rgba(245,158,11,.2);color:#fcd34d;">DB</div>
+        <div class="p-name">DBLP</div>
+        <div class="p-sub">CS Bibliography</div>
+      </a>
+      <a href="https://orcid.org/0000-0002-1106-3301" target="_blank" class="glass profile-card">
+        <div class="p-icon" style="background:rgba(124,58,237,.2);color:#a78bfa;">OR</div>
+        <div class="p-name">ORCID</div>
+        <div class="p-sub">0000-0002-1106-3301</div>
+      </a>
+      <div class="glass profile-card" style="background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(6,182,212,.1));border-color:rgba(124,58,237,.3);">
+        <div class="p-icon" style="background:rgba(124,58,237,.3);color:#c4b5fd;">SC</div>
+        <div class="p-name">Scopus Author ID</div>
+        <div class="p-sub" style="font-family:monospace;font-size:.9rem;color:#c4b5fd;margin-top:.5rem;">55341747200</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shimmer-line"></div>
+
+  <!-- ── EDUCATION ── -->
+  <div class="section" id="education">
+    <div class="section-header">
+      <div class="section-icon icon-amber"><i class="fa-solid fa-graduation-cap"></i></div>
+      <h2 class="section-title">Educational Qualifications</h2>
+    </div>
+
+    <div class="glass" style="overflow:hidden;border-radius:20px;">
+      <table class="edu-table">
+        <thead>
+          <tr>
+            <th>Degree</th>
+            <th>Year</th>
+            <th>Institution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="degree-badge d-phd">PhD</span></td>
+            <td>2010 – 2013</td>
+            <td>National Institute of Technology Karnataka, India</td>
+          </tr>
+          <tr>
+            <td><span class="degree-badge d-pg">MTech</span></td>
+            <td>2001</td>
+            <td>National Institute of Technology Karnataka, India</td>
+          </tr>
+          <tr>
+            <td><span class="degree-badge d-pg">MCA</span></td>
+            <td>1996</td>
+            <td>National Institute of Technology Karnataka, India</td>
+          </tr>
+          <tr>
+            <td><span class="degree-badge d-pg">MSc</span></td>
+            <td>1988</td>
+            <td>Department of Mathematics, University of Calicut, Kerala</td>
+          </tr>
+          <tr>
+            <td><span class="degree-badge d-ug">BSc</span></td>
+            <td>1986</td>
+            <td>Govt. Brennen College, Thalassery, University of Calicut, Kerala</td>
+          </tr>
+          <tr>
+            <td><span class="degree-badge d-school">PDC</span></td>
+            <td>1983</td>
+            <td>Govt. Brennen College, Thalassery, University of Calicut, Kerala</td>
+          </tr>
+          <tr>
+            <td><span class="degree-badge d-school">SSLC</span></td>
+            <td>1981</td>
+            <td>Govt. High School Palayad, Thalassery, Kerala</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="shimmer-line"></div>
+
+  <!-- ── EXPERIENCE ── -->
+  <div class="section" id="experience">
+    <div class="section-header">
+      <div class="section-icon icon-pink"><i class="fa-solid fa-briefcase"></i></div>
+      <h2 class="section-title">Professional Experience</h2>
+    </div>
+
+    <div class="glass" style="overflow:hidden;border-radius:20px;">
+      <table class="exp-table">
+        <thead>
+          <tr>
+            <th>Institution</th>
+            <th>Role</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NITK, Surathkal, Karnataka</td>
+            <td><span class="role-tag r-assoc">Adhoc Faculty — IT Dept.</span><br><span class="role-tag r-other">Lecturer</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">Jul 2024 – Present<br>Jul 2010 – Dec 2010</td>
+          </tr>
+          <tr>
+            <td>SSE, Mangalore, Karnataka</td>
+            <td><span class="role-tag r-prof">Prof & Head — AIML</span><br><span class="role-tag r-assoc">Assoc Prof & Head — CSE</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">Jun 2023 – Jun 2024<br>Aug 2009 – May 2010</td>
+          </tr>
+          <tr>
+            <td>TEC, Thrissur</td>
+            <td><span class="role-tag r-prof">Professor & Head — CSE</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">May 2022 – May 2023</td>
+          </tr>
+          <tr>
+            <td>SNGCET, Payyannur</td>
+            <td><span class="role-tag r-principal">Principal</span><br><span class="role-tag r-assoc">Asst Prof & Head — CSE</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">May 2021 – Apr 2022<br>Apr 2007 – Apr 2008</td>
+          </tr>
+          <tr>
+            <td>RCET, Thrissur</td>
+            <td><span class="role-tag r-prof">Professor & Head — S&H</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">Jan 2020 – May 2021</td>
+          </tr>
+          <tr>
+            <td>IET, Calicut University</td>
+            <td><span class="role-tag r-principal">Principal</span><br><span class="role-tag r-assoc">Asst Prof & Head — IT</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">Jun 2017 – Dec 2019<br>Apr 2008 – Aug 2009</td>
+          </tr>
+          <tr>
+            <td>NMIT, Kanhangad</td>
+            <td><span class="role-tag r-principal">Principal</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">Jan 2014 – Jun 2017</td>
+          </tr>
+          <tr>
+            <td>SCMS, Cochin, Kerala</td>
+            <td><span class="role-tag r-assoc">Assistant Professor</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">Jun 2006 – Mar 2007</td>
+          </tr>
+          <tr>
+            <td>CET CELL, Bangalore</td>
+            <td><span class="role-tag r-other">Software Developer</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">Jul 2004 – Apr 2006</td>
+          </tr>
+          <tr>
+            <td>ITEC, Kannur University</td>
+            <td><span class="role-tag r-other">Assistant Director</span></td>
+            <td style="font-size:.82rem;color:var(--muted);">Oct 2001 – Dec 2002</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="shimmer-line"></div>
+
+  <!-- ── CONTACT ── -->
+  <div class="section" id="contact">
+    <div class="section-header">
+      <div class="section-icon icon-violet"><i class="fa-solid fa-paper-plane"></i></div>
+      <h2 class="section-title">Contact</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card glass">
+        <div class="c-icon icon-violet"><i class="fa-solid fa-building-columns"></i></div>
+        <div>
+          <div class="c-label">Department</div>
+          <div class="c-value">Information Technology<br>National Institute of Technology Karnataka</div>
+        </div>
+      </div>
+      <div class="contact-card glass">
+        <div class="c-icon icon-cyan"><i class="fa-solid fa-location-dot"></i></div>
+        <div>
+          <div class="c-label">Address</div>
+          <div class="c-value">Srinivas Nagar, Surathkal<br>Mangalore, Karnataka</div>
+        </div>
+      </div>
+      <div class="contact-card glass">
+        <div class="c-icon icon-rose"><i class="fa-solid fa-envelope"></i></div>
+        <div>
+          <div class="c-label">Email</div>
+          <div class="c-value">sureshpareth@gmail.com<br>al.sureshpareth.it@nitk.edu.in</div>
+        </div>
+      </div>
+      <div class="contact-card glass">
+        <div class="c-icon icon-emerald"><i class="fa-solid fa-mobile-screen"></i></div>
+        <div>
+          <div class="c-label">Mobile</div>
+          <div class="c-value">+91 8123123705</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2024 <span>Dr. Suresan Pareth</span> — Academic Profile · NIT Karnataka</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  sections.forEach(s => observer.observe(s));
+
+  // Nav active link
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const allSections = document.querySelectorAll('[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    allSections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? '#fff' : '';
+      a.style.background = a.getAttribute('href') === `#${current}` ? 'rgba(124,58,237,.25)' : '';
+    });
+  });
+
+  // Course filter
+  function filterCourses(set, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.course-card[data-set]').forEach(card => {
+      if (set === 'all' || card.dataset.set === set) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
 </body>
 </html>
