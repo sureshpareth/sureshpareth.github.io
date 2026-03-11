@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT301M — Parallel Computing | NITK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f6f1;
+      --surface: #ffffff;
+      --ink: #0f1117;
+      --muted: #6b6b7b;
+      --light: #e8e4dc;
+      --orange: #e85d04;
+      --amber: #f4a227;
+      --teal: #00897b;
+      --blue: #1a56db;
+      --red: #dc2626;
+      --purple: #7c3aed;
+      --grad: linear-gradient(135deg, #e85d04, #f4a227);
+      --grad2: linear-gradient(135deg, #0f1117, #2d3a4f);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── GRID TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(232,93,4,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,93,4,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .9rem 3rem;
+      background: rgba(248,246,241,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--light);
+    }
+    .nav-left { display: flex; align-items: center; gap: .75rem; }
+    .nav-logo {
+      background: var(--grad);
+      color: #fff;
+      font-weight: 800; font-size: .85rem;
+      padding: .35rem .8rem; border-radius: 6px;
+      letter-spacing: .04em;
+    }
+    .nav-crumb { font-size: .85rem; color: var(--muted); font-weight: 500; }
+    .nav-crumb span { color: var(--orange); font-weight: 700; }
+    .nav-links { display: flex; gap: .2rem; list-style: none; }
+    .nav-links a {
+      font-size: .8rem; font-weight: 600; color: var(--muted);
+      padding: .35rem .85rem; border-radius: 6px;
+      text-decoration: none; transition: all .2s;
+      letter-spacing: .03em; text-transform: uppercase;
+    }
+    .nav-links a:hover { background: var(--light); color: var(--ink); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative; z-index: 1;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--grad2);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 4rem 4rem;
+      position: relative; overflow: hidden;
+    }
+
+    /* circuit board SVG decoration */
+    .hero-left::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M10 30 H50 M30 10 V50 M10 10 h10 v10 M40 10 h10 v10 M10 40 h10 v10 M40 40 h10 v10' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3Ccircle cx='10' cy='30' r='2' fill='rgba(232,93,4,0.3)'/%3E%3Ccircle cx='50' cy='30' r='2' fill='rgba(244,162,39,0.3)'/%3E%3Ccircle cx='30' cy='10' r='2' fill='rgba(232,93,4,0.3)'/%3E%3Ccircle cx='30' cy='50' r='2' fill='rgba(244,162,39,0.3)'/%3E%3C/svg%3E");
+      opacity: .6;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute; bottom: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(232,93,4,.2), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(232,93,4,.15); border: 1px solid rgba(232,93,4,.3);
+      color: #f4a227; font-size: .78rem; font-weight: 700;
+      padding: .3rem .9rem; border-radius: 50px;
+      letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: 1.5rem; width: fit-content;
+      position: relative; z-index: 1;
+      animation: fadeUp .7s ease both;
+    }
+
+    .hero-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem; font-weight: 600;
+      color: rgba(255,255,255,.4);
+      margin-bottom: .5rem;
+      position: relative; z-index: 1;
+      animation: fadeUp .7s ease .1s both;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 900; line-height: 1.05;
+      color: #fff; letter-spacing: -.03em;
+      margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+      animation: fadeUp .7s ease .2s both;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      position: relative; z-index: 1;
+      animation: fadeUp .7s ease .3s both;
+    }
+
+    .meta-chip {
+      display: flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.8); font-size: .82rem; font-weight: 600;
+      padding: .4rem 1rem; border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .meta-chip i { color: var(--amber); font-size: .75rem; }
+
+    .hero-right {
+      background: var(--bg);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 4rem 4rem;
+      position: relative; z-index: 1;
+    }
+
+    .info-table {
+      background: var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.06);
+      border: 1px solid var(--light);
+      animation: fadeUp .7s ease .2s both;
+    }
+
+    .info-row {
+      display: grid; grid-template-columns: 140px 1fr;
+      border-bottom: 1px solid var(--light);
+    }
+    .info-row:last-child { border-bottom: none; }
+
+    .info-label {
+      background: #f3f0ea;
+      padding: .9rem 1.2rem;
+      font-size: .75rem; font-weight: 700; color: var(--muted);
+      letter-spacing: .08em; text-transform: uppercase;
+      display: flex; align-items: center;
+    }
+
+    .info-value {
+      padding: .9rem 1.2rem;
+      font-size: .9rem; font-weight: 500; color: var(--ink);
+      display: flex; align-items: center;
+    }
+
+    .grade-list { list-style: none; width: 100%; }
+    .grade-list li {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .85rem; padding: .25rem 0;
+      border-bottom: 1px dashed var(--light);
+    }
+    .grade-list li:last-child { border-bottom: none; }
+    .grade-pct { font-weight: 800; color: var(--orange); font-family: 'JetBrains Mono', monospace; }
+
+    /* ── DOWNLOAD LINK ── */
+    .dl-link {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .75rem; font-weight: 700;
+      color: var(--orange);
+      background: rgba(232,93,4,.08);
+      border: 1px solid rgba(232,93,4,.25);
+      padding: .2rem .6rem; border-radius: 5px;
+      text-decoration: none;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .dl-link:hover {
+      background: var(--orange); color: #fff;
+      border-color: var(--orange);
+      box-shadow: 0 3px 10px rgba(232,93,4,.3);
+    }
+    .dl-link i { font-size: .7rem; }
+
+    /* ── DOWNLOAD BANNER ── */
+    .dl-banner {
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(135deg, rgba(232,93,4,.06), rgba(244,162,39,.06));
+      border: 1px solid rgba(232,93,4,.2);
+      border-left: 4px solid var(--orange);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      margin-top: 1.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .dl-banner-left { display: flex; align-items: center; gap: .85rem; }
+    .dl-banner-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(232,93,4,.12);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange); font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .dl-banner-text {}
+    .dl-banner-title { font-size: .9rem; font-weight: 700; color: var(--ink); }
+    .dl-banner-sub { font-size: .78rem; color: var(--muted); margin-top: .1rem; font-family: 'JetBrains Mono', monospace; }
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--grad);
+      color: #fff; font-size: .82rem; font-weight: 700;
+      padding: .55rem 1.3rem; border-radius: 8px;
+      text-decoration: none;
+      transition: all .25s;
+      box-shadow: 0 3px 12px rgba(232,93,4,.25);
+      white-space: nowrap;
+    }
+    .dl-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232,93,4,.4);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1200px; margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      position: relative; z-index: 1;
+    }
+
+    /* ── SECTION ── */
+    .sec {
+      margin: 4rem 0;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .sec.vis { opacity: 1; transform: translateY(0); }
+
+    .sec-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .sec-num {
+      background: var(--grad);
+      color: #fff; font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem; font-weight: 600;
+      padding: .25rem .65rem; border-radius: 6px;
+    }
+
+    .sec-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800; letter-spacing: -.02em;
+    }
+
+    .sec-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--light), transparent);
+    }
+
+    /* ── DESCRIPTION ── */
+    .desc-box {
+      background: var(--surface);
+      border: 1px solid var(--light);
+      border-left: 4px solid var(--orange);
+      border-radius: 16px;
+      padding: 2.5rem;
+      font-size: 1rem; line-height: 1.85; color: #444;
+      font-weight: 400;
+      box-shadow: 0 2px 16px rgba(0,0,0,.04);
+    }
+
+    /* ── CEO GRID ── */
+    .ceo-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .ceo-card {
+      background: var(--surface);
+      border: 1px solid var(--light);
+      border-radius: 14px;
+      padding: 1.8rem;
+      transition: all .25s;
+      position: relative; overflow: hidden;
+    }
+
+    .ceo-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .ceo-c1::before { background: linear-gradient(90deg, var(--orange), var(--amber)); }
+    .ceo-c2::before { background: linear-gradient(90deg, var(--teal), #26c6da); }
+    .ceo-c3::before { background: linear-gradient(90deg, var(--blue), #60a5fa); }
+    .ceo-c4::before { background: linear-gradient(90deg, var(--purple), #a78bfa); }
+    .ceo-c5::before { background: linear-gradient(90deg, var(--red), #f97316); }
+
+    .ceo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
+
+    .ceo-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1rem;
+    }
+    .ci-orange { background: rgba(232,93,4,.12); color: var(--orange); }
+    .ci-teal   { background: rgba(0,137,123,.12); color: var(--teal); }
+    .ci-blue   { background: rgba(26,86,219,.12); color: var(--blue); }
+    .ci-purple { background: rgba(124,58,237,.12); color: var(--purple); }
+    .ci-red    { background: rgba(220,38,38,.12);  color: var(--red); }
+
+    .ceo-card h3 {
+      font-size: 1rem; font-weight: 700; margin-bottom: .75rem; color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .ceo-card ul { list-style: none; padding: 0; }
+    .ceo-card li {
+      font-size: .85rem; color: var(--muted); line-height: 1.65;
+      padding: .25rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .ceo-card li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--orange); font-size: .75rem;
+    }
+
+    /* ── CO TABLE ── */
+    .co-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .co-card {
+      background: var(--surface);
+      border: 1px solid var(--light);
+      border-radius: 14px; padding: 1.6rem;
+      transition: all .25s;
+    }
+    .co-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,.08); }
+
+    .co-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem; font-weight: 700;
+      padding: .25rem .75rem; border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .co1 { background: rgba(232,93,4,.12); color: var(--orange); }
+    .co2 { background: rgba(0,137,123,.12); color: var(--teal); }
+    .co3 { background: rgba(26,86,219,.12); color: var(--blue); }
+    .co4 { background: rgba(124,58,237,.12); color: var(--purple); }
+
+    .co-card p { font-size: .88rem; color: #555; line-height: 1.7; }
+
+    /* ── LECTURE PLAN ── */
+    .lecture-tabs {
+      display: flex; gap: .4rem; margin-bottom: 1.5rem;
+      background: var(--surface); border: 1px solid var(--light);
+      border-radius: 10px; padding: .3rem; width: fit-content;
+    }
+    .lt-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Outfit', sans-serif; font-size: .82rem; font-weight: 600;
+      color: var(--muted); padding: .4rem 1.1rem; border-radius: 7px;
+      transition: all .2s; letter-spacing: .02em;
+    }
+    .lt-btn.active { background: var(--ink); color: #fff; }
+
+    .lecture-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1rem;
+    }
+
+    .lec-card {
+      background: var(--surface);
+      border: 1px solid var(--light); border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: all .2s;
+    }
+    .lec-card:hover { border-color: var(--orange); box-shadow: 0 6px 20px rgba(232,93,4,.08); }
+
+    .lec-num {
+      background: var(--grad);
+      color: #fff; font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem; font-weight: 700;
+      min-width: 36px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 7px; flex-shrink: 0;
+    }
+
+    .lec-info { flex: 1; min-width: 0; }
+    .lec-title { font-size: .92rem; font-weight: 700; color: var(--ink); margin-bottom: .2rem; }
+    .lec-detail {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem; color: var(--muted);
+      background: var(--bg); padding: .15rem .5rem;
+      border-radius: 4px; display: inline-block;
+    }
+
+    .phase-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #fff;
+      padding: .2rem .6rem; border-radius: 4px; margin-bottom: 1rem;
+    }
+    .p-arch   { background: var(--orange); }
+    .p-prog   { background: var(--teal); }
+    .p-gpu    { background: var(--blue); }
+    .p-dl     { background: var(--purple); }
+    .p-cap    { background: var(--red); }
+
+    /* ── ASSESSMENT ── */
+    .assess-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+
+    .assess-card {
+      background: var(--surface); border: 1px solid var(--light);
+      border-radius: 14px; padding: 1.8rem;
+    }
+
+    .assess-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1.2rem; }
+
+    .co-dot-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: .5rem;
+      margin-top: .75rem;
+    }
+    .co-dot {
+      background: var(--bg); border: 1px solid var(--light);
+      border-radius: 8px; padding: .6rem;
+      text-align: center; font-size: .75rem; font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .co-dot.active { background: var(--grad); color: #fff; border-color: transparent; }
+
+    .pbar-wrap { margin-bottom: 1rem; }
+    .pbar-label { display: flex; justify-content: space-between; margin-bottom: .35rem; }
+    .pbar-label span:first-child { font-size: .85rem; font-weight: 600; }
+    .pbar-label span:last-child { font-family: 'JetBrains Mono', monospace; font-size: .82rem; font-weight: 700; color: var(--orange); }
+    .pbar { height: 8px; background: var(--bg); border-radius: 50px; overflow: hidden; }
+    .pbar-fill { height: 100%; border-radius: 50px; transition: width 1s ease; }
+    .pf-orange { background: var(--grad); }
+    .pf-teal   { background: linear-gradient(90deg, var(--teal), #26c6da); }
+    .pf-blue   { background: linear-gradient(90deg, var(--blue), #60a5fa); }
+    .pf-purple { background: linear-gradient(90deg, var(--purple), #a78bfa); }
+
+    /* ── ARTICULATION MATRIX ── */
+    .matrix-scroll { overflow-x: auto; border-radius: 14px; border: 1px solid var(--light); }
+    .matrix-table { width: 100%; border-collapse: collapse; background: var(--surface); }
+    .matrix-table th {
+      background: var(--ink); color: #fff;
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      padding: .75rem 1rem; text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .matrix-table th:first-child { text-align: left; min-width: 90px; }
+    .matrix-table td { padding: .65rem 1rem; text-align: center; font-size: .85rem; border-bottom: 1px solid var(--light); }
+    .matrix-table td:first-child { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: .8rem; }
+    .matrix-table tr:hover td { background: #faf8f4; }
+
+    .cv1 { color: #aaa; }
+    .cv2 { color: var(--teal); font-weight: 700; }
+    .cv3 { color: var(--orange); font-weight: 800; }
+
+    .corr-legend { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+    .corr-legend span { font-size: .8rem; font-weight: 600; display: flex; align-items: center; gap: .4rem; }
+    .corr-legend span::before { content: '●'; font-size: 1rem; }
+    .cl1::before { color: #aaa; }
+    .cl2::before { color: var(--teal); }
+    .cl3::before { color: var(--orange); }
+
+    /* ── BOOKS ── */
+    .books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.25rem; }
+    .book-card {
+      background: var(--surface); border: 1px solid var(--light);
+      border-radius: 14px; padding: 1.6rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: all .25s;
+    }
+    .book-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,.08); border-color: var(--amber); }
+    .book-spine {
+      width: 6px; border-radius: 3px; align-self: stretch; flex-shrink: 0;
+    }
+    .bs-1 { background: var(--orange); }
+    .bs-2 { background: var(--teal); }
+    .bs-3 { background: var(--blue); }
+    .bs-4 { background: var(--purple); }
+    .bs-5 { background: var(--red); }
+    .bs-6 { background: var(--amber); }
+    .book-info {}
+    .book-author { font-size: .78rem; font-weight: 700; color: var(--orange); letter-spacing: .04em; text-transform: uppercase; margin-bottom: .35rem; }
+    .book-title { font-size: .9rem; font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: .3rem; }
+    .book-pub { font-size: .78rem; color: var(--muted); font-style: italic; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--grad2); color: rgba(255,255,255,.7);
+      text-align: center; padding: 3rem 2rem;
+      position: relative; z-index: 1;
+    }
+    .footer-top { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-item { text-align: center; }
+    .footer-item .fi-val { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: #fff; display: block; }
+    .footer-item .fi-lbl { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; margin-top: .25rem; }
+    .footer-divider { height: 1px; background: rgba(255,255,255,.1); margin-bottom: 1.5rem; }
+    footer p { font-size: .85rem; }
+    footer strong { color: #fff; }
+
+    /* ── UTILS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .shimmer { height: 1px; background: linear-gradient(90deg, transparent, var(--amber), var(--orange), transparent); margin: 1rem 0; }
+
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 2rem 3rem; min-height: 60vh; }
+      .hero-right { padding: 2rem; }
+      nav { padding: .9rem 1.5rem; }
+      .nav-links { display: none; }
+      .assess-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="nav-logo">NITK</div>
+    <div class="nav-crumb">Information Technology · <span>IT301M</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#desc">Overview</a></li>
+    <li><a href="#objectives">Objectives</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="#lectures">Lectures</a></li>
+    <li><a href="#assessment">Assessment</a></li>
+    <li><a href="#books">Books</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><i class="fa-solid fa-microchip"></i> Even Semester 2026</div>
+    <div class="hero-code">IT301M &nbsp;·&nbsp; Minor</div>
+    <h1 class="hero-title">Parallel<br><em>Computing</em></h1>
+    <div class="hero-meta">
+      <div class="meta-chip"><i class="fa-solid fa-layer-group"></i> 3-0-2 → 4 Credits</div>
+      <div class="meta-chip"><i class="fa-regular fa-calendar"></i> Jan – May 2026</div>
+      <div class="meta-chip"><i class="fa-solid fa-chalkboard-user"></i> Dr. Suresan Pareth</div>
+      <div class="meta-chip"><i class="fa-solid fa-clock"></i> 3 Theory / Week</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div style="margin-bottom:1.5rem;animation:fadeUp .7s ease both;">
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:.5rem;letter-spacing:-.02em;">Course Details</h2>
+      <p style="font-size:.88rem;color:var(--muted);">National Institute of Technology Karnataka, Surathkal</p>
+    </div>
+    <div class="info-table">
+      <div class="info-row">
+        <div class="info-label">Course Code</div>
+        <div class="info-value" style="font-family:'JetBrains Mono',monospace;font-weight:700;">IT301M</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Category</div>
+        <div class="info-value">Minor Elective</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Structure</div>
+        <div class="info-value" style="font-family:'JetBrains Mono',monospace;">L3 · T0 · P2 = 4 Credits</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Type</div>
+        <div class="info-value">Lecture + Lab</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Grading</div>
+        <div class="info-value" style="flex-direction:column;align-items:flex-start;padding:.75rem 1.2rem;">
+          <ul class="grade-list">
+            <li>
+              <span>Quiz / Lab Assignment</span>
+              <span style="display:flex;align-items:center;gap:.6rem;">
+                <a href="IT301Lab6Assignment.pdf" download class="dl-link">
+                  <i class="fa-solid fa-file-arrow-down"></i> Lab 6
+                </a>
+                <span class="grade-pct">20%</span>
+              </span>
+            </li>
+            <li><span>Mid Semester Exam</span><span class="grade-pct">20%</span></li>
+            <li><span>Project</span><span class="grade-pct">20%</span></li>
+            <li><span>End Semester Exam</span><span class="grade-pct">40%</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Instructor</div>
+        <div class="info-value" style="font-weight:700;">Dr. Suresan Pareth</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Mentor</div>
+        <div class="info-value" style="font-weight:700;">Dr. Geetha V.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main>
+
+  <!-- DESCRIPTION -->
+  <div class="sec" id="desc">
+    <div class="sec-header">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Course Description</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="desc-box">
+      This course introduces students to the principles and practices of parallel computing, emphasizing the <strong>architectural, algorithmic, and programming foundations</strong> required to design efficient and scalable parallel applications. The course begins by examining the limitations of sequential execution models and motivates the need for parallelism through an exploration of modern computer architectures, including <strong>multicore and manycore processors</strong>, memory hierarchy, cache behavior, and instruction-level parallelism.
+      <br/><br/>
+      Students are introduced to fundamental parallel programming concepts such as <strong>data parallelism, task parallelism, and pipeline parallelism</strong>, along with shared-memory and distributed-memory execution models. The course provides hands-on exposure to industry-standard parallel programming frameworks, including <strong>OpenMP</strong> for shared-memory systems, <strong>MPI</strong> for distributed-memory systems, and task-parallel runtimes such as <strong>Intel TBB and Cilk++</strong>.
+      <br/><br/>
+      The course further explores <strong>heterogeneous computing environments</strong> covering GPU acceleration using <strong>CUDA and OpenCL</strong>, manycore platforms such as Xeon Phi and FPGAs, and the application of parallel computing in <strong>deep learning, scientific simulations, and large-scale data processing</strong>.
+    </div>
+  </div>
+
+  <div class="shimmer"></div>
+
+  <!-- OBJECTIVES -->
+  <div class="sec" id="objectives">
+    <div class="sec-header">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Course Educational Objectives</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="ceo-grid">
+      <div class="ceo-card ceo-c1">
+        <div class="ceo-icon ci-orange"><i class="fa-solid fa-cpu"></i></div>
+        <h3>Architecture Foundations</h3>
+        <ul>
+          <li>Limitations of sequential execution and the need for parallelism</li>
+          <li>Multicore/manycore architectures, processor organization, cache memory</li>
+          <li>Analyze performance bottlenecks in memory hierarchy and execution models</li>
+        </ul>
+      </div>
+      <div class="ceo-card ceo-c2">
+        <div class="ceo-icon ci-teal"><i class="fa-solid fa-code-branch"></i></div>
+        <h3>Parallel Programming Models</h3>
+        <ul>
+          <li>Data parallelism, task parallelism, and pipeline parallelism</li>
+          <li>Shared memory and distributed memory programming paradigms</li>
+          <li>SPMD and MPMD execution models in parallel program design</li>
+        </ul>
+      </div>
+      <div class="ceo-card ceo-c3">
+        <div class="ceo-icon ci-blue"><i class="fa-solid fa-terminal"></i></div>
+        <h3>Programming Frameworks</h3>
+        <ul>
+          <li>Shared-memory programming using OpenMP directives</li>
+          <li>Distributed-memory applications using MPI communication primitives</li>
+          <li>Task-parallel programming with Intel TBB and Cilk++</li>
+        </ul>
+      </div>
+      <div class="ceo-card ceo-c4">
+        <div class="ceo-icon ci-purple"><i class="fa-brands fa-nvidia"></i></div>
+        <h3>Heterogeneous Computing</h3>
+        <ul>
+          <li>Accelerator-based computing using GPUs, CUDA, and OpenCL</li>
+          <li>Systems involving CPUs, GPUs, Xeon Phi, and FPGAs</li>
+          <li>Optimization techniques balancing computation, communication, and memory</li>
+        </ul>
+      </div>
+      <div class="ceo-card ceo-c5">
+        <div class="ceo-icon ci-red"><i class="fa-solid fa-brain"></i></div>
+        <h3>Real-World Applications</h3>
+        <ul>
+          <li>Parallel computing in deep learning and scientific simulations</li>
+          <li>Data, model, and pipeline parallelism for neural network training</li>
+          <li>Responsible practices: correctness, profiling, ethical HPC development</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="shimmer"></div>
+
+  <!-- OUTCOMES -->
+  <div class="sec" id="outcomes">
+    <div class="sec-header">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Course Outcomes</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="co-grid">
+      <div class="co-card">
+        <div class="co-badge co1">CO1</div>
+        <p>Apply fundamental concepts of computer architecture and parallel execution, including multicore processors, memory hierarchy, and instruction-level parallelism, to understand the limitations of sequential computing.</p>
+      </div>
+      <div class="co-card">
+        <div class="co-badge co2">CO2</div>
+        <p>Decompose computational problems into parallel components using appropriate parallel programming paradigms such as data parallelism, task parallelism, and pipeline parallelism.</p>
+      </div>
+      <div class="co-card">
+        <div class="co-badge co3">CO3</div>
+        <p>Validate the effectiveness of parallel programming frameworks and tools such as OpenMP, MPI, and task-parallel libraries in solving computationally intensive and real-world problems.</p>
+      </div>
+      <div class="co-card">
+        <div class="co-badge co4">CO4</div>
+        <p>Design and develop efficient parallel computing solutions by integrating parallel programming techniques, synchronization mechanisms, and performance optimization strategies while ensuring correctness, scalability, and responsible use of resources.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="shimmer"></div>
+
+  <!-- LECTURE PLAN -->
+  <div class="sec" id="lectures">
+    <div class="sec-header">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Lecture Plan</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="lecture-tabs">
+      <button class="lt-btn active" onclick="showPhase('all',this)">All Sessions</button>
+      <button class="lt-btn" onclick="showPhase('arch',this)">Architecture</button>
+      <button class="lt-btn" onclick="showPhase('prog',this)">Programming</button>
+      <button class="lt-btn" onclick="showPhase('gpu',this)">GPU & HPC</button>
+      <button class="lt-btn" onclick="showPhase('dl',this)">Deep Learning</button>
+    </div>
+
+    <div class="lecture-grid" id="lec-grid">
+      <!-- Architecture Phase -->
+      <div class="lec-card" data-phase="arch">
+        <div class="lec-num">01</div>
+        <div class="lec-info">
+          <div class="lec-title">Motivation & Evolution of Computing</div>
+          <span class="phase-label p-arch">Architecture</span>
+          <span class="lec-detail">Need for Parallelism</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="arch">
+        <div class="lec-num">02</div>
+        <div class="lec-info">
+          <div class="lec-title">Sequential Execution Model</div>
+          <span class="phase-label p-arch">Architecture</span>
+          <span class="lec-detail">F-D-E-M-W-PC</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="arch">
+        <div class="lec-num">03</div>
+        <div class="lec-info">
+          <div class="lec-title">CPU Architecture & Pipelining</div>
+          <span class="phase-label p-arch">Architecture</span>
+          <span class="lec-detail">ILP Basics</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="arch">
+        <div class="lec-num">04</div>
+        <div class="lec-info">
+          <div class="lec-title">Cache Memory & Instruction-Level Parallelism</div>
+          <span class="phase-label p-arch">Architecture</span>
+          <span class="lec-detail">IPC, Cache Misses</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="arch">
+        <div class="lec-num">05</div>
+        <div class="lec-info">
+          <div class="lec-title">Parallel Computer Architectures</div>
+          <span class="phase-label p-arch">Architecture</span>
+          <span class="lec-detail">Flynn's Taxonomy</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="arch">
+        <div class="lec-num">06</div>
+        <div class="lec-info">
+          <div class="lec-title">Shared Memory Architectures</div>
+          <span class="phase-label p-arch">Architecture</span>
+          <span class="lec-detail">UMA / NUMA</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="arch">
+        <div class="lec-num">07</div>
+        <div class="lec-info">
+          <div class="lec-title">Distributed Memory Architectures</div>
+          <span class="phase-label p-arch">Architecture</span>
+          <span class="lec-detail">Clusters</span>
+        </div>
+      </div>
+      <!-- Programming Phase -->
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">08</div>
+        <div class="lec-info">
+          <div class="lec-title">Parallel Programming Models</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">SPMD / MPMD</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">09</div>
+        <div class="lec-info">
+          <div class="lec-title">Threads and Processes</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Fork–Join</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">10</div>
+        <div class="lec-info">
+          <div class="lec-title">Performance Metrics</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Speedup Laws</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">11</div>
+        <div class="lec-info">
+          <div class="lec-title">OpenMP Fundamentals</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Parallel Regions</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">12</div>
+        <div class="lec-info">
+          <div class="lec-title">OpenMP Data Parallelism</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">parallel for</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">13</div>
+        <div class="lec-info">
+          <div class="lec-title">OpenMP Synchronization</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Critical / Reduction</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">14</div>
+        <div class="lec-info">
+          <div class="lec-title">MPI Fundamentals</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Send / Recv</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">15</div>
+        <div class="lec-info">
+          <div class="lec-title">MPI Collectives</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Reduce / Barrier</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">16</div>
+        <div class="lec-info">
+          <div class="lec-title">MPI Performance</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Latency / Bandwidth</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">17</div>
+        <div class="lec-info">
+          <div class="lec-title">Task Parallelism Concepts</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Task Graphs</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="prog">
+        <div class="lec-num">18</div>
+        <div class="lec-info">
+          <div class="lec-title">Intel TBB & Cilk++</div>
+          <span class="phase-label p-prog">Programming</span>
+          <span class="lec-detail">Work Stealing</span>
+        </div>
+      </div>
+      <!-- GPU Phase -->
+      <div class="lec-card" data-phase="gpu">
+        <div class="lec-num">19</div>
+        <div class="lec-info">
+          <div class="lec-title">Heterogeneous Computing</div>
+          <span class="phase-label p-gpu">GPU & HPC</span>
+          <span class="lec-detail">CPU + GPU</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="gpu">
+        <div class="lec-num">20</div>
+        <div class="lec-info">
+          <div class="lec-title">CUDA Architecture</div>
+          <span class="phase-label p-gpu">GPU & HPC</span>
+          <span class="lec-detail">SIMT</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="gpu">
+        <div class="lec-num">21</div>
+        <div class="lec-info">
+          <div class="lec-title">CUDA Memory Hierarchy</div>
+          <span class="phase-label p-gpu">GPU & HPC</span>
+          <span class="lec-detail">Optimization</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="gpu">
+        <div class="lec-num">22</div>
+        <div class="lec-info">
+          <div class="lec-title">OpenCL Programming Model</div>
+          <span class="phase-label p-gpu">GPU & HPC</span>
+          <span class="lec-detail">CUDA vs OpenCL</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="gpu">
+        <div class="lec-num">23</div>
+        <div class="lec-info">
+          <div class="lec-title">Intel Xeon Phi</div>
+          <span class="phase-label p-gpu">GPU & HPC</span>
+          <span class="lec-detail">Manycore</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="gpu">
+        <div class="lec-num">24</div>
+        <div class="lec-info">
+          <div class="lec-title">FPGA Acceleration</div>
+          <span class="phase-label p-gpu">GPU & HPC</span>
+          <span class="lec-detail">HLS</span>
+        </div>
+      </div>
+      <!-- DL Phase -->
+      <div class="lec-card" data-phase="dl">
+        <div class="lec-num">25</div>
+        <div class="lec-info">
+          <div class="lec-title">DL Parallelism</div>
+          <span class="phase-label p-dl">Deep Learning</span>
+          <span class="lec-detail">Data / Model</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="dl">
+        <div class="lec-num">26</div>
+        <div class="lec-info">
+          <div class="lec-title">GPU-Accelerated Deep Learning</div>
+          <span class="phase-label p-dl">Deep Learning</span>
+          <span class="lec-detail">PyTorch / TensorFlow</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="dl">
+        <div class="lec-num">27</div>
+        <div class="lec-info">
+          <div class="lec-title">Distributed DL Training</div>
+          <span class="phase-label p-dl">Deep Learning</span>
+          <span class="lec-detail">MPI / NCCL</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="dl">
+        <div class="lec-num">28</div>
+        <div class="lec-info">
+          <div class="lec-title">DL Inference Optimization</div>
+          <span class="phase-label p-dl">Deep Learning</span>
+          <span class="lec-detail">Latency vs Throughput</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="cap">
+        <div class="lec-num">29</div>
+        <div class="lec-info">
+          <div class="lec-title">Project Presentations</div>
+          <span class="phase-label p-cap">Capstone</span>
+          <span class="lec-detail">Evaluation</span>
+        </div>
+      </div>
+      <div class="lec-card" data-phase="cap">
+        <div class="lec-num">30</div>
+        <div class="lec-info">
+          <div class="lec-title">Future Trends & Review</div>
+          <span class="phase-label p-cap">Capstone</span>
+          <span class="lec-detail">Wrap-up</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shimmer"></div>
+
+  <!-- ASSESSMENT -->
+  <div class="sec" id="assessment">
+    <div class="sec-header">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Assessment & Articulation</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="assess-grid">
+      <div class="assess-card">
+        <h3><i class="fa-solid fa-chart-pie" style="color:var(--orange);margin-right:.5rem;"></i>Grade Weightage</h3>
+        <div class="pbar-wrap">
+          <div class="pbar-label"><span>End Semester Exam</span><span>40%</span></div>
+          <div class="pbar"><div class="pbar-fill pf-orange" style="width:40%"></div></div>
+        </div>
+        <div class="pbar-wrap">
+          <div class="pbar-label"><span>Mid Semester Exam</span><span>20%</span></div>
+          <div class="pbar"><div class="pbar-fill pf-teal" style="width:20%"></div></div>
+        </div>
+        <div class="pbar-wrap">
+          <div class="pbar-label"><span>Project</span><span>20%</span></div>
+          <div class="pbar"><div class="pbar-fill pf-blue" style="width:20%"></div></div>
+        </div>
+        <div class="pbar-wrap">
+          <div class="pbar-label"><span>Quiz / Lab Assignment</span><span>20%</span></div>
+          <div class="pbar"><div class="pbar-fill pf-purple" style="width:20%"></div></div>
+        </div>
+
+        <!-- ── LAB 6 DOWNLOAD BANNER ── -->
+        <div class="dl-banner">
+          <div class="dl-banner-left">
+            <div class="dl-banner-icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <div class="dl-banner-text">
+              <div class="dl-banner-title">Lab 6 Assignment</div>
+              <div class="dl-banner-sub">IT301Lab6Assignment.pdf</div>
+            </div>
+          </div>
+          <a href="IT301Lab6Assignment.pdf" download class="dl-btn">
+            <i class="fa-solid fa-file-arrow-down"></i> Download
+          </a>
+        </div>
+
+      </div>
+
+      <div class="assess-card">
+        <h3><i class="fa-solid fa-table" style="color:var(--teal);margin-right:.5rem;"></i>Assessment–CO Mapping</h3>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">All assessment types map to all Course Outcomes</p>
+        <div style="display:grid;gap:.75rem;">
+          <div>
+            <div style="font-size:.8rem;font-weight:700;margin-bottom:.5rem;">Midsem Theory Exam</div>
+            <div class="co-dot-grid">
+              <div class="co-dot active">CO1</div><div class="co-dot active">CO2</div>
+              <div class="co-dot active">CO3</div><div class="co-dot active">CO4</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.8rem;font-weight:700;margin-bottom:.5rem;">Endsem Theory Exam</div>
+            <div class="co-dot-grid">
+              <div class="co-dot active">CO1</div><div class="co-dot active">CO2</div>
+              <div class="co-dot active">CO3</div><div class="co-dot active">CO4</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.8rem;font-weight:700;margin-bottom:.5rem;">Assignments / Quiz</div>
+            <div class="co-dot-grid">
+              <div class="co-dot active">CO1</div><div class="co-dot active">CO2</div>
+              <div class="co-dot active">CO3</div><div class="co-dot active">CO4</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.8rem;font-weight:700;margin-bottom:.5rem;">Project</div>
+            <div class="co-dot-grid">
+              <div class="co-dot active">CO1</div><div class="co-dot active">CO2</div>
+              <div class="co-dot active">CO3</div><div class="co-dot active">CO4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Articulation Matrix -->
+    <div style="margin-top:2rem;">
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;"><i class="fa-solid fa-table-cells" style="color:var(--blue);margin-right:.5rem;"></i>Course Articulation Matrix (PO Mapping)</h3>
+      <div class="matrix-scroll">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>CO</th>
+              <th>PO1</th><th>PO2</th><th>PO3</th><th>PO4</th><th>PO5</th>
+              <th>PO6</th><th>PO7</th><th>PO8</th><th>PO9</th><th>PO10</th>
+              <th>PO11</th><th>PO12</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IT111.1</td>
+              <td class="cv3">3</td><td class="cv2">2</td><td class="cv2">2</td><td class="cv1">1</td><td class="cv2">2</td>
+              <td class="cv1">1</td><td class="cv1">1</td><td class="cv1">1</td><td class="cv1">1</td><td class="cv2">2</td>
+              <td class="cv1">1</td><td class="cv2">2</td>
+            </tr>
+            <tr>
+              <td>IT111.2</td>
+              <td class="cv3">3</td><td class="cv3">3</td><td class="cv3">3</td><td class="cv2">2</td><td class="cv3">3</td>
+              <td class="cv1">1</td><td class="cv1">1</td><td class="cv1">1</td><td class="cv2">2</td><td class="cv2">2</td>
+              <td class="cv2">2</td><td class="cv2">2</td>
+            </tr>
+            <tr>
+              <td>IT111.3</td>
+              <td class="cv3">3</td><td class="cv3">3</td><td class="cv3">3</td><td class="cv2">2</td><td class="cv3">3</td>
+              <td class="cv1">1</td><td class="cv2">2</td><td class="cv2">2</td><td class="cv2">2</td><td class="cv3">3</td>
+              <td class="cv2">2</td><td class="cv2">2</td>
+            </tr>
+            <tr>
+              <td>IT111.4</td>
+              <td class="cv3">3</td><td class="cv3">3</td><td class="cv3">3</td><td class="cv3">3</td><td class="cv3">3</td>
+              <td class="cv2">2</td><td class="cv2">2</td><td class="cv2">2</td><td class="cv3">3</td><td class="cv3">3</td>
+              <td class="cv2">2</td><td class="cv2">2</td>
+            </tr>
+            <tr style="background:#faf8f4;font-weight:800;">
+              <td>IT111</td>
+              <td class="cv3">3</td><td class="cv3">3</td><td class="cv3">3</td><td class="cv2">2</td><td class="cv3">3</td>
+              <td class="cv1">1</td><td class="cv2">2</td><td class="cv2">2</td><td class="cv2">2</td><td class="cv2">2</td>
+              <td class="cv2">2</td><td class="cv2">2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="corr-legend">
+        <span class="cl1">1 — Low correlation</span>
+        <span class="cl2">2 — Medium correlation</span>
+        <span class="cl3">3 — High correlation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shimmer"></div>
+
+  <!-- BOOKS -->
+  <div class="sec" id="books">
+    <div class="sec-header">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">Textbooks & References</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="book-spine bs-1"></div>
+        <div class="book-info">
+          <div class="book-author">Dongara, Foster, Fox et al.</div>
+          <div class="book-title">Sourcebook of Parallel Programming</div>
+          <div class="book-pub">Morgan Kaufmann, 2002</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine bs-2"></div>
+        <div class="book-info">
+          <div class="book-author">Barbara Chapman et al.</div>
+          <div class="book-title">OpenMP: Portable Shared Memory Parallel Programming</div>
+          <div class="book-pub">MIT Scientific & Engineering Computation, 2008</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine bs-3"></div>
+        <div class="book-info">
+          <div class="book-author">B. Wilkinson & M. Allen</div>
+          <div class="book-title">Parallel Programming: Techniques and Applications, 2nd Ed.</div>
+          <div class="book-pub">Pearson, 2004</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine bs-4"></div>
+        <div class="book-info">
+          <div class="book-author">Benedict R. Gaster et al.</div>
+          <div class="book-title">Heterogeneous Computing with OpenCL, 2nd Ed.</div>
+          <div class="book-pub">Morgan Kaufmann, 2012</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine bs-5"></div>
+        <div class="book-info">
+          <div class="book-author">Rezaur Rahman</div>
+          <div class="book-title">Intel Xeon-Phi Coprocessor Architecture & Tools</div>
+          <div class="book-pub">Apress, 2013</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine bs-6"></div>
+        <div class="book-info">
+          <div class="book-author">Duane Storti & Mete Yurgotlu</div>
+          <div class="book-title">CUDA for Engineers</div>
+          <div class="book-pub">Addison-Wesley, 2016</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-item"><span class="fi-val">30</span><span class="fi-lbl">Total Sessions</span></div>
+    <div class="footer-item"><span class="fi-val">4</span><span class="fi-lbl">Course Outcomes</span></div>
+    <div class="footer-item"><span class="fi-val">6</span><span class="fi-lbl">Textbooks</span></div>
+    <div class="footer-item"><span class="fi-val">4</span><span class="fi-lbl">Credits</span></div>
+  </div>
+  <div class="footer-divider"></div>
+  <p>
+    <strong>IT301M · Parallel Computing</strong> &nbsp;·&nbsp;
+    Faculty: <strong>Dr. Suresan Pareth</strong> &nbsp;·&nbsp;
+    Mentor: <strong>Dr. Geetha V.</strong>
+  </p>
+  <p style="margin-top:.5rem;font-size:.78rem;">
+    National Institute of Technology Karnataka, Surathkal · Department of Information Technology
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.sec').forEach(s => obs.observe(s));
+
+  // Lecture filter
+  function showPhase(phase, btn) {
+    document.querySelectorAll('.lt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.lec-card').forEach(c => {
+      c.style.display = (phase === 'all' || c.dataset.phase === phase) ? '' : 'none';
+    });
+  }
+
+  // Animate progress bars on scroll
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.pbar-fill').forEach(f => {
+          const w = f.style.width;
+          f.style.width = '0';
+          setTimeout(() => { f.style.width = w; }, 100);
+        });
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.assess-card').forEach(c => barObs.observe(c));
+</script>
+</body>
+</html>
